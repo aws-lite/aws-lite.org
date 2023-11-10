@@ -1,0 +1,7 @@
+.DS_Store
+.enhance/
+.env
+app/**/*.json
+node_modules/
+public/static.json
+scripts/aws-lite

@@ -1,0 +1,28 @@
+{
+  "name": "awslite.org",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "npx enhance dev",
+    "lint": "eslint ./app/**/*.mjs --fix",
+    "enhance": "enhance",
+    "gen": "./scripts/gen.sh"
+  },
+  "dependencies": {
+    "@enhance/arc-plugin-enhance": "^6.2.3",
+    "@enhance/styles-cribsheet": "^0.0.9",
+    "arcdown": "^2.2.1"
+  },
+  "devDependencies": {
+    "@architect/eslint-config": "^2.1.2",
+    "@aws-lite/client": "github:architect/aws-lite#main",
+    "@enhance/cli": "latest",
+    "@enhance/types": "^0.6.1",
+    "eslint": "^8.49.0"
+  },
+  "eslintConfig": {
+    "extends": "@architect/eslint-config",
+    "rules": {
+      "filenames/match-regex": "off"
+    }
+  }
+}
