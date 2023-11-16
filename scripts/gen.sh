@@ -11,3 +11,4 @@ else
 fi
 
 node generate-plugin-data.mjs
+node get-latest-perf-data.mjs

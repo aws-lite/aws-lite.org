@@ -14,7 +14,8 @@
   },
   "devDependencies": {
     "@architect/eslint-config": "^2.1.2",
-    "@aws-lite/client": "github:architect/aws-lite#main",
+    "@aws-lite/client": "^0.11.2",
+    "@aws-lite/s3": "^0.1.1",
     "@enhance/cli": "latest",
     "@enhance/types": "^0.6.1",
     "eslint": "^8.49.0"
