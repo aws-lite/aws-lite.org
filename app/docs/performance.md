@@ -7,7 +7,7 @@
   <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Coldstart latency" srcset="https://performanceproduction-assetsbucket-1xqwku8953q8m.s3.us-west-2.amazonaws.com/coldstart-dark.png">
 </picture>
 
-$stats_coldstart
+<!-- stats_coldstart -->
 
 
 
@@ -20,7 +20,7 @@ $stats_coldstart
   <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Initialization latency" srcset="https://performanceproduction-assetsbucket-1xqwku8953q8m.s3.us-west-2.amazonaws.com/init-dark.png">
 </picture>
 
-$stats_init
+<!-- stats_init -->
 
 
 
@@ -33,7 +33,7 @@ $stats_init
   <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Import / require" srcset="https://performanceproduction-assetsbucket-1xqwku8953q8m.s3.us-west-2.amazonaws.com/import-dep-dark.png">
 </picture>
 
-$stats_importDep
+<!-- stats_importDep -->
 
 
 
@@ -46,7 +46,7 @@ $stats_importDep
   <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Instantiate a client" srcset="https://performanceproduction-assetsbucket-1xqwku8953q8m.s3.us-west-2.amazonaws.com/instantiate-dark.png">
 </picture>
 
-$stats_instantiate
+<!-- stats_instantiate -->
 
 
 
@@ -59,7 +59,7 @@ $stats_instantiate
   <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - DynamoDB - read one 100KB row" srcset="https://performanceproduction-assetsbucket-1xqwku8953q8m.s3.us-west-2.amazonaws.com/read-dark.png">
 </picture>
 
-$stats_read
+<!-- stats_read -->
 
 
 
@@ -72,7 +72,7 @@ $stats_read
   <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - DynamoDB - write one 100KB row" srcset="https://performanceproduction-assetsbucket-1xqwku8953q8m.s3.us-west-2.amazonaws.com/write-dark.png">
 </picture>
 
-$stats_write
+<!-- stats_write -->
 
 
 
@@ -85,7 +85,7 @@ $stats_write
   <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Peak memory consumption over Lambda baseline" srcset="https://performanceproduction-assetsbucket-1xqwku8953q8m.s3.us-west-2.amazonaws.com/memory-dark.png">
 </picture>
 
-$stats_memory
+<!-- stats_memory -->
 
 
 
@@ -98,7 +98,7 @@ $stats_memory
   <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Time to respond, not including coldstart" srcset="https://performanceproduction-assetsbucket-1xqwku8953q8m.s3.us-west-2.amazonaws.com/execution-time-dark.png">
 </picture>
 
-$stats_executionTime
+<!-- stats_executionTime -->
 
 
 
@@ -111,4 +111,4 @@ $stats_executionTime
   <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Total time to respond, including coldstart" srcset="https://performanceproduction-assetsbucket-1xqwku8953q8m.s3.us-west-2.amazonaws.com/total-time-dark.png">
 </picture>
 
-$stats_totalTime
+<!-- stats_totalTime -->

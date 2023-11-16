@@ -34,7 +34,7 @@ export async function get (req) {
       const statsData = JSON.parse(await readFile(statsFile))
       const statsMd = getPerfStats(statsData)
       Object.entries(statsMd).forEach(([ stat, md ]) => {
-        let re = new RegExp(`\\$stats_${stat}`, 'g')
+        let re = new RegExp(`<!-- stats_${stat} -->`, 'g')
         pageContents = pageContents.replace(re, md)
       })
     }
