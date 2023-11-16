@@ -24,13 +24,28 @@ export async function get (req) {
     }
 
     const pagePath = join(__dirname, '..', 'docs', `${page}.md`)
-    const pageContents = await readFile(pagePath)
+    let pageContents = await readFile(pagePath)
+
+    if (page === 'performance') {
+      pageContents = pageContents.toString()
+      const getPerfStats = (await import('../lib/perf-stats.mjs')).default
+
+      const statsFile = join(__dirname, 'latest-results-parsed.json')
+      const statsData = JSON.parse(await readFile(statsFile))
+      const statsMd = getPerfStats(statsData)
+      Object.entries(statsMd).forEach(([ stat, md ]) => {
+        let re = new RegExp(`\\$stats_${stat}`, 'g')
+        pageContents = pageContents.replace(re, md)
+      })
+    }
+
     const doc = await arcdown.render(pageContents)
     cache[page] = doc
 
     return { json: { doc } }
   }
   catch {
-    return { statusCode: 404 }
+    // FIXME!
+    return { statusCode: 404, json: { doc: 'oh noes' } }
   }
 }
