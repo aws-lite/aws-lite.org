@@ -18,7 +18,7 @@ export default function (data, /* checksum */) {
     md[name] += `| | ` + Object.keys(data).join(' | ') + ' |\n'
     md[name] += `|-` + `|-`.repeat(Object.keys(data).length) + ' |\n'
     metrics.forEach(m => {
-      md[name] += `| ${m} | ` + Object.values(data).map(d => d[m]).join(' | ') + ' |\n'
+      md[name] += `| ${m} | ` + Object.values(data).map(d => Number(d[m])).join(' | ') + ' |\n'
     })
   })
   return md
