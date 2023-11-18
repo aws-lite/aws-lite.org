@@ -3,6 +3,7 @@
 .env
 app/**/*.json
 node_modules/
+public/
 public/static.json
 scratch/
 scripts/aws-lite
