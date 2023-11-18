@@ -5,8 +5,8 @@ Coldstart latency measures the impact of each SDK on an AWS Lambda coldstart –
 In these stats we expect to see lower values for either very small code payloads (such as `aws-lite`), or scenarios where we are using the AWS SDK included in the Lambda image (e.g. `@aws-sdk` v3 raw in `nodejs20.x`). Coldstart latency increases as code payload sizes increases, which a result of bundling.
 
 <picture>
-  <img alt="Benchmark statistics - Coldstart latency" src="https://performanceproduction-assetsbucket-1xqwku8953q8m.s3.us-west-2.amazonaws.com/coldstart.png">
-  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Coldstart latency" srcset="https://performanceproduction-assetsbucket-1xqwku8953q8m.s3.us-west-2.amazonaws.com/coldstart-dark.png">
+  <img alt="Benchmark statistics - Coldstart latency" src="/_static/coldstart.png">
+  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Coldstart latency" srcset="/_static/coldstart-dark.png">
 </picture>
 
 <!-- stats_coldstart -->
@@ -19,8 +19,8 @@ Initialization latency measures the impact of each SDK on the [initialization ph
 Here we expect to see relatively similar values, as the performance benchmark has almost no static code or init-time execution.
 
 <picture>
-  <img alt="Benchmark statistics - Initialization latency" src="https://performanceproduction-assetsbucket-1xqwku8953q8m.s3.us-west-2.amazonaws.com/init.png">
-  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Initialization latency" srcset="https://performanceproduction-assetsbucket-1xqwku8953q8m.s3.us-west-2.amazonaws.com/init-dark.png">
+  <img alt="Benchmark statistics - Initialization latency" src="/_static/init.png">
+  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Initialization latency" srcset="/_static/init-dark.png">
 </picture>
 
 <!-- stats_init -->
@@ -34,8 +34,8 @@ Here we measure the impact of importing / requiring each SDK. Ideally, all impor
 It is important to note that import / require times are tied to individual services. In this benchmark, only the DynamoDB service client is imported. In the real world, your business logic may make use of of multiple AWS services; each of which would necessitate additional imports, thereby compounding overall response latency.
 
 <picture>
-  <img alt="Benchmark statistics - Import / require" src="https://performanceproduction-assetsbucket-1xqwku8953q8m.s3.us-west-2.amazonaws.com/import-dep.png">
-  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Import / require" srcset="https://performanceproduction-assetsbucket-1xqwku8953q8m.s3.us-west-2.amazonaws.com/import-dep-dark.png">
+  <img alt="Benchmark statistics - Import / require" src="/_static/import-dep.png">
+  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Import / require" srcset="/_static/import-dep-dark.png">
 </picture>
 
 <!-- stats_importDep -->
@@ -47,8 +47,8 @@ It is important to note that import / require times are tied to individual servi
 Here we measure the impact of instantiating a new SDK client – a necessary step before making any service API calls. Ideally all operations should be sub-50ms to ensure fast responses in customer hot-paths.
 
 <picture>
-  <img alt="Benchmark statistics - Instantiate a client" src="https://performanceproduction-assetsbucket-1xqwku8953q8m.s3.us-west-2.amazonaws.com/instantiate.png">
-  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Instantiate a client" srcset="https://performanceproduction-assetsbucket-1xqwku8953q8m.s3.us-west-2.amazonaws.com/instantiate-dark.png">
+  <img alt="Benchmark statistics - Instantiate a client" src="/_static/instantiate.png">
+  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Instantiate a client" srcset="/_static/instantiate-dark.png">
 </picture>
 
 <!-- stats_instantiate -->
@@ -60,8 +60,8 @@ Here we measure the impact of instantiating a new SDK client – a necessary ste
 Here we measure the latency associated with reading a single 100KB row from DynamoDB, and parsing and returning results. All reads are identical across SDKs.
 
 <picture>
-  <img alt="Benchmark statistics - DynamoDB - read one 100KB row" src="https://performanceproduction-assetsbucket-1xqwku8953q8m.s3.us-west-2.amazonaws.com/read.png">
-  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - DynamoDB - read one 100KB row" srcset="https://performanceproduction-assetsbucket-1xqwku8953q8m.s3.us-west-2.amazonaws.com/read-dark.png">
+  <img alt="Benchmark statistics - DynamoDB - read one 100KB row" src="/_static/read.png">
+  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - DynamoDB - read one 100KB row" srcset="/_static/read-dark.png">
 </picture>
 
 <!-- stats_read -->
@@ -73,8 +73,8 @@ Here we measure the latency associated with reading a single 100KB row from Dyna
 Here we measure the latency associated with writing a single 100KB row into DynamoDB. All writes are identical across SDKs.
 
 <picture>
-  <img alt="Benchmark statistics - DynamoDB - write one 100KB row" src="https://performanceproduction-assetsbucket-1xqwku8953q8m.s3.us-west-2.amazonaws.com/write.png">
-  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - DynamoDB - write one 100KB row" srcset="https://performanceproduction-assetsbucket-1xqwku8953q8m.s3.us-west-2.amazonaws.com/write-dark.png">
+  <img alt="Benchmark statistics - DynamoDB - write one 100KB row" src="/_static/write.png">
+  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - DynamoDB - write one 100KB row" srcset="/_static/write-dark.png">
 </picture>
 
 <!-- stats_write -->
@@ -88,8 +88,8 @@ Peak memory consumption measures each SDK's peak memory usage throughout the abo
 To make the impact of each SDK easier to assess, the graph is presented as a value over (thus, not including) the Lambda Node.js baseline. Baseline memory consumption would be expected to include Node.js itself, Lambda bootstrap processes, etc. The memory baseline used always corresponds to the equivalent peak memory of the control test (e.g. `aws-lite` peak memory p95 - control peak memory p95).
 
 <picture>
-  <img alt="Benchmark statistics - Peak memory consumption over Lambda baseline" src="https://performanceproduction-assetsbucket-1xqwku8953q8m.s3.us-west-2.amazonaws.com/memory.png">
-  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Peak memory consumption over Lambda baseline" srcset="https://performanceproduction-assetsbucket-1xqwku8953q8m.s3.us-west-2.amazonaws.com/memory-dark.png">
+  <img alt="Benchmark statistics - Peak memory consumption over Lambda baseline" src="/_static/memory.png">
+  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Peak memory consumption over Lambda baseline" srcset="/_static/memory-dark.png">
 </picture>
 
 <!-- stats_memory -->
@@ -101,8 +101,8 @@ To make the impact of each SDK easier to assess, the graph is presented as a val
 Time to respond measures the total execution time of each SDK, not including coldstart (or initialization). In real-world usage, Lambda coldstarts are usually less common than warm invocations, so this metric illustrates a more common case. Ideally all times should be sub-1000ms to ensure fast responses in customer hot-paths.
 
 <picture>
-  <img alt="Benchmark statistics - Time to respond, not including coldstart" src="https://performanceproduction-assetsbucket-1xqwku8953q8m.s3.us-west-2.amazonaws.com/execution-time.png">
-  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Time to respond, not including coldstart" srcset="https://performanceproduction-assetsbucket-1xqwku8953q8m.s3.us-west-2.amazonaws.com/execution-time-dark.png">
+  <img alt="Benchmark statistics - Time to respond, not including coldstart" src="/_static/execution-time.png">
+  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Time to respond, not including coldstart" srcset="/_static/execution-time-dark.png">
 </picture>
 
 <!-- stats_executionTime -->
@@ -114,8 +114,8 @@ Time to respond measures the total execution time of each SDK, not including col
 Total time to respond measures the total execution time of each SDK, including coldstart and initialization. In real-world usage, this metric represents a normalized "worst case" response time. Ideally all times should be sub-1000ms to ensure fast responses in customer hot-paths.
 
 <picture>
-  <img alt="Benchmark statistics - Total time to respond, including coldstart" src="https://performanceproduction-assetsbucket-1xqwku8953q8m.s3.us-west-2.amazonaws.com/total-time.png">
-  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Total time to respond, including coldstart" srcset="https://performanceproduction-assetsbucket-1xqwku8953q8m.s3.us-west-2.amazonaws.com/total-time-dark.png">
+  <img alt="Benchmark statistics - Total time to respond, including coldstart" src="/_static/total-time.png">
+  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Total time to respond, including coldstart" srcset="/_static/total-time-dark.png">
 </picture>
 
 <!-- stats_totalTime -->
