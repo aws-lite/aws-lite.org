@@ -18,7 +18,8 @@ export default function sideNav (params) {
     'Contributing',
   ]
   const Nav = Docs.map(i => {
-    return /* html */`<li><a href="/${i.toLowerCase()}">${i}</a></li>`
+    const slug = i === 'Intro' ? '' : i.toLowerCase().replace(/ /g, '-')
+    return /* html */`<li><a href="/${slug}">${i}</a></li>`
   })
   const MainNav = `
 <ul>
