@@ -12,9 +12,9 @@ export default function sideNav (params) {
   }
   const Docs = [
     'Intro',
-    'Quickstart',
+    'Configuration',
     'Performance',
-    'Plugins',
+    'API',
     'Contributing',
   ]
   const Nav = Docs.map(i => {

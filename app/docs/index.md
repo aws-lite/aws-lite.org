@@ -26,6 +26,7 @@ We rely on and believe in AWS, so we built `aws-lite` to provide a simpler, fast
 - Interacts with any AWS service without needing any plugins
 - Automatically parses / serializes JSON, AWS-flavored JSON, and XML request / response payloads
 - Easily integrates with local testing suites and AWS service mocks
+- Use existing service plugins, or [develop your own](/api)
 - Debug mode for inspecting raw requests and responses
 - Just two dependencies
 
@@ -44,7 +45,7 @@ Because `aws-lite` and its plugins are authored from the ground up for performan
 Learn more about [`aws-lite` performance here](/performance).
 
 
-## Get started
+## Install `aws-lite`
 
 Install the client:
 
@@ -57,6 +58,9 @@ You can use the client as-is to quickly interact with AWS service APIs, or exten
 ```sh
 npm i @aws-lite/dynamodb
 ```
+
+
+## Example
 
 Now start making calls to AWS:
 
@@ -97,7 +101,7 @@ await aws({
  * Plugins
  * Use service plugins to more easily interact with the AWS services your application relies on
  */
-await aws.DynamoDB.GetObject({
+await aws.DynamoDB.GetItem({
   pk: '$item-key',
 })
 // {
