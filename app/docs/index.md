@@ -14,6 +14,22 @@ Amazon has historically done a great job of maintaining its SDKs. However, AWS h
 We rely on and believe in AWS, so we built `aws-lite` to provide a simpler, faster, more stable position from which to work with AWS services in Node.js.
 
 
+## Features
+
+- [2-5x faster than AWS SDK v3](/performance)
+- Simple semantics & straightforward promise-based interface
+- Human-readable documentation
+- Customizable
+- Errors with stack traces and line numbers
+- Built-in pagination
+- Secured with AWS Signature v4
+- Interacts with any AWS service without needing any plugins
+- Automatically parses / serializes JSON, AWS-flavored JSON, and XML request / response payloads
+- Easily integrates with local testing suites and AWS service mocks
+- Debug mode for inspecting raw requests and responses
+- Just two dependencies
+
+
 ## How does it work?
 
 `@aws-lite/client` provides a basic client interface for quickly interacting with any AWS service. However, most folks will probably want to extend the client and utilize plugins, which provide ergonomic representations of AWS service API methods.
