@@ -21,7 +21,7 @@ export default function docsContent (params) {
         }
       }
 
-      :host > h1 {
+      h1 {
         font-weight: 700;
         font-size: var(--text-4);
         letter-spacing: -0.025em;
@@ -167,9 +167,13 @@ export default function docsContent (params) {
         font-size: var(--text--1);
       }
     </style>
-    <h1>${display}</h1>
-    <article>
-      ${doc.html}
-    </article>
+
+    <div>
+      <h1>${display}</h1>
+
+      <article>
+        ${doc.html}
+      </article>
+    </div>
 `
 }

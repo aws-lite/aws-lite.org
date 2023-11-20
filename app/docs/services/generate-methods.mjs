@@ -21,7 +21,7 @@ export default function generateMethods (_plugin) {
     if (!awsDoc) throw ReferenceError(`All methods must refer to an AWS service API doc: ${display} ${method}`)
     header += `<cite>[Canonical AWS API doc](${awsDoc})</cite>\n`
     if (validate) {
-      header += `\n #### Properties:\n` + '<dl>' + Object.entries(validate).map(([ param, values ]) => {
+      header += `\n #### Properties\n` + '<dl>' + Object.entries(validate).map(([ param, values ]) => {
         const { type, required, comment } = values
         const _typ = Array.isArray(type) ? type.join(', ') : type
         const _req = required ? ' [required]' : ''

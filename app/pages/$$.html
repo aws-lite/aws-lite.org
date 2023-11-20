@@ -1,15 +1,22 @@
 <style scope="global">
   @media screen and (min-width: 52em) {
     main {
-      grid-template-columns: 16rem 1fr;
+      grid-template-columns: 20ch 1fr;
       max-inline-size: var(--site-max-width);
     }
 
-    site-nav {
+    site-nav,
+    table-of-contents {
       position: sticky;
       inset-block-start: var(--masthead-max-height);
       block-size: calc(100dvh - var(--masthead-max-height));
       overflow-y: scroll;
+    }
+
+    @media screen and (min-width: 72em) {
+      main {
+        grid-template-columns: 20ch 1fr 24ch;
+      }
     }
   }
 </style>
@@ -20,4 +27,5 @@
 <main class="grid-lg gap0-lg mi-auto pb0-lg">
   <site-nav class="hidden block-lg"></site-nav>
   <docs-content></docs-content>
+  <table-of-contents class="hidden block-xl"></table-of-contents>
 </main>

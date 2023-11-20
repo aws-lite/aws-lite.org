@@ -35,14 +35,15 @@
     "fore-dark": "#312a47"
   },
   "properties": {
-    "site-max-width": "82rem",
+    "site-max-width": "92rem",
     "font-mono": "Source Code, Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace"
   },
   "grid": {
     "steps": 6
   },
   "queries": {
-    "lg": "52em"
+    "lg": "52em",
+    "xl": "72em"
   },
   "borders": {
     "widths": [

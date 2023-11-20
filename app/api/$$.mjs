@@ -5,7 +5,13 @@ import { Arcdown } from 'arcdown'
 import url from 'url'
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
 
-const arcdown = new Arcdown({})
+const arcdown = new Arcdown({
+  pluginOverrides: {
+    markdownItToc: {
+      level: [ 1, 2, 3 ],
+    }
+  }
+})
 
 const cache = {}
 

@@ -41,6 +41,16 @@ export default function Head () {
           font-weight: 450;
         }
 
+        html {
+          scroll-padding: calc(var(--masthead-max-height) + var(--space-1));
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+          html {
+            scroll-behavior: smooth;
+          }
+        }
+
         body {
           background-color: var(--back);
           color: var(--fore);
@@ -50,6 +60,6 @@ export default function Head () {
         ${SyntaxTheme()}
       </style>
     </head>
-    <body class="leading3">
+    <body class="leading4">
 `
 }
