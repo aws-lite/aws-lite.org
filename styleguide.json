@@ -18,24 +18,25 @@
     "scaleMax": "perfect-fourth"
   },
   "fonts": {
-    "sans": "Montserrat, system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif",
+    "sans": "Montserrat,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif",
     "serif": "Georgia,Cambria,Times New Roman,Times,serif",
-    "mono": "Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace"
+    "mono": "Source Code,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace"
   },
   "theme": {
     "accent": "#970a5f",
     "back": "#fefbf6",
     "fore": "#312a47",
-    "fore-dark": "#312a47",
     "dark": {
       "back": "#201935",
       "accent": "#fc4c6a"
     }
   },
   "color": {
+    "fore-dark": "#312a47"
   },
   "properties": {
-    "site-max-width": "82rem"
+    "site-max-width": "82rem",
+    "font-mono": "Source Code, Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace"
   },
   "grid": {
     "steps": 6

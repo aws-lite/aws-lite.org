@@ -1,6 +1,10 @@
 # `$SERVICE`
 
-> Maintained by: $MAINTAINERS
+<address>
+
+Maintained by: $MAINTAINERS
+
+</address>
 
 
 ## Install

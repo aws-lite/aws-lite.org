@@ -53,6 +53,10 @@ export default function SiteNav ({ html }) {
       }
 
       @media screen and (min-width: 52em) {
+        :host {
+          color: var(--fore);
+        }
+
         li {
           font-size: var(--text--1);
         }

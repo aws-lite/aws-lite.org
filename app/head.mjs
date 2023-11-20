@@ -28,6 +28,12 @@ export default function Head () {
           font-style: italic;
         }
 
+        @font-face {
+          font-family: "Source Code";
+          src: url("/_public/fonts/SourceCodeVF.otf.woff2") format("woff2-variations");
+          font-weight: 400 700;
+        }
+
         html,
         body {
           font-family: Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -40,6 +46,8 @@ export default function Head () {
           color: var(--fore);
           margin-block-start: var(--masthead-max-height);
         }
+
+        ${SyntaxTheme()}
       </style>
     </head>
     <body class="leading3">
