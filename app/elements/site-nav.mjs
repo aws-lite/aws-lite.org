@@ -4,8 +4,7 @@ import url from 'url'
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
 let services
 
-export default function sideNav (params) {
-  const { html } = params
+export default function SiteNav ({ html }) {
   if (!services) {
     const servicesFile = join(__dirname, 'services.json')
     services = JSON.parse(readFileSync(servicesFile))
@@ -21,7 +20,8 @@ export default function sideNav (params) {
     return /* html */`<li><a href="/${i.toLowerCase()}">${i}</a></li>`
   })
   const MainNav = `
-<ul>
+<h2 class="font-semibold">Get Started</h2>
+<ul class="list-none mb0">
   ${Nav.join('\n  ')}
 </ul>
 `
@@ -30,11 +30,36 @@ export default function sideNav (params) {
     return /* html */`<li><a href="/services/${service}">${display}</a></li>`
   })
   const ServicesNav = `
-<h2>Services</h2>
-<ul>
+<h2 class="font-semibold">Services</h2>
+<ul class="list-none mb0">
   ${Services.join('\n  ')}
 </ul>
 `
 
-  return html`${MainNav + ServicesNav}`
+  return html`
+    <style>
+      :host {
+        display: block;
+        color: var(--fore-dark);
+        padding: var(--space-0);
+      }
+
+      li {
+        padding-block: var(--space--4);
+      }
+
+      li a {
+        color: var(--accent);
+      }
+
+      @media screen and (min-width: 52em) {
+        li {
+          font-size: var(--text--1);
+        }
+      }
+    </style>
+    <nav>
+      ${MainNav + ServicesNav}
+    </nav>
+  `
 }

@@ -1,21 +1,23 @@
 <style scope="global">
-  body {
-    height: 100vh;
-    background-attachment: fixed;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: black;
-  }
+  @media screen and (min-width: 52em) {
+    main {
+      grid-template-columns: 16rem 1fr;
+      max-inline-size: var(--site-max-width);
+    }
 
-  main {
-    min-width: 17rem;
-    max-width: 52rem;
-    height: 100%;
+    site-nav {
+      position: sticky;
+      inset-block-start: var(--masthead-max-height);
+      block-size: calc(100dvh - var(--masthead-max-height));
+      overflow-y: scroll;
+    }
   }
 </style>
 
-<main class="m-auto pbs5 pbe2 pi2 font-sans">
+<site-symbols></site-symbols>
+
+<site-header></site-header>
+<main class="grid-lg gap0-lg mi-auto pb0-lg">
+  <site-nav class="hidden block-lg"></site-nav>
   <docs-content></docs-content>
-  <side-nav></side-nav>
 </main>
