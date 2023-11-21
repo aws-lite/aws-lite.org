@@ -32,8 +32,7 @@ export default function docsContent (params) {
         color: var(--accent);
         font-family: var(--font-mono);
         font-size: var(--text-1);
-        font-weight: 450;
-        word-break: break-all;
+        font-weight: 500;
       }
 
       :host > h1,
@@ -44,6 +43,7 @@ export default function docsContent (params) {
       h5,
       h6 {
         line-height: 1.25;
+        word-break: break-all;
       }
 
       h3,
@@ -56,7 +56,7 @@ export default function docsContent (params) {
 
       h2 {
         border-bottom: 2px solid var(--muted-accent);
-        font-size: var(--text-3);
+        font-size: var(--text-2);
         font-weight: 625;
         letter-spacing: -0.0125em;
         margin-block: var(--space-4) var(--space-0);
@@ -64,12 +64,18 @@ export default function docsContent (params) {
       }
 
       h3 {
-        font-size: var(--text-2);
+        font-size: var(--text-0);
         font-weight: 700;
         letter-spacing: -0.0125em;
       }
 
-      h4, h5, h6 { font-size: var(--text-1) }
+      h4, h5, h6 { font-size: var(--text-0) }
+
+      @media screen and (min-width: 52em) {
+        h2 { font-size: var(--text-3); }
+        h3 { font-size: var(--text-2); }
+        h4, h5, h6 { font-size: var(--text-1) }
+      }
 
       address,
       cite {
@@ -81,6 +87,7 @@ export default function docsContent (params) {
         border-radius: 0.25em;
         display: inline-block;
         font-size: var(--text--1);
+        font-weight: 500;
         margin-block-start: var(--space-0);
         padding: var(--space--2) var(--space--1);
       }
@@ -157,6 +164,7 @@ export default function docsContent (params) {
       dt code {
         font-size: var(--text-0);
         font-weight: 650;
+        word-break: break-all;
       }
 
       dd + dt {
