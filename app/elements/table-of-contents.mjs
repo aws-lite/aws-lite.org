@@ -33,6 +33,7 @@ export default function TableOfContents ({ html, state }) {
       }
     </style>
     <aside>
+      <h6 class="font-semibold mbe0">On this page</h6>
       ${tocHtml}
     </aside>
   `
