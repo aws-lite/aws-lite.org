@@ -1,3 +1,5 @@
+# Request/response
+
 ## Requests
 
 Requests from the bare `aws-lite` client and plugins accept the following parameters; only `service` is required.
@@ -48,7 +50,7 @@ Requests from the bare `aws-lite` client and plugins accept the following parame
 
 ### Example
 
-```js
+```javascript
 import awsLite from '@aws-lite/client'
 const aws = await awsLite()
 
@@ -111,7 +113,7 @@ AWS errors can take many shapes depending on the service API in question. When a
 
 ### Example
 
-```js
+```javascript
 import awsLite from '@aws-lite/client'
 const aws = await awsLite()
 

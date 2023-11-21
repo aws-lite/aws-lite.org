@@ -1,9 +1,9 @@
-## Configuration
+# Configuration
 
 The following options may be passed when instantiating the `aws-lite` client:
 
 
-### Credentials + region
+## Credentials + region
 
 - **`accessKeyId` (string)**
   - AWS access key; if not provided, defaults to `AWS_ACCESS_KEY_ID` or `AWS_ACCESS_KEY` env vars, and then to a `~/.aws/credentials` file, if present
@@ -26,7 +26,7 @@ The following options may be passed when instantiating the `aws-lite` client:
   - AWS config + credentials profile; if not provided, defaults to `AWS_PROFILE` env var, and then to the `default` profile, if present
 
 
-### General config
+## General config
 
 - **`autoloadPlugins` (boolean) [default = true]**
   - Automatically load installed `@aws-lite/*` + `aws-lite-plugin-*` plugins
@@ -49,9 +49,9 @@ The following options may be passed when instantiating the `aws-lite` client:
   - Set an overriding Content-Type header for all responses, helpful for local testing
 
 
-### Example
+## Example
 
-```js
+```javascript
 import awsLite from '@aws-lite/client'
 
 // Load everything from env vars, use only defaults
@@ -77,7 +77,7 @@ aws = await awsLite({
 ```
 
 
-### Types
+## Types
 
 Generally, types are available as `@aws-lite/<plugin>-types` packages. For example, once you have installed `@aws-lite/client` and `@aws-lite/dynamodb` as dependencies, add the DynamoDB types as a dev dependency:
 
@@ -86,12 +86,12 @@ npm i -D @aws-lite/dynamodb-types
 ```
 
 
-#### JavaScript projects
+### JavaScript projects
 
 In JavaScript projects, code completion (aka Intellisense) for input and output types are be loaded automatically for `awsLite.<service>.<method>` calls.
 
 
-#### TypeScript projects
+### TypeScript projects
 
 To make use of `aws-lite` types in TypeScript projects, include them in your `tsconfig.json`:
 

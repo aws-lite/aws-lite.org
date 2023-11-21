@@ -1,3 +1,5 @@
+# Contributing
+
 AWS has (as of this writing) nearly 300 service APIs – `aws-lite` would love your help in authoring and maintaining official (and unofficial) plugins!
 
 
@@ -67,7 +69,7 @@ After adding a plugin and running `npm run gen`, a `types/` directory will be ad
 
 As mentioned above, it is possible to maintain hand-written types alongside generated types by specifying imports and method types outside of their respective "fences" in the generated `index.d.ts` file. For example, to provide a custom type for the `s3` plugin's `PutObject` method, you could do the following:
 
-```ts
+```typescript
 // plugins/s3/types/index.d.ts
 declare interface AwsLiteS3 {
   // $METHODS_START

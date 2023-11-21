@@ -1,3 +1,5 @@
+# API
+
 ## Introduction
 
 Out of the box, [`@aws-lite/client`](https://www.npmjs.com/package/@aws-lite/client) is a full-featured AWS API client that you can use to interact with any AWS service that makes use of [authentication via AWS signature v4](https://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html) (which should be just about all of them).
@@ -18,7 +20,7 @@ Thus, to make use of the `@aws-lite/dynamodb` plugin, this is what your code wou
 npm i @aws-lite/client @aws-lite/dynamodb
 ```
 
-```js
+```javascript
 import awsLite from '@aws-lite/client'
 const aws = await awsLite() // @aws-lite/dynamodb is now automatically loaded
 aws.DynamoDB.PutItem({ TableName: 'my-table', Key: { id: 'hello' } })
@@ -36,7 +38,7 @@ The `aws-lite` plugin API is lightweight and simple to learn. It makes use of fo
 
 The above four lifecycle hooks must be exported as an object named `methods`, along with a valid AWS service code property named `service`, like so:
 
-```js
+```javascript
 // A simple plugin for validating `TableName` input on DynamoDB.PutItem() calls
 export default {
   service: 'dynamodb',
@@ -71,7 +73,7 @@ Additionally, a descriptive `comment` property can be added to each parameter. T
 
 An example `validate` plugin:
 
-```js
+```javascript
 // Validate inputs for a single DynamoDB method (`CreateTable`)
 export default {
   service: 'dynamodb',
@@ -115,7 +117,7 @@ The `request()` method may return:
 
 An example:
 
-```js
+```javascript
 // Automatically serialize input to AWS-flavored JSON
 export default {
   service: 'dynamodb',
@@ -165,7 +167,7 @@ The `response()` method may return:
 
 An example:
 
-```js
+```javascript
 // Automatically deserialize AWS-flavored JSON
 export default {
   service: 'dynamodb',
@@ -208,7 +210,7 @@ The `error()` method may return:
 
 An example:
 
-```js
+```javascript
 // Improve clarity of error output
 export default {
   service: 'lambda',
@@ -250,7 +252,7 @@ export default {
 
 An example of plugin utils:
 
-```js
+```javascript
 async function request (params, utils) {
   let marshalled = utils.awsjsonMarshall({ ok: true, hi: 'there' })
   console.log(marshalled)

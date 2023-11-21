@@ -1,3 +1,5 @@
+# Intro
+
 ## What is `aws-lite`?
 
 [`aws-lite`](https://www.npmjs.com/package/@aws-lite/client) is a simple, extremely fast, extensible Node.js client for interacting with AWS services.
@@ -72,7 +74,7 @@ npm i -D @aws-lite/dynamodb-types
 
 Now start making calls to AWS:
 
-```js
+```javascript
 /**
  * Instantiate a client
  * This is an asynchronous operation that will attempt to load your AWS credentials, local configuration, region settings, etc.
