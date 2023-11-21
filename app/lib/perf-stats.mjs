@@ -14,12 +14,13 @@ const metrics = [
 export default function (data, /* checksum */) {
   let md = {}
   Object.entries(data).forEach(([ name, data ]) => {
-    md[name] = ''
+    md[name] = '<figure class="table-wrapper">\n\n'
     md[name] += `| | ` + Object.keys(data).join(' | ') + ' |\n'
     md[name] += `|-` + `|-`.repeat(Object.keys(data).length) + ' |\n'
     metrics.forEach(m => {
       md[name] += `| ${m} | ` + Object.values(data).map(d => Number(d[m])).join(' | ') + ' |\n'
     })
+    md[name] += '\n\n</figure>'
   })
   return md
 }

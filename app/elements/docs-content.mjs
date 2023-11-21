@@ -98,17 +98,17 @@ export default function docsContent (params) {
         margin-block: var(--space-0);
       }
 
-      figure {
+      figure:not(.table-wrapper) {
         border-radius: 0.25em 0 0 0;
         border-inline-start: 4px solid var(--muted-accent);
         padding-inline-start: var(--space-0);
       }
 
-      figure:not(:first-of-type) {
+      figure:not(:first-of-type, .table-wrapper) {
         margin-block: var(--space-3);
       }
       
-      figure figcaption {
+      figure:not(.table-wrapper) figcaption {
         background: var(--muted-accent);
         margin-block-start: 0;
         border-radius: 0 0.25em 0.25em 0;
@@ -173,6 +173,42 @@ export default function docsContent (params) {
 
       dd {
         font-size: var(--text--1);
+      }
+
+      figure.table-wrapper {
+        display: flex;
+        margin-block: var(--space-0);
+        overflow-x: scroll;
+      }
+
+      table {
+        border: 1px solid var(--muted-accent);
+        flex-grow: 1;
+        font-size: var(--text--2);
+        font-variant-numeric: tabular-nums;
+      }
+
+      th {
+        text-align: start;
+      }
+
+      th,
+      td:first-of-type {
+        font-weight: 700;
+      }
+
+      th,
+      td {
+        padding: var(--space--4);
+      }
+
+      thead tr,
+      tr:nth-of-type(even) {
+        background-color: var(--muted-accent);
+      }
+
+      picture {
+        margin-block: var(--space-0);
       }
     </style>
 
