@@ -13,12 +13,13 @@ export default function sideNav (params) {
   const Docs = [
     'Intro',
     'Configuration',
-    'Performance',
+    'Request/response',
     'API',
+    'Performance',
     'Contributing',
   ]
   const Nav = Docs.map(i => {
-    const slug = i === 'Intro' ? '' : i.toLowerCase().replace(/ /g, '-')
+    const slug = i === 'Intro' ? '' : i.toLowerCase().replace(/[ \/]/g, '-')
     return /* html */`<li><a href="/${slug}">${i}</a></li>`
   })
   const MainNav = `
