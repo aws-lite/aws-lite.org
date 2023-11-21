@@ -1,6 +1,13 @@
-export default function docsContent (params) {
-  const { html, state } = params
-  const { display, doc } = state.store
+export default function docsContent ({ html, state }) {
+  const { store } = state
+  const { display, doc, isService = false } = store
+
+  const standardH1 = `
+    font-size: var(--text-3);
+  `
+
+  const serviceH1 = `
+  `
 
   return html`
     <style>
@@ -28,12 +35,14 @@ export default function docsContent (params) {
         margin-block-end: 0.25em;
       }
 
-      article h1 {
-        color: var(--accent);
-        font-family: var(--font-mono);
-        font-size: var(--text-1);
-        font-weight: 500;
-      }
+      ${isService ?
+    `article h1 {
+          color: var(--accent);
+          font-family: var(--font-mono);
+          font-size: var(--text-1);
+          font-weight: 500;
+        }`
+    : ''}
 
       :host > h1,
       article h1,
@@ -72,9 +81,14 @@ export default function docsContent (params) {
       h4, h5, h6 { font-size: var(--text-0) }
 
       @media screen and (min-width: 52em) {
+        ${isService ? '' : 'article h1 { font-size: var(--text-5); }'}
         h2 { font-size: var(--text-3); }
         h3 { font-size: var(--text-2); }
         h4, h5, h6 { font-size: var(--text-1) }
+      }
+
+      :is(h1, h2, h3, h4, h5, h6) code {
+        font-weight: 750;
       }
 
       address,
@@ -135,6 +149,7 @@ export default function docsContent (params) {
         margin-block: var(--space-0);
         padding: var(--space--2);
         overflow-x: scroll;
+        white-space: pre-wrap;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
@@ -194,6 +209,11 @@ export default function docsContent (params) {
         text-align: start;
       }
 
+      th code {
+        font-size: 1.125em;
+        padding: 0;
+      }
+
       th,
       td:first-of-type {
         font-weight: 700;
@@ -212,14 +232,16 @@ export default function docsContent (params) {
       picture {
         margin-block: var(--space-0);
       }
+
+      p + p {
+        margin-block-start: 1em;
+      }
     </style>
 
-    <div>
-      <h1>${display}</h1>
+    ${display ? `<h1>${display}</h1>` : ''}
 
-      <article>
-        ${doc.html}
-      </article>
-    </div>
+    <article>
+      ${doc.html}
+    </article>
 `
 }

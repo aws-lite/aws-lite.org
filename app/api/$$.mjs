@@ -26,7 +26,7 @@ export async function get (req) {
       const serviceData = await getService(service)
       const doc = await arcdown.render(serviceData.md)
       cache[service] = doc
-      return { json: { ...serviceData, doc } }
+      return { json: { ...serviceData, doc, isService: true } }
     }
 
     const pagePath = join(__dirname, '..', 'docs', `${page}.md`)
