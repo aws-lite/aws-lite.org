@@ -1,3 +1,10 @@
+Performance is one of the tent poles of `aws-lite`. We take it seriously because we want your applications to be as fast possible.
+
+As such, we regularly test and publish open, reproducible, real-world metrics for every key aspect of performance, comparing `aws-lite` to AWS's own `aws-sdk` (v2) and `@aws-sdk` (v3). Learn more at the [`aws-lite` performance project on GitHub](https://github.com/architect/aws-lite-performance/).
+
+All metrics are published below, or [skip straight to the wrap-up](#time-to-respond%2C-not-including-coldstart).
+
+
 ## Coldstart latency
 
 Coldstart latency measures the impact of each SDK on an AWS Lambda coldstart – the pre-initialization phase where your code payload is loaded into the Lambda micro VM.
