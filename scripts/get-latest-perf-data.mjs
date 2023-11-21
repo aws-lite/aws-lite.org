@@ -16,13 +16,13 @@ async function main () {
   const publicDir = join(__dirname, '..', 'public')
   mkdirSync(publicDir, { recursive: true })
 
-  const assets = await aws.s3.GetObject({ Bucket, Key: 'assets.json' })
+  const { Body: assets } = await aws.s3.GetObject({ Bucket, Key: 'assets.json' })
   const ops = assets.map(Key => {
     const isJson = Key.endsWith('.json')
     if (isJson && !jsons.includes(Key)) return
     return new Promise((res, rej) => {
       aws.s3.GetObject({ Bucket, Key })
-        .then(data => {
+        .then(({ Body: data }) => {
           const dir = isJson ? apiDir : publicDir
           const out = isJson ? JSON.stringify(data) : data
           writeFile(join(dir, Key), out).then(res).catch(rej)
