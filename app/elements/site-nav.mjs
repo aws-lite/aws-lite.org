@@ -11,13 +11,15 @@ export default function SiteNav ({ html }) {
   }
   const Docs = [
     'Intro',
-    'Quickstart',
+    'Configuration',
+    'Request/response',
+    'API',
     'Performance',
-    'Plugins',
     'Contributing',
   ]
   const Nav = Docs.map(i => {
-    return /* html */`<li><a href="/${i.toLowerCase()}">${i}</a></li>`
+    const slug = i === 'Intro' ? '' : i.toLowerCase().replace(/[ \/]/g, '-')
+    return /* html */`<li><a href="/${slug}">${i}</a></li>`
   })
   const MainNav = `
 <h2 class="font-semibold">Get Started</h2>
