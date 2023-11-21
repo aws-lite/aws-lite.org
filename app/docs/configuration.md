@@ -49,7 +49,7 @@ The following options may be passed when instantiating the `aws-lite` client:
   - Set an overriding Content-Type header for all responses, helpful for local testing
 
 
-## Example
+### Example
 
 ```js
 import awsLite from '@aws-lite/client'
@@ -74,4 +74,33 @@ aws = await awsLite({
   protocol: 'http',
   responseContentType: 'application/json',
 })
+```
+
+
+### Types
+
+Generally, types are available as `@aws-lite/<plugin>-types` packages. For example, once you have installed `@aws-lite/client` and `@aws-lite/dynamodb` as dependencies, add the DynamoDB types as a dev dependency:
+
+```sh
+npm i -D @aws-lite/dynamodb-types
+```
+
+
+#### JavaScript projects
+
+In JavaScript projects, code completion (aka Intellisense) for input and output types are be loaded automatically for `awsLite.<service>.<method>` calls.
+
+
+#### TypeScript projects
+
+To make use of `aws-lite` types in TypeScript projects, include them in your `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "types": [
+      "@aws-lite/dynamodb-types"
+    ]
+  }
+}
 ```

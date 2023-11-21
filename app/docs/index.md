@@ -59,6 +59,14 @@ You can use the client as-is to quickly interact with AWS service APIs, or exten
 npm i @aws-lite/dynamodb
 ```
 
+Generally, types are available as optional `@aws-lite/<plugin>-types` packages, and can be added like so:
+
+```sh
+npm i -D @aws-lite/dynamodb-types
+```
+
+[Learn more about `aws-lite` types.](/configuration#types)
+
 
 ## Example
 
