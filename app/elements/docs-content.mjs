@@ -186,6 +186,8 @@ export default function docsContent (params) {
         flex-grow: 1;
         font-size: var(--text--2);
         font-variant-numeric: tabular-nums;
+        table-layout: fixed;
+        inline-size: 100%;
       }
 
       th {
