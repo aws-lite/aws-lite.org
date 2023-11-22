@@ -233,8 +233,18 @@ export default function docsContent ({ html, state }) {
         margin-block: var(--space-0);
       }
 
-      p + p {
-        margin-block-start: 1em;
+      p {
+        margin-block: 1em;
+      }
+
+      ol,
+      ul {
+        padding-inline-start: var(--space-0);
+      }
+
+      :not(li) > ol,
+      :not(li) > ul {
+        margin-block: 1em;
       }
     </style>
 

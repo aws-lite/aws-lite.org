@@ -8,7 +8,7 @@ const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
 const arcdown = new Arcdown({
   pluginOverrides: {
     markdownItToc: {
-      level: [ 2, 3 ],
+      level: [ 2, 3, 4 ],
     }
   }
 })
