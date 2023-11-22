@@ -2,13 +2,6 @@ export default function docsContent ({ html, state }) {
   const { store } = state
   const { display, doc, isService = false } = store
 
-  const standardH1 = `
-    font-size: var(--text-3);
-  `
-
-  const serviceH1 = `
-  `
-
   return html`
     <style>
       :host {
