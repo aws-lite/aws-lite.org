@@ -43,8 +43,8 @@ We rely on and believe in AWS, so we built `aws-lite` to provide a simpler, fast
 Because `aws-lite` and its plugins are authored from the ground up for performance and simplicity, it performs 2-5x faster than AWS SDK, helping ensure that customer hot paths always receive sub-second responses:
 
 <picture>
-  <img alt="Benchmark statistics - Time to respond, not including coldstart" src="/_static/execution-time.png">
   <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Time to respond, not including coldstart" srcset="/_static/execution-time-dark.png">
+  <img alt="Benchmark statistics - Time to respond, not including coldstart" src="/_static/execution-time.png">
 </picture>
 
 Learn more about [`aws-lite` performance here](/performance).
