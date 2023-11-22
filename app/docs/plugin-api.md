@@ -27,7 +27,7 @@ aws.DynamoDB.PutItem({ TableName: 'my-table', Key: { id: 'hello' } })
 ```
 
 
-### Plugin API
+## Plugin API
 
 The `aws-lite` plugin API is lightweight and simple to learn. It makes use of four optional lifecycle hooks:
 
@@ -63,7 +63,7 @@ Additionally, two optional (but highly recommended) metadata properties that wil
 Example plugins can be found below, and in [`aws-lite` project's `plugins/` dir (which contains all `@aws-lite/*` plugins)](https://github.com/architect/aws-lite/tree/main/plugins).
 
 
-#### `validate`
+### `validate`
 
 The `validate` lifecycle hook is an optional object containing (case-sensitive) input property names, with a corresponding object that denotes their `type` (string, required) and whether the parameter is `required` (boolean, default `false`).
 
@@ -99,7 +99,7 @@ export default {
 ```
 
 
-#### `request()`
+### `request()`
 
 The `request()` lifecycle hook is an optional async function that enables transformation of inputs into the final service API request.
 
@@ -137,7 +137,7 @@ export default {
 ```
 
 
-#### `response()`
+### `response()`
 
 The `response()` lifecycle hook is an async function that enables mutation of service API responses before they are returned.
 
@@ -184,7 +184,7 @@ export default {
 ```
 
 
-#### `error()`
+### `error()`
 
 The `error()` lifecycle hook is an optional async function that enables mutation of service API errors before they are returned.
 
@@ -230,7 +230,7 @@ export default {
 ```
 
 
-#### Plugin utils
+### Plugin utils
 
 [`request()`](#request), [`response()`](#response), and [`error()`](#error) are all passed a second argument of helper utilities and data pertaining to the client:
 

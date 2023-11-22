@@ -13,7 +13,7 @@ export default function SiteNav ({ html }) {
     'Intro',
     'Configuration',
     'Request/response',
-    'API',
+    'Plugin API',
     'Performance',
     'Contributing',
   ]

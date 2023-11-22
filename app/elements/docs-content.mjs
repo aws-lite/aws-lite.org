@@ -121,7 +121,7 @@ export default function docsContent ({ html, state }) {
       figure:not(:first-of-type, .table-wrapper) {
         margin-block: var(--space-3);
       }
-      
+
       figure:not(.table-wrapper) figcaption {
         background: var(--muted-accent);
         margin-block-start: 0;
@@ -157,7 +157,7 @@ export default function docsContent ({ html, state }) {
       code {
         font-family: var(--font-mono);
       }
-      
+
       pre code {
         font-size: 0.875em;
       }
