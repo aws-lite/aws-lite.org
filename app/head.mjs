@@ -57,6 +57,16 @@ export default function Head () {
           margin-block-start: var(--masthead-max-height);
         }
 
+        :root {
+          --muted-accent: hsl(var(--accent-h) calc(var(--accent-s) / 10) calc(var(--accent-l) * 2.85));
+        }
+
+        @media screen and (prefers-color-scheme: dark) {
+          :root {
+            --muted-accent: hsl(var(--accent-h) calc(var(--accent-s) / 2) calc(var(--accent-l) / 2.75));
+          }
+        }
+
         ${SyntaxTheme()}
       </style>
     </head>

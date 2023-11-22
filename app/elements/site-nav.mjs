@@ -4,11 +4,15 @@ import url from 'url'
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
 let services
 
-export default function SiteNav ({ html }) {
+export default function SiteNav ({ html, state }) {
+  const { store } = state
+  const { page } = store
+
   if (!services) {
     const servicesFile = join(__dirname, 'services.json')
     services = JSON.parse(readFileSync(servicesFile))
   }
+
   const Docs = [
     'Intro',
     'Configuration',
@@ -17,26 +21,30 @@ export default function SiteNav ({ html }) {
     'Performance',
     'Contributing',
   ]
+
   const Nav = Docs.map(i => {
     const slug = i === 'Intro' ? '' : i.toLowerCase().replace(/[ \/]/g, '-')
-    return /* html */`<li><a href="/${slug}">${i}</a></li>`
+    const active = page === slug || (page === 'index' && i === 'Intro')
+    return /* html */`<li><a href="/${slug}" ${active ? "class='active'" : ''}>${i}</a></li>`
   })
   const MainNav = `
-<h2 class="font-semibold">Get Started</h2>
-<ul class="list-none mb0">
-  ${Nav.join('\n  ')}
-</ul>
-`
+    <h2 class="font-semibold">Get Started</h2>
+    <ul class="list-none mb0">
+      ${Nav.join('\n  ')}
+    </ul>
+  `
 
   const Services = services.map(({ display, service }) => {
-    return /* html */`<li><a href="/services/${service}">${display}</a></li>`
+    const active = page === `services/${service}`
+    return /* html */`<li><a href="/services/${service}" ${active ? "class='active'" : ''}>${display}</a></li>`
   })
+
   const ServicesNav = `
-<h2 class="font-semibold">Services</h2>
-<ul class="list-none mb0">
-  ${Services.join('\n  ')}
-</ul>
-`
+    <h2 class="font-semibold">Services</h2>
+    <ul class="list-none mb0">
+      ${Services.join('\n  ')}
+    </ul>
+  `
 
   return html`
     <style>
@@ -46,12 +54,18 @@ export default function SiteNav ({ html }) {
         padding: var(--space-0);
       }
 
-      li {
-        padding-block: var(--space--4);
+      li a {
+        border-inline-start: 4px solid transparent;
+        color: var(--accent);
+        display: block;
+        margin-inline-start: calc((var(--space--4) * -1) - 4px);
+        padding: 0.25em 0.5em;
       }
 
-      li a {
-        color: var(--accent);
+      li a:hover,
+      li a.active {
+        background: var(--muted-accent);
+        border-color: var(--accent);
       }
 
       @media screen and (min-width: 52em) {
