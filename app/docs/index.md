@@ -1,4 +1,7 @@
-# `aws-lite`
+<h1>
+  <span class="clip">aws-lite</span>
+  <aws-lite-logo></aws-lite-logo>
+</h1>
 
 ## So, what is `aws-lite`?
 
