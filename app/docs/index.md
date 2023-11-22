@@ -1,6 +1,6 @@
-# Intro
+# `aws-lite`
 
-## What is `aws-lite`?
+## So, what is `aws-lite`?
 
 [`aws-lite`](https://www.npmjs.com/package/@aws-lite/client) is a simple, extremely fast, extensible Node.js client for interacting with AWS services.
 
