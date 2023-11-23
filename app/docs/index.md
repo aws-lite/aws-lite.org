@@ -57,19 +57,19 @@ Learn more about [`aws-lite` performance here](/performance).
 
 Install the client:
 
-```sh
+```shell
 npm i @aws-lite/client
 ```
 
 You can use the client as-is to quickly interact with AWS service APIs, or extend it with specific service plugins like so:
 
-```sh
+```shell
 npm i @aws-lite/dynamodb
 ```
 
 Generally, types are available as optional `@aws-lite/<plugin>-types` packages, and can be added like so:
 
-```sh
+```shell
 npm i -D @aws-lite/dynamodb-types
 ```
 

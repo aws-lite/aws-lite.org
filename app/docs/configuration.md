@@ -85,7 +85,7 @@ aws = await awsLite({
 
 Generally, types are available as `@aws-lite/<plugin>-types` packages. For example, once you have installed `@aws-lite/client` and `@aws-lite/dynamodb` as dependencies, add the DynamoDB types as a dev dependency:
 
-```sh
+```shell
 npm i -D @aws-lite/dynamodb-types
 ```
 

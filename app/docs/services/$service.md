@@ -14,13 +14,13 @@ Maintained by: $MAINTAINERS
 
 ## Install
 
-```sh
+```shell
 npm i $SERVICE
 ```
 
 Optionally install types:
 
-```sh
+```shell
 npm i -D $SERVICE-types
 ```
 

@@ -20,7 +20,7 @@ A bit more about how plugins work:
 
 Thus, to make use of the `@aws-lite/dynamodb` plugin, this is what your code would look like:
 
-```sh
+```shell
 npm i @aws-lite/client @aws-lite/dynamodb
 ```
 
