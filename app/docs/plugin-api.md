@@ -1,3 +1,7 @@
+---
+title: Plugin API
+description: Documentation and examples of the aws-lite plugin API
+---
 # Plugin API
 
 ## Introduction

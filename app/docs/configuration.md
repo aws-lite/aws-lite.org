@@ -1,3 +1,7 @@
+---
+title: Configuration
+description: Credential and general configuration options for aws-lite
+---
 # Configuration
 
 The following options may be passed when instantiating the `aws-lite` client:

@@ -20,6 +20,7 @@ export default async function getMd (service) {
 
   let maintainerLinks = maintainers.map(p => `[${p}](https://github.com/${p.replace('@', '')})`).join(', ')
   let readme = tmpl
+    .replace(/\$DISPLAY/g, data.display)
     .replace(/\$SERVICE/g, packageName)
     .replace(/\$MAINTAINERS/g, maintainerLinks)
 

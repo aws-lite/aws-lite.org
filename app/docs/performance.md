@@ -1,3 +1,7 @@
+---
+title: Performance
+description: Open, reproducible, real-world metrics for the performance of aws-lite and other AWS SDKs
+---
 # Performance
 
 Performance is one of the tent poles of `aws-lite`. We take it seriously because we want your applications to be as fast possible.

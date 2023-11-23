@@ -3,17 +3,20 @@ import SyntaxTheme from './lib/syntax-theme.mjs'
 
 const { linkTag } = getStyles
 
-export default function Head () {
+export default function Head (params) {
+  const title = params.store.doc?.frontmatter?.title
+  const description = params.store.doc?.frontmatter?.description || ''
+
   return /* html*/`
     <!DOCTYPE html>
     <html lang="en">
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>aws-lite</title>
+      <title>${title ? title + ' - ' : ''}aws-lite</title>
       ${linkTag()}
       <!-- <link rel="icon" href="/_public/favicon.svg"> -->
-      <meta name="description" content="">
+      <meta name="description" content="${description}">
       <style>
         @font-face {
           font-family: "Montserrat";

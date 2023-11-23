@@ -1,3 +1,8 @@
+---
+title: $DISPLAY
+description: $DISPLAY ($SERVICE) documentation and methods
+---
+
 # `$SERVICE`
 
 <address>

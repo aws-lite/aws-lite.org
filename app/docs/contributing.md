@@ -1,3 +1,7 @@
+---
+title: Contributing
+description: Open source contributor guidelines, methodology, and instructions for aws-lite
+---
 # Contributing
 
 AWS has (as of this writing) nearly 300 service APIs – `aws-lite` would love your help in authoring and maintaining official (and unofficial) plugins!

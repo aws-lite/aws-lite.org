@@ -1,3 +1,6 @@
+---
+description: A simple, extremely fast, extensible Node.js client for interacting with AWS services
+---
 <h1>
   <span class="clip">aws-lite</span>
   <aws-lite-logo></aws-lite-logo>
