@@ -35,15 +35,15 @@ export default function generateMethods (_plugin) {
   }).filter(Boolean).join('\n\n\n') + '\n'
 
   if (deprecatedMethods.length) {
-    methodDocs += `\n\n### Deprecated methods\n\n` +
+    methodDocs += `\n\n## Deprecated methods\n\n` +
                   deprecatedMethods.map(({ method, awsDoc }) => awsDoc
                     ? `- [\`${method}\`](${awsDoc})`
                     : `- \`${method}\``
                   ).join('\n') + '\n'
   }
   if (incompleteMethods.length) {
-    methodDocs += `\n\n### Methods yet to be implemented\n\n` +
-                  `Please help out by [opening a PR](https://github.com/architect/aws-lite#authoring-aws-lite-plugins)!\n\n` +
+    methodDocs += `\n\n## Methods yet to be implemented\n\n` +
+                  `Please help out by [opening a PR](/contributing)!\n\n` +
                   incompleteMethods.map(({ method, awsDoc }) => awsDoc
                     ? `- [\`${method}\`](${awsDoc})`
                     : `- \`${method}\``
