@@ -1,5 +1,5 @@
 @app
-awslite
+aws-lite_org
 
 @static
 prune true
