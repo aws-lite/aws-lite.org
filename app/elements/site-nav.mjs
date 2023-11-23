@@ -66,6 +66,11 @@ export default function SiteNav ({ html, state }) {
       li a.active {
         background: var(--muted-accent);
         border-color: var(--accent);
+        color: var(--fore);
+      }
+
+      li a.active {
+        font-weight: 600;
       }
 
       @media screen and (min-width: 52em) {
