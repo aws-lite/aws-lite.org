@@ -94,6 +94,10 @@ export default function docsContent ({ html, state }) {
         padding: var(--space--2) var(--space--1);
       }
 
+      address p {
+        margin: 0;
+      }
+
       cite {
         display: block;
         font-size: var(--text--1);
