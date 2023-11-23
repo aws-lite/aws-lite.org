@@ -25,8 +25,8 @@ export async function get (req) {
       const service = page.split('/')[1]
       const serviceData = await getService(service)
       const doc = await arcdown.render(serviceData.md)
-      cache[service] = doc
-      return { json: { ...serviceData, doc, page, isService: true } }
+      cache[service] = { json: { ...serviceData, doc, page, isService: true } }
+      return cache[service]
     }
 
     const pagePath = join(__dirname, '..', 'docs', `${page}.md`)
@@ -46,9 +46,9 @@ export async function get (req) {
     }
 
     const doc = await arcdown.render(pageContents)
-    cache[page] = doc
+    cache[page] = { json: { doc, page } }
 
-    return { json: { doc, page } }
+    return cache[page]
   }
   catch {
     // FIXME!
