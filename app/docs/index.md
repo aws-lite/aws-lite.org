@@ -9,21 +9,27 @@ next: configuration
 
 <fluid-grid>
 
+<call-out title="Get started">
+
+Make your first [`aws-lite` call in 60 seconds](#install-aws-lite)
+
+</call-out>
+
 <call-out title="Performance">
 
-Check out our wild [performance](/performance)
+Learn more about how [`aws-lite` is 2-5x faster](/performance)
 
 </call-out>
 
-<call-out title="Plugins">
+<call-out title="Plugin API">
 
-Henlo there fren, seen you the nice [plugin API](/plugin-api)?
+Learn how to author [AWS service plugins](/plugin-api)
 
 </call-out>
 
-<call-out title="Another">
+<call-out title="Contribute">
 
-It is a third callout.
+Expand and improve [the `aws-lite` ecosystem](/contributing)
 
 </call-out>
 
