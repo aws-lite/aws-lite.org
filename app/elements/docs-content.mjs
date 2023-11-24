@@ -167,13 +167,14 @@ export default function docsContent ({ html, state }) {
 
       code {
         font-family: var(--font-mono);
+        font-size: 1.0625em;
       }
 
       pre code {
         font-size: 0.875em;
       }
 
-      :not(pre, h1, h2, h3) > code {
+      :not(pre, h1, h2, h3, aside *) > code {
         background: var(--muted-accent);
         border-radius: 0.25em;
         padding: 0.125em 0.25em;
