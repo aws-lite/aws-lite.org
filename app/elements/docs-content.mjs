@@ -70,7 +70,7 @@ export default function docsContent ({ html, state }) {
         margin-block: var(--space-0);
       }
 
-      h2 {
+      :not(aside) > h2 {
         border-bottom: 2px solid var(--muted-accent);
         font-size: var(--text-2);
         font-weight: 625;
@@ -89,7 +89,7 @@ export default function docsContent ({ html, state }) {
 
       @media screen and (min-width: 52em) {
         ${isService ? '' : 'article h1 { font-size: var(--text-5); }'}
-        h2 { font-size: var(--text-3); }
+        :not(aside) > h2 { font-size: var(--text-3); }
         h3 { font-size: var(--text-2); }
         h4, h5, h6 { font-size: var(--text-1) }
       }
