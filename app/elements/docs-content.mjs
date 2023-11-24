@@ -279,7 +279,7 @@ export default function docsContent ({ html, state }) {
       ${doc.html}
     </article>
 
-    <footer class="mb5 pb4 gap0 flex flex-col flex-row-lg">
+    <footer class="mb5 pb4 gap3 flex flex-col flex-row-lg">
       ${edit}
       ${next}
     </footer>
