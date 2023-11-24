@@ -1,6 +1,17 @@
 export default function docsContent ({ html, state }) {
   const { store } = state
-  const { display, doc, isService = false } = store
+  const { display, doc, isService = false, service } = store
+
+  let edit = '', next = ''
+  if (isService) {
+    edit = `<div><a href="https://github.com/architect/aws-lite/edit/main/plugins/${service}/src/index.mjs">Contribute to this plugin</a></div>`
+  }
+  else {
+    edit = `<div><a href="https://github.com/architect/aws-lite.org/edit/main/app/docs/${store.page}.md">Edit this page</a></div>`
+    const nextDoc = doc?.frontmatter?.next
+    if (nextDoc) next = `<div><a href="/${nextDoc}">Next: ${nextDoc}</a></div>`
+  }
+
 
   return html`
     <style>
@@ -245,5 +256,9 @@ export default function docsContent ({ html, state }) {
     <article>
       ${doc.html}
     </article>
+
+    ${next}
+
+    ${edit}
 `
 }
