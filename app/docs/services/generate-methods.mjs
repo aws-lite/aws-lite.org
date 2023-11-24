@@ -103,5 +103,5 @@ function getExample (_plugin, method) {
     code,
     fenceEnd,
   ]
-  return example.join('\n\n')
+  return example.join('\n')
 }
