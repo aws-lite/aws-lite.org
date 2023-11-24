@@ -5,7 +5,8 @@
     "start": "npx enhance dev",
     "lint": "eslint ./app/**/*.mjs --fix",
     "enhance": "enhance",
-    "gen": "./scripts/gen.sh"
+    "gen": "./scripts/gen.sh",
+    "test": "npm run lint"
   },
   "dependencies": {
     "@begin/masthead": "github:beginner-corp/masthead#v1.1.0",

@@ -1,0 +1,79 @@
+name: Node CI
+
+# Push tests pushes; PR tests merges
+on: [ push, pull_request ]
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+
+  # Test the build
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
+
+      - name: Env
+        run: |
+          echo "Event name: ${{ github.event_name }}"
+          echo "Git ref:    ${{ github.ref }}"
+          echo "GH actor:   ${{ github.actor }}"
+          echo "SHA:        ${{ github.sha }}"
+          VER=`node --version`; echo "Node ver:   $VER"
+          VER=`npm --version`; echo "npm ver:    $VER"
+          echo "OS ver:     ${{ runner.os }}"
+
+      - name: Install
+        run: npm install
+
+      - name: Run tests
+        run: npm run test
+
+  # Deploy the build
+  deploy:
+    name: Deploy
+    needs: build
+    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    concurrency:
+      group: staging_${{ github.repository }}
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
+
+      - name: Install
+        run: npm install
+
+      - name: Generate data
+        run: npm run gen
+
+      - name: Deploy to staging
+        if: github.ref == 'refs/heads/main'
+        uses: beginner-corp/actions/deploy@main
+        with:
+          begin_token: ${{ secrets.BEGIN_TOKEN }}
+          begin_env_name: staging
+          channel: 'main'
+
+      - name: Deploy to production
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: beginner-corp/actions/deploy@main
+        with:
+          begin_token: ${{ secrets.BEGIN_TOKEN }}
+          begin_env_name: production
+          channel: 'main'
