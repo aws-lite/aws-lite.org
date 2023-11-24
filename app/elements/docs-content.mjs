@@ -263,6 +263,12 @@ export default function docsContent ({ html, state }) {
         justify-content: ${next ? 'space-between' : 'center'};
       }
 
+      footer a {
+        background: var(--muted-accent);
+        border-radius: 0.25em;
+        padding: var(--space--2);
+      }
+
     </style>
 
     ${display ? `<h1>${display}</h1>` : ''}
