@@ -2,6 +2,14 @@ export default function docsContent ({ html, state }) {
   const { store } = state
   const { display, doc, isService = false, service } = store
 
+  const titlesByService = {
+    'configuration': 'Configuration',
+    'request-response': 'Request/response',
+    'plugin-api': 'Plugin API',
+    'performance': 'Performance',
+    'contributing': 'Contributing',
+  }
+
   let edit = '', next = ''
   if (isService) {
     edit = `<div><a href="https://github.com/architect/aws-lite/edit/main/plugins/${service}/src/index.mjs">Contribute to this plugin</a></div>`
@@ -9,7 +17,7 @@ export default function docsContent ({ html, state }) {
   else {
     edit = `<div><a href="https://github.com/architect/aws-lite.org/edit/main/app/docs/${store.page}.md">Edit this page</a></div>`
     const nextDoc = doc?.frontmatter?.next
-    if (nextDoc) next = `<div><a href="/${nextDoc}">Next: ${nextDoc}</a></div>`
+    if (nextDoc) next = `<div><a href="/${nextDoc}">Next: ${titlesByService[nextDoc]}</a></div>`
   }
 
 
@@ -249,6 +257,12 @@ export default function docsContent ({ html, state }) {
       :not(li) > ul {
         margin-block: 1em;
       }
+
+      footer {
+        border-block-start: 4px solid var(--muted-accent);
+        justify-content: ${next ? 'space-between' : 'center'};
+      }
+
     </style>
 
     ${display ? `<h1>${display}</h1>` : ''}
@@ -257,8 +271,9 @@ export default function docsContent ({ html, state }) {
       ${doc.html}
     </article>
 
-    ${next}
-
-    ${edit}
+    <footer class="mb5 pb4 gap0 flex flex-col flex-row-lg">
+      ${edit}
+      ${next}
+    </footer>
 `
 }
