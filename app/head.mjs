@@ -15,7 +15,7 @@ export default function Head (params) {
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>${title ? title + ' - ' : ''}aws-lite</title>
       ${linkTag()}
-      <!-- <link rel="icon" href="/_public/favicon.svg"> -->
+      <link rel="icon" href="/_public/img/favicon.svg">
       <meta name="description" content="${description}">
       <style>
         @font-face {
