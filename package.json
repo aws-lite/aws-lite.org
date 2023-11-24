@@ -1,5 +1,5 @@
 {
-  "name": "awslite.org",
+  "name": "aws-lite.org",
   "version": "0.0.0",
   "scripts": {
     "start": "npx enhance dev",
