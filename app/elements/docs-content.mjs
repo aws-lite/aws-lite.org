@@ -8,6 +8,7 @@ export default function docsContent ({ html, state }) {
     'plugin-api': 'Plugin API',
     'performance': 'Performance',
     'contributing': 'Contributing',
+    'using-typescript': 'Using TypeScript',
   }
 
   let edit = '', next = ''
