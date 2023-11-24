@@ -1,7 +1,7 @@
 ---
 title: Request / response
 description: Documentation and examples of making and receiving aws-lite requests and responses
-next: plugin-api
+next: using-typescript
 ---
 # Request/response
 
