@@ -43,7 +43,8 @@ export default function SiteNav ({ html, state }) {
     <h2 class="font-semibold">Services</h2>
     <ul class="list-none mb0">
       ${Services.join('\n  ')}
-      <li><a href="/contributing">→ Missing a service?</a></li>
+      <li aria-hidden="true"><hr /></li>
+      <li><a href="/contributing">Missing a service?</a></li>
     </ul>
   `
 
@@ -72,6 +73,12 @@ export default function SiteNav ({ html, state }) {
 
       li a.active {
         font-weight: 600;
+      }
+
+      hr {
+        border-block-start: 1px solid hsla(0deg 0% 50% / 0.5);
+        padding-block-start: 0.5em;
+        margin-block-start: 0.5em;
       }
 
       @media screen and (min-width: 52em) {
