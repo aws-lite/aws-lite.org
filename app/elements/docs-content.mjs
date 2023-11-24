@@ -154,7 +154,7 @@ export default function docsContent ({ html, state }) {
         font-size: 0.875em;
       }
 
-      :not(pre, h1, h2, h3, dt) > code {
+      :not(pre, h1, h2, h3) > code {
         background: var(--muted-accent);
         border-radius: 0.25em;
         padding: 0.125em 0.25em;
