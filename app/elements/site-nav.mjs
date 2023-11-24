@@ -43,6 +43,7 @@ export default function SiteNav ({ html, state }) {
     <h2 class="font-semibold">Services</h2>
     <ul class="list-none mb0">
       ${Services.join('\n  ')}
+      <li><a href="/contributing">→ Missing a service?</a></li>
     </ul>
   `
 
