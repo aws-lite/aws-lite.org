@@ -6,6 +6,28 @@ description: A simple, extremely fast, extensible Node.js client for interacting
   <aws-lite-logo></aws-lite-logo>
 </h1>
 
+<fluid-grid>
+
+<call-out title="Performance">
+
+Check out our wild [performance](/performance)
+
+</call-out>
+
+<call-out title="Plugins">
+
+Henlo there fren, seen you the nice [plugin API](/plugin-api)?
+
+</call-out>
+
+<call-out title="Another">
+
+It is a third callout.
+
+</call-out>
+
+</fluid-grid>
+
 ## So, what is `aws-lite`?
 
 [`aws-lite`](https://www.npmjs.com/package/@aws-lite/client) is a simple, extremely fast, extensible Node.js client for interacting with AWS services.
