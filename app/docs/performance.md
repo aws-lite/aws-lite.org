@@ -1,6 +1,7 @@
 ---
 title: Performance
 description: Open, reproducible, real-world metrics for the performance of aws-lite and other AWS SDKs
+next: contributing
 ---
 # Performance
 
