@@ -177,7 +177,7 @@ export default function docsContent ({ html, state }) {
       :not(pre, h1, h2, h3, aside *) > code {
         background: var(--muted-accent);
         border-radius: 0.25em;
-        padding: 0.125em 0.25em;
+        padding: 0.0625em 0.25em;
       }
 
       dt {
