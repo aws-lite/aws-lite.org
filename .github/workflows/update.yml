@@ -1,6 +1,14 @@
 name: Update
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      foo:
+        description: 'foo'
+        required: true
+      hi:
+        description: 'hi'
+        required: true
 
 defaults:
   run:
@@ -13,4 +21,6 @@ jobs:
 
     steps:
       - name: check-123
-        run: echo hi
+        run: |
+          echo ${{ inputs.foo }}
+          echo ${{ inputs.hi }}
