@@ -1,0 +1,16 @@
+name: Update
+
+on: workflow_dispatch
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: check-123
+        run: echo hi
