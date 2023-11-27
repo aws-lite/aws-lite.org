@@ -59,10 +59,10 @@ The following options may be passed when instantiating the `aws-lite` client:
 ```javascript
 import awsLite from '@aws-lite/client'
 
-// Load everything from env vars, use only defaults
+// Load everything from env vars + defaults
 let aws = await awsLite()
 
-// Or specify all the options
+// Or specify options
 aws = await awsLite({
   accessKeyId: '$accessKey',
   secretAccessKey: '$secretKey',

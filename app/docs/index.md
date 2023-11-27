@@ -46,7 +46,7 @@ You can think of it as a community-driven alternative to AWS's JavaScript SDK.
 
 ## Why not use `aws-sdk` / `@aws-sdk/*`?
 
-Amazon has historically done a great job of maintaining its SDKs. However, AWS has deprecated its widely-adopted v2 SDK; its v3 SDK relies on generated code, resulting in large dependencies, poor performance, awkward semantics, difficult to understand generated documentation, and errors without usable stack traces.
+Amazon has historically done a great job of maintaining its SDKs. However, AWS has deprecated its widely-adopted v2 SDK; its v3 SDK relies on generated code, resulting in large dependencies, poor performance, awkward semantics, difficult to understand documentation, and errors without usable stack traces.
 
 We rely on and believe in AWS, so we built `aws-lite` to provide a simpler, faster, more stable position from which to work with AWS services in Node.js.
 
@@ -72,7 +72,7 @@ We rely on and believe in AWS, so we built `aws-lite` to provide a simpler, fast
 
 `@aws-lite/client` provides a basic client interface for quickly interacting with any AWS service. However, most folks will probably want to extend the client with service plugins, which provide ergonomic representations of AWS service API methods.
 
-Because `aws-lite` and its plugins are authored from the ground up for performance and simplicity, it performs 2-5x faster than AWS SDK, helping ensure that customer hot paths always receive sub-second responses:
+Because `aws-lite` and its plugins are authored from the ground up for performance and simplicity, `aws-lite` is 2-5x faster than AWS SDK, helping ensure that customer hot paths always receive sub-second responses:
 
 <picture>
   <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Time to respond, not including coldstart" srcset="/_public/execution-time-dark.png">
@@ -96,7 +96,7 @@ You can use the client as-is to quickly interact with AWS service APIs, or exten
 npm i @aws-lite/dynamodb
 ```
 
-Generally, types are available as optional `@aws-lite/<plugin>-types` packages, and can be added like so:
+Generally, types are available as optional `@aws-lite/*-types` packages, and can be added like so:
 
 ```shell
 npm i -D @aws-lite/dynamodb-types
@@ -128,13 +128,13 @@ await aws({
 })
 // {
 //   FunctionName: '$function-name',
-//   Runtime: 'nodejs18.x',
+//   Runtime: 'nodejs20.x',
 //   ...
 // }
 
 /**
  * Writes
- * POST JSON by adding a payload property
+ * POST JSON by adding a `payload` property
  */
 await aws({
   service: 'lambda',
