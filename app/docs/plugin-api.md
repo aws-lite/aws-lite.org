@@ -38,23 +38,20 @@ The `aws-lite` plugin API is lightweight and simple to learn. At the top level, 
 
 - **`service`** (string) [required]
   - Service name the plugin will use for all requests; for more information about services, please see [client requests](/request-response#requests).
+- **`property`** (string)
+  - Customize the plugin's namespace or casing if you'd like it to be different than the plain `service`, e.g. `dynamodb` can be accessed as `DynamoDB`
+  - Can be used to specify a colloquial or shortened version of the formal service name, e.g. `dynamodb` can be accessed as `dynamo`
+  - Note: when `property` is used, your methods will also still be accessible via the lowcased service name; this is non-enumerable
 - **[`methods`](/plugin-api#method-hooks)** (object) [required]
   - Object containing [method names (and their corresponding hooks)](/plugin-api#method-hooks)
-- **`awsDoc`** (string) [optional]
-  - Intended to be a link to the AWS API doc pertaining to this method; should usually start with `https://docs.aws.amazon.com/...`
-- **`readme`** (string) [optional]
-  - Link to a relevant section in your plugin's readme or docs
 
-> Note: `awsDoc` and `readme` properties are optional but highly recommended, as they will be populated in error metadata
-
-Here's a simple example of a simple validation plugin:
+Here's an example of a simple validation plugin:
 
 ```javascript
 // Validate `TableName` input on DynamoDB.PutItem() calls
 export default {
   service: 'dynamodb',
-  awsDoc: 'https://docs.aws.../API_PutItem.html',
-  readme: 'https://github...#PutItem',
+  property: 'DynamoDB',
   methods: {
     PutItem: {
       validate: {
@@ -73,16 +70,32 @@ aws.DynamoDB.PutItem({ Key: { ok: true } }) // Throws validation error (required
 
 The `methods` object specifies an arbitrary number of API methods, each of which makes use of four optional lifecycle hooks:
 
-- **[`validate`](#validate)** [optional]
+- **[`validate`](#validate)** (object) [optional]
   - An object of property names and types used to validate inputs pre-request
-- **[`request()`](#request())** [optional]
+- **[`request()`](#request())** (async function) [optional]
   - An async function that enables mutation of inputs into the final service API request
-- **[`response()`](#response())** [optional]
+- **[`response()`](#response())** (async function) [optional]
   - An async function that enables mutation of service API responses before they are returned
-- **[`error()`](#error())** [optional]
+- **[`error()`](#error())** (async function) [optional]
   - An async function that enables mutation of service API errors before they are returned
 
 Example plugins can be found below, and in [`aws-lite` project's `plugins/` dir (which contains all `@aws-lite/*` plugins)](https://github.com/architect/aws-lite/tree/main/plugins).
+
+
+### Metadata
+
+In addition to the method lifecycle hooks, each method can specify the following optional metadata properties:
+
+- **`awsDoc`** (string) [optional]
+  - Link to the AWS API doc pertaining to this method; should usually start with `https://docs.aws.amazon.com/...`
+- **`deprecated`** (boolean) [optional, default = false]
+  - Allows you to denote a method as deprecated; helpful for denoting a plugin methods that may not be implemented
+- **`disabled`** (boolean) [optional, default = false]
+  - Allows you to denote a method as disabled; helpful for fleshing out all the plugin methods
+- **`readme`** (string) [optional]
+  - Link to a relevant section in your plugin's readme or docs
+
+> Note: `awsDoc` and `readme` properties are highly recommended, as they will be populated in error metadata. In `@aws-lite/*` plugins they are required.
 
 
 ### `validate`
@@ -104,6 +117,7 @@ The `validate` lifecycle hook is an optional object containing (case-sensitive) 
 // Validate inputs the DynamoDB `CreateTable` method
 export default {
   service: 'dynamodb',
+  property: 'DynamoDB',
   methods: {
     CreateTable: {
       validate: {
@@ -149,6 +163,7 @@ The `request()` method may return:
 // Automatically serialize input to AWS-flavored JSON
 export default {
   service: 'dynamodb',
+  property: 'DynamoDB',
   methods: {
     PutItem: {
       validate: {
@@ -202,6 +217,7 @@ The `response()` method may return:
 // Automatically deserialize AWS-flavored JSON
 export default {
   service: 'dynamodb',
+  property: 'DynamoDB',
   methods: {
     GetItem: {
       // Assume successful responses always have an AWS-flavored JSON `Item` property
