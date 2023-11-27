@@ -2,6 +2,7 @@ import { join } from 'node:path'
 import { readFile } from 'node:fs/promises'
 import getService from '../docs/services/get-service.mjs'
 import { Arcdown } from 'arcdown'
+import markdownItAnchor from 'markdown-it-anchor'
 import url from 'url'
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
 
@@ -9,6 +10,9 @@ const arcdown = new Arcdown({
   pluginOverrides: {
     markdownItToc: {
       level: [ 2, 3 ],
+    },
+    markdownItAnchor: {
+      permalink: markdownItAnchor.permalink.headerLink({ safariReaderFix: true })
     }
   }
 })

@@ -99,6 +99,26 @@ export default function docsContent ({ html, state }) {
         font-weight: 750;
       }
 
+      :is(h1, h2, h3, h4, h5, h6) a {
+        text-decoration: none;
+      }
+
+      :is(h1, h2, h3, h4, h5, h6) a:hover {
+        text-decoration: underline;
+      }
+
+      :is(h2, h3, h4, h5, h6) a:after {
+        content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEzLjA2MDUgOC4xMTA3M0wxNC40NzQ3IDkuNTI0OTRDMTcuMjA4NCAxMi4yNTg2IDE3LjIwODQgMTYuNjkwOCAxNC40NzQ3IDE5LjQyNDRMMTQuMTIxMSAxOS43NzhDMTEuMzg3NSAyMi41MTE3IDYuOTU1MzEgMjIuNTExNyA0LjIyMTY0IDE5Ljc3OEMxLjQ4Nzk3IDE3LjA0NDMgMS40ODc5NyAxMi42MTIyIDQuMjIxNjQgOS44Nzg0OUw1LjYzNTg1IDExLjI5MjdDMy42ODMyMyAxMy4yNDUzIDMuNjgzMjMgMTYuNDExMiA1LjYzNTg1IDE4LjM2MzhDNy41ODg0NyAyMC4zMTY0IDEwLjc1NDMgMjAuMzE2NCAxMi43MDY5IDE4LjM2MzhMMTMuMDYwNSAxOC4wMTAyQzE1LjAxMzEgMTYuMDU3NiAxNS4wMTMxIDEyLjg5MTggMTMuMDYwNSAxMC45MzkyTDExLjY0NjMgOS41MjQ5NEwxMy4wNjA1IDguMTEwNzNaTTE5Ljc3OCAxNC4xMjExTDE4LjM2MzggMTIuNzA2OUMyMC4zMTY0IDEwLjc1NDMgMjAuMzE2NCA3LjU4ODQ3IDE4LjM2MzggNS42MzU4NUMxNi40MTEyIDMuNjgzMjMgMTMuMjQ1MyAzLjY4MzIzIDExLjI5MjcgNS42MzU4NUwxMC45MzkyIDUuOTg5NDFDOC45ODY1MyA3Ljk0MjAzIDguOTg2NTMgMTEuMTA3OSAxMC45MzkyIDEzLjA2MDVMMTIuMzUzNCAxNC40NzQ3TDEwLjkzOTIgMTUuODg4OUw5LjUyNDk0IDE0LjQ3NDdDNi43OTEyNyAxMS43NDEgNi43OTEyNyA3LjMwODg2IDkuNTI0OTQgNC41NzUxOUw5Ljg3ODQ5IDQuMjIxNjRDMTIuNjEyMiAxLjQ4Nzk3IDE3LjA0NDMgMS40ODc5NyAxOS43NzggNC4yMjE2NEMyMi41MTE3IDYuOTU1MzEgMjIuNTExNyAxMS4zODc1IDE5Ljc3OCAxNC4xMjExWiI+PC9wYXRoPjwvc3ZnPg==");
+        display: inline-block;
+        inline-size: 12px;
+        aspect-ratio: 1 / 1;
+        margin-inline-start: 0.25em;
+        font-weight: 400;
+        vertical-align: baseline;
+        color: var(--fore);
+        opacity: 0.66;
+      }
+
       address,
       cite {
         font-style: normal;
@@ -138,11 +158,11 @@ export default function docsContent ({ html, state }) {
         background: var(--muted-accent);
         margin-block-start: 0;
         border-radius: 0 0.25em 0.25em 0;
-        padding-inline: var(--space-0);
-        padding-block: var(--space--4);
+        padding: var(--space--4);
         margin-inline-start: calc(var(--space-0) * -1);
         position: sticky;
         inset-block-start: var(--masthead-max-height);
+        z-index: 1;
       }
 
       figcaption h3 {
@@ -179,6 +199,10 @@ export default function docsContent ({ html, state }) {
         background: var(--muted-accent);
         border-radius: 0.25em;
         padding: 0.0625em 0.25em;
+      }
+
+      h3 > code {
+        padding: 0;
       }
 
       dt {
