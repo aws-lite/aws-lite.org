@@ -260,23 +260,23 @@ export default function docsContent ({ html, state }) {
         margin-block: 1em;
       }
 
-      footer {
-        border-block-start: 4px solid var(--muted-accent);
-        justify-content: ${next ? 'space-between' : 'center'};
-      }
-
-      footer a {
-        background: var(--muted-accent);
-        border-radius: 0.25em;
-        padding: var(--space--2);
-      }
-
       blockquote {
         border-color: var(--muted-accent);
         border-radius: 0.5em;
         border-style: solid;
         border-width: 1px 1px 4px 4px;
         padding-inline: var(--space-0);
+      }
+
+      #pagination {
+        border-block-start: 4px solid var(--muted-accent);
+        justify-content: ${next ? 'space-between' : 'center'};
+      }
+
+      #pagination a {
+        background: var(--muted-accent);
+        border-radius: 0.25em;
+        padding: var(--space--2);
       }
 
     </style>
@@ -287,9 +287,13 @@ export default function docsContent ({ html, state }) {
       ${doc.html}
     </article>
 
-    <footer class="mb5 pb4 gap3 flex flex-col flex-row-lg">
+    <nav id="pagination" class="mb5 pbs4 gap3 flex flex-col flex-row-lg">
       ${edit}
       ${next}
+    </nav>
+
+    <footer class="mbe5 p0 text-center text-1">
+      aws-lite is an open source project managed by <a href="https://begin.com">Begin</a>, and is not associated with AWS or Amazon.
     </footer>
 `
 }
