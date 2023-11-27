@@ -41,7 +41,7 @@ Expand and improve [the `aws-lite` ecosystem](/contributing)
 
 (It's got good error reporting, too.)
 
-You can think of it as a community-driven alternative to the AWS's JavaScript SDK.
+You can think of it as a community-driven alternative to AWS's JavaScript SDK.
 
 
 ## Why not use `aws-sdk` / `@aws-sdk/*`?
