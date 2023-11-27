@@ -24,7 +24,6 @@ export default function TableOfContents ({ html, state }) {
 
       li li {
         padding-inline-start: var(--space--2);
-        word-break: break-all;
       }
 
       a {
