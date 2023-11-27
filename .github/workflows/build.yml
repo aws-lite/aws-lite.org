@@ -1,7 +1,7 @@
 name: Node CI
 
-# Push tests pushes; PR tests merges
-on: [ push, pull_request ]
+# Push tests pushes; PR tests merges; workflow dispatch updates automatically from plugins / performance
+on: [ push, pull_request, workflow_dispatch ]
 
 defaults:
   run:
@@ -22,6 +22,12 @@ jobs:
         with:
           node-version: lts/*
 
+      - name: Use latest tag
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          git fetch --tags
+          git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
+
       - name: Env
         run: |
           echo "Event name: ${{ github.event_name }}"
@@ -41,7 +47,7 @@ jobs:
   # Deploy the build
   deploy:
     needs: build
-    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
+    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v') || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     concurrency:
       group: staging_${{ github.repository }}
@@ -54,6 +60,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: lts/*
+
+      - name: Use latest tag
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          git fetch --tags
+          git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
 
       - name: Install
         run: npm install
@@ -73,7 +85,7 @@ jobs:
           channel: 'main'
 
       - name: Deploy to production
-        if: startsWith(github.ref, 'refs/tags/v')
+        if: startsWith(github.ref, 'refs/tags/v') || github.event_name == 'workflow_dispatch'
         uses: beginner-corp/actions/deploy@main
         with:
           begin_token: ${{ secrets.BEGIN_TOKEN }}
