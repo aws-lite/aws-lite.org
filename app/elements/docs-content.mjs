@@ -144,38 +144,6 @@ export default function docsContent ({ html, state }) {
         margin-block: var(--space-0);
       }
 
-      figure:not(.table-wrapper) {
-        border-radius: 0.25em 0 0 0;
-        border-inline-start: 4px solid var(--muted-accent);
-        padding-inline-start: var(--space-0);
-      }
-
-      figure:not(:first-of-type, .table-wrapper) {
-        margin-block: var(--space-3);
-      }
-
-      figure:not(.table-wrapper) figcaption {
-        background: var(--muted-accent);
-        margin-block-start: 0;
-        border-radius: 0 0.25em 0.25em 0;
-        padding: var(--space--4);
-        margin-inline-start: calc(var(--space-0) * -1);
-        position: sticky;
-        inset-block-start: var(--masthead-max-height);
-        z-index: 1;
-      }
-
-      figcaption h3 {
-        color: var(--accent);
-        margin-block: 0;
-      }
-
-      a {
-        text-decoration: underline;
-        text-underline-offset: 0.075em;
-        text-decoration-skip-ink: all;
-      }
-
       pre {
         max-inline-size: 100%;
         margin-block: var(--space-0);
@@ -205,12 +173,36 @@ export default function docsContent ({ html, state }) {
         padding: 0;
       }
 
+      figure:not(.table-wrapper) {
+        border-radius: 0.25em 0 0 0;
+        border-inline-start: 4px solid var(--muted-accent);
+        padding-inline-start: var(--space-0);
+      }
+
+      figure:not(:first-of-type, .table-wrapper) {
+        margin-block: var(--space-3);
+      }
+
+      figure:not(.table-wrapper) figcaption {
+        background: var(--muted-accent);
+        margin-block-start: 0;
+        border-radius: 0 0.25em 0.25em 0;
+        padding: var(--space--4);
+        margin-inline-start: calc(var(--space-0) * -1);
+        position: sticky;
+        inset-block-start: var(--masthead-max-height);
+        z-index: 1;
+      }
+
+      figcaption h3 {
+        color: var(--accent);
+        margin-block: 0;
+      }
+
       dt {
         font-size: var(--text--1);
         font-weight: 500;
         margin-block-end: var(--space--5);
-        padding-block-start: var(--space-2);
-        padding-block-end: var(--space--5);
       }
 
       dt code {
@@ -221,7 +213,8 @@ export default function docsContent ({ html, state }) {
 
       dd + dt {
         border-block-start: 1px solid var(--muted-accent);
-        margin-block-start: var(--space-2);
+        margin-block-start: var(--space-0);
+        padding-block-start: var(--space-0);
       }
 
       dd {
@@ -273,6 +266,12 @@ export default function docsContent ({ html, state }) {
 
       p {
         margin-block: 1em;
+      }
+
+      a {
+        text-decoration: underline;
+        text-underline-offset: 0.075em;
+        text-decoration-skip-ink: all;
       }
 
       ol,
