@@ -293,7 +293,7 @@ export default function docsContent ({ html, state }) {
     </nav>
 
     <footer class="mbe5 p0 text-center text-1">
-      aws-lite is an open source project managed by <a href="https://begin.com">Begin</a>, and is not associated with AWS or Amazon.
+      aws-lite is an Apache 2.0-licensed open source project under the umbrella of <a href="https://arc.codes">OpenJS Foundation Architect</a>. aws-lite is not in any way affiliated with Amazon Web Services, Inc. (AWS). All names and trademarks are the property of their respective owners.
     </footer>
 `
 }
