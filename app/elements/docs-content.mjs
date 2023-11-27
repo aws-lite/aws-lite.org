@@ -182,10 +182,10 @@ export default function docsContent ({ html, state }) {
       }
 
       dt {
-        border-block-end: 1px solid var(--muted-accent);
         font-size: var(--text--1);
         font-weight: 500;
         margin-block-end: var(--space--5);
+        padding-block-start: var(--space-2);
         padding-block-end: var(--space--5);
       }
 
@@ -196,6 +196,7 @@ export default function docsContent ({ html, state }) {
       }
 
       dd + dt {
+        border-block-start: 1px solid var(--muted-accent);
         margin-block-start: var(--space-2);
       }
 
