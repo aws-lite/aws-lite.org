@@ -102,7 +102,7 @@ Generally, types are available as optional `@aws-lite/*-types` packages, and can
 npm i -D @aws-lite/dynamodb-types
 ```
 
-[Learn more about `aws-lite` types.](/configuration#types)
+[Learn more about `aws-lite` types.](/using-typescript)
 
 
 ## Example
