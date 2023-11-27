@@ -41,7 +41,7 @@ export default function Head (params) {
         body {
           font-family: Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
           text-rendering: optimizeLegibility;
-          font-weight: 300;
+          font-weight: 450;
         }
 
         html {
@@ -67,6 +67,10 @@ export default function Head (params) {
         @media screen and (prefers-color-scheme: dark) {
           :root {
             --muted-accent: hsl(var(--accent-h) calc(var(--accent-s) / 2) calc(var(--accent-l) / 2.75));
+          }
+
+          body {
+            font-weight: 400;
           }
         }
 
