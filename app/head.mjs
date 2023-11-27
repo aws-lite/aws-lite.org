@@ -3,9 +3,16 @@ import SyntaxTheme from './lib/syntax-theme.mjs'
 
 const { linkTag } = getStyles
 
-export default function Head (params) {
-  const title = params.store.doc?.frontmatter?.title
-  const description = params.store.doc?.frontmatter?.description || ''
+const meta = {
+  title: 'aws-lite',
+  description: 'A simple, fast, extensible AWS client',
+  image: '/_public/img/aws-lite-open-graph.png',
+}
+
+export default function Head (state) {
+  const title = state.store.doc?.frontmatter?.title
+  const description = state.store.doc?.frontmatter?.description || ''
+  const { req } = state
 
   return /* html*/`
     <!DOCTYPE html>
@@ -16,6 +23,28 @@ export default function Head (params) {
       <title>${title ? title + ' - ' : ''}aws-lite</title>
       ${linkTag()}
       <link rel="icon" href="/_public/img/favicon.svg">
+
+      <!-- Open Graph -->
+      <meta name="og:title" content="${meta.title}" />
+      <meta name="og:description" content="${meta.description}" />
+      <meta name="og:image" content="${meta.image}" />
+      <meta name="og:url" content="https://aws-lite.org${req.path}" />
+      <meta name="og:site_name" content="AWS Lite" />
+      <meta name="og:type" content="website" />
+
+      <meta property="og:title" content="${meta.title}" />
+      <meta property="og:description" content="${meta.description}" />
+      <meta property="og:image" content="${meta.image}" />
+      <meta property="og:url" content="https://aws-lite.org${req.path}" />
+      <meta property="og:site_name" content="AWS Lite" />
+      <meta property="og:type" content="website" />
+
+      <!-- Twitter -->
+      <meta name="twitter:title" content="${meta.title}" />
+      <meta name="twitter:description" content="${meta.description}" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:image:src" content="${meta.image}" />
+
       <meta name="description" content="${description}">
       <style>
         @font-face {
