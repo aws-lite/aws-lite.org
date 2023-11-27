@@ -271,6 +271,14 @@ export default function docsContent ({ html, state }) {
         padding: var(--space--2);
       }
 
+      blockquote {
+        border-color: var(--muted-accent);
+        border-radius: 0.5em;
+        border-style: solid;
+        border-width: 1px 1px 4px 4px;
+        padding-inline: var(--space-0);
+      }
+
     </style>
 
     ${display ? `<h1>${display}</h1>` : ''}
