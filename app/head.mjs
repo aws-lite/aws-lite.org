@@ -41,7 +41,7 @@ export default function Head (params) {
         body {
           font-family: Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
           text-rendering: optimizeLegibility;
-          font-weight: 450;
+          font-weight: 300;
         }
 
         html {
