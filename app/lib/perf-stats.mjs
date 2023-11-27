@@ -11,6 +11,7 @@ const metrics = [
   'p99',
 ]
 const names = {
+  'control': 'control',
   'aws-lite-raw': '`aws-lite`',
   'aws-lite-bundled': '`aws-lite` (bundled)',
   'aws-sdk-v2-raw': '`aws-sdk` (v2)',
@@ -26,7 +27,9 @@ export default function (data, /* checksum */) {
     md[name] += `| | ` + Object.keys(data).map(n => names[n]).join(' | ') + ' |\n'
     md[name] += `|-` + `|-`.repeat(Object.keys(data).length) + ' |\n'
     metrics.forEach(m => {
-      md[name] += `| ${m} | ` + Object.values(data).map(d => Number(d[m])).join(' | ') + ' |\n'
+      let isP95 = m === 'p95'
+      let fmt = num => isP95 ? `**${num}**` : num
+      md[name] += `| ${m} | ` + Object.values(data).map(d => fmt(Number(d[m]))).join(' | ') + ' |\n'
     })
     md[name] += '\n\n</figure>'
   })

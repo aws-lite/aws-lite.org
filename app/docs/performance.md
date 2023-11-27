@@ -9,14 +9,14 @@ Performance is one of the tent poles of `aws-lite`. We take it seriously because
 
 As such, we regularly test and publish open, reproducible, real-world metrics for every key aspect of performance, comparing `aws-lite` to AWS's own `aws-sdk` (v2) and `@aws-sdk` (v3). Learn more at the [`aws-lite` performance project on GitHub](https://github.com/architect/aws-lite-performance/).
 
-All metrics are published below, or [skip straight to the wrap-up](#time-to-respond%2C-not-including-coldstart).
+All metrics are published below (or [skip straight to the wrap-up](#time-to-respond%2C-not-including-coldstart)).
 
 
 ## Coldstart latency
 
-Coldstart latency measures the impact of each SDK on an AWS Lambda coldstart – the pre-initialization phase where your code payload is loaded into the Lambda micro VM.
+Coldstart latency measures the impact of each SDK on AWS Lambda coldstarts – the pre-initialization phase where your code payload is loaded into the Lambda micro VM.
 
-In these stats we expect to see lower values for either very small code payloads (such as `aws-lite`), or scenarios where we are using the AWS SDK included in the Lambda image (e.g. `@aws-sdk` v3 raw in `nodejs20.x`). Coldstart latency increases as code payload sizes increases, which a result of bundling.
+In these stats we expect to see lower values for either very small code payloads (such as `aws-lite`), or scenarios where we are using the AWS SDK included in the Lambda image (e.g. `@aws-sdk` v3 raw in `nodejs20.x`). Coldstart latency increases as code payload sizes increase; this is most clearly observed with bundled SDKs.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Coldstart latency" srcset="/_public/coldstart-dark.png">
@@ -28,7 +28,7 @@ In these stats we expect to see lower values for either very small code payloads
 
 ## Initialization latency
 
-Initialization latency measures the impact of each SDK on the [initialization phase of the Lambda lifecycle](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtime-environment.html#runtimes-lifecycle), including analysis and execution of static code.
+Initialization latency measures the impact of each SDK on the [initialization phase of the Lambda lifecycle](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtime-environment.html#runtimes-lifecycle), including static analysis and execution of any code outside the scope of the Lambda handler.
 
 Here we expect to see relatively similar values, as the performance benchmark has almost no static code or init-time execution.
 
@@ -45,7 +45,7 @@ Here we expect to see relatively similar values, as the performance benchmark ha
 
 Here we measure the impact of importing / requiring each SDK. Ideally, all import / require operations should be sub-100ms to ensure fast responses in customer hot-paths.
 
-It is important to note that import / require times are tied to individual services. In this benchmark, only the DynamoDB service client is imported. In the real world, your business logic may make use of of multiple AWS services; each of which would necessitate additional imports, thereby compounding overall response latency.
+It is important to note that import / require times are tied to individual services. In this benchmark, only the DynamoDB service client is imported. In real world use your business logic may rely on multiple AWS services – each of which necessitating additional imports, thereby compounding overall response latency.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Import / require" srcset="/_public/import-dep-dark.png">
@@ -99,7 +99,7 @@ Here we measure the latency associated with writing a single 100KB row into Dyna
 
 Peak memory consumption measures each SDK's peak memory usage throughout the above four steps (import / require, instantiation, read, and write).
 
-To make the impact of each SDK easier to assess, the graph is presented as a value over (thus, not including) the Lambda Node.js baseline. Baseline memory consumption would be expected to include Node.js itself, Lambda bootstrap processes, etc. The memory baseline used always corresponds to the equivalent peak memory of the control test (e.g. `aws-lite` peak memory p95 - control peak memory p95).
+To make it easier to assess the memory impact of each SDK, the graph is presented as a value over (thus, not including) the Lambda Node.js baseline. Baseline memory consumption would be expected to include Node.js itself, Lambda bootstrap processes, etc. The memory baseline used always corresponds to the equivalent peak memory of the control test (e.g. `aws-lite` peak memory p95 - control peak memory p95 = peak memory over baseline p95).
 
 <picture>
   <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Peak memory consumption over Lambda baseline" srcset="/_public/memory-dark.png">
@@ -112,7 +112,7 @@ To make the impact of each SDK easier to assess, the graph is presented as a val
 
 ## Time to respond, not including coldstart
 
-Time to respond measures the total execution time of each SDK, not including coldstart (or initialization). In real-world usage, Lambda coldstarts are usually less common than warm invocations, so this metric illustrates a more common case. Ideally all times should be sub-1000ms to ensure fast responses in customer hot-paths.
+Time to respond measures the total execution time of each SDK, not including [coldstart](#coldstart-latency) or [initialization](#initialization-latency). In real-world usage, Lambda coldstarts are usually less common than warm invocations, so this metric illustrates the most common case for most applications. Ideally all times should be sub-1000ms to ensure fast responses in customer hot-paths.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Time to respond, not including coldstart" srcset="/_public/execution-time-dark.png">
@@ -125,7 +125,7 @@ Time to respond measures the total execution time of each SDK, not including col
 
 ## Total time to respond, including coldstart
 
-Total time to respond measures the total execution time of each SDK, including coldstart and initialization. In real-world usage, this metric represents a normalized "worst case" response time. Ideally all times should be sub-1000ms to ensure fast responses in customer hot-paths.
+Total time to respond measures the total execution time of each SDK, including [coldstart](#coldstart-latency) or [initialization](#initialization-latency). In real-world usage, this metric represents a normalized "worst case" response time. Ideally all times should be sub-1000ms to ensure fast responses in customer hot-paths.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Total time to respond, including coldstart" srcset="/_public/total-time-dark.png">
