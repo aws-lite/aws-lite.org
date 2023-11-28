@@ -23,13 +23,13 @@ Learn more about how [`aws-lite` is 2-5x faster](/performance)
 
 <call-out title="Plugin API">
 
-Learn how to author [AWS service plugins](/plugin-api)
+[Author plugins](/plugin-api) and [expand the ecosystem](/contributing)
 
 </call-out>
 
-<call-out title="Contribute">
+<call-out title="Join us">
 
-Expand and improve [the `aws-lite` ecosystem](/contributing)
+Join our [Discord and help guide the project](https://discord.com/invite/y5A2eTsCRX)
 
 </call-out>
 
@@ -157,3 +157,10 @@ await aws({
   payload: { ok: true },
 })
 ```
+
+
+## Join the movement
+
+- [Learn how to author AWS service plugins](/plugin-api)
+- [Expand and improve the aws-lite ecosystem](/contribute)
+- [Join the Discord](https://discord.com/invite/y5A2eTsCRX)
