@@ -1,6 +1,6 @@
 ---
 title: Plugin API
-description: Documentation and examples of the aws-lite plugin API
+description: Documentation and examples for the aws-lite plugin API
 next: performance
 ---
 # Plugin API
