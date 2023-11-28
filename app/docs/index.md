@@ -96,7 +96,7 @@ You can use the client as-is to quickly interact with AWS service APIs, or exten
 npm i @aws-lite/dynamodb
 ```
 
-Generally, types are available as optional `@aws-lite/*-types` packages, and can be added like so:
+Types are available as optional `@aws-lite/*-types` packages, and can be added like so:
 
 ```shell
 npm i -D @aws-lite/dynamodb-types
@@ -107,21 +107,39 @@ npm i -D @aws-lite/dynamodb-types
 
 ## Example
 
-Now start making calls to AWS:
-
 ```javascript
-/**
- * Instantiate a client
- * This is an asynchronous operation that will attempt to load your AWS credentials, local configuration, region settings, etc.
- */
+// Instantiate a client; once installed, `@aws-lite/dynamodb` is loaded automatically
 import awsLite from '@aws-lite/client'
-const config = { region: 'us-west-1' } // Optional
-const aws = await awsLite(config)
+const aws = await awsLite({ region: 'us-west-1' })
 
-/**
- * Reads
- * Fire a GET request to the Lambda API by specifying its AWS service name and endpoint
- */
+// Easily interact with the AWS services your application relies on
+await aws.DynamoDB.PutItem({
+  TableName: '$table-name',
+  Item: {
+    // AWS-lite automatically de/serializes DynamoDB JSON
+    pk: '$item-key',
+    data: {
+      ok: true,
+      hi: 'friends'
+    }
+  }
+})
+
+await aws.DynamoDB.GetItem({
+  TableName: '$table-name',
+  Key: { pk: '$item-key' }
+})
+// {
+//   Item: {
+//     pk: '$item-key',
+//     data: data: {
+//       ok: true,
+//       hi: 'friends'
+//     }
+//   }
+// }
+
+// Use the lower-level client to fire a GET request by specifying the AWS service name and endpoint
 await aws({
   service: 'lambda',
   endpoint: '/2015-03-31/functions/$function-name/configuration',
@@ -132,28 +150,10 @@ await aws({
 //   ...
 // }
 
-/**
- * Writes
- * POST JSON by adding a `payload` property
- */
+// POST JSON by adding a `payload` property
 await aws({
   service: 'lambda',
   endpoint: '/2015-03-31/functions/$function-name/invocations',
   payload: { ok: true },
 })
-
-/**
- * Plugins
- * Use service plugins to more easily interact with the AWS services your application relies on
- */
-await aws.DynamoDB.GetItem({
-  pk: '$item-key',
-})
-// {
-//   Item: {
-//     pk: '$item-key',
-//     data: 'item-data',
-//     ...
-//   }
-// }
 ```
