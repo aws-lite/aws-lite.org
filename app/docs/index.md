@@ -90,25 +90,25 @@ Install the client:
 npm i @aws-lite/client
 ```
 
-You can use the client as-is to quickly interact with AWS service APIs, or extend it with specific service plugins like so:
+Use the lower-level client to quickly interact with any AWS service API, or extend it with service plugins:
 
 ```shell
 npm i @aws-lite/dynamodb
 ```
 
-Types are available as optional `@aws-lite/*-types` packages, and can be added like so:
+Types are available as optional `@aws-lite/*-types` packages:
 
 ```shell
 npm i -D @aws-lite/dynamodb-types
 ```
 
-[Learn more about `aws-lite` types.](/using-typescript)
+Learn more about [`aws-lite` types here](/using-typescript).
 
 
 ## Example
 
 ```javascript
-// Instantiate a client; once installed, `@aws-lite/dynamodb` is loaded automatically
+// Instantiate a client; once installed, `@aws-lite/dynamodb` is automatically loaded
 import awsLite from '@aws-lite/client'
 const aws = await awsLite({ region: 'us-west-1' })
 
@@ -139,7 +139,7 @@ await aws.DynamoDB.GetItem({
 //   }
 // }
 
-// Use the lower-level client to fire a GET request by specifying the AWS service name and endpoint
+// Use the lower-level client to fire a GET request by specifying a `service` and `endpoint`
 await aws({
   service: 'lambda',
   endpoint: '/2015-03-31/functions/$function-name/configuration',
