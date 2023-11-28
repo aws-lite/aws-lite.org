@@ -298,6 +298,12 @@ export default function docsContent ({ html, state }) {
         padding-inline: var(--space-0);
       }
 
+      hr {
+        border-block-start: 4px dotted hsla(0deg 0% 50% / 0.5);
+        margin: 2em auto;
+        width: 2ch;
+      }
+
       #pagination {
         border-block-start: 4px solid var(--muted-accent);
         justify-content: ${next ? 'space-between' : 'center'};
