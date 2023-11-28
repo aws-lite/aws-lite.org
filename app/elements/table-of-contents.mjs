@@ -17,9 +17,10 @@ export default function TableOfContents ({ html, state }) {
         font-size: var(--text--1);
         list-style: none;
       }
-      
+
       li {
         padding-inline-start: 0;
+        padding-block-end: var(--space--5);
       }
 
       li li {

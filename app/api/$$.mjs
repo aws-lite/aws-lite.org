@@ -47,6 +47,9 @@ export async function get (req) {
         let re = new RegExp(`<!-- stats_${stat} -->`, 'g')
         pageContents = pageContents.replace(re, md)
       })
+      const checksumFile = join(__dirname, 'checksum.json')
+      const checksumData = JSON.parse(await readFile(checksumFile))
+      pageContents = pageContents.replace('<!-- last_published -->', checksumData.updated)
     }
 
     const doc = await arcdown.render(pageContents)
