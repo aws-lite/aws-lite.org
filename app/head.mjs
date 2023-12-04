@@ -2,17 +2,14 @@ import { getStyles }  from '@enhance/arc-plugin-styles'
 import SyntaxTheme from './lib/syntax-theme.mjs'
 
 const { linkTag } = getStyles
-
-const meta = {
-  title: 'aws-lite',
-  description: 'A simple, fast, extensible AWS client',
-  image: '/_public/img/aws-lite-open-graph.png',
-}
+const ogImage = '/_public/img/aws-lite-open-graph.png'
 
 export default function Head (state) {
-  const title = state.store.doc?.frontmatter?.title
+  let title = state.store.doc?.frontmatter?.title
+  title = `${title ? title + ' - ' : ''}aws-lite`
   const description = state.store.doc?.frontmatter?.description || ''
   const { req } = state
+  const path = req.path === '/' ? '' : req.path
 
   return /* html*/`
     <!DOCTYPE html>
@@ -20,30 +17,30 @@ export default function Head (state) {
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>${title ? title + ' - ' : ''}aws-lite</title>
+      <title>${title}</title>
       ${linkTag()}
       <link rel="icon" href="/_public/img/favicon.svg">
 
       <!-- Open Graph -->
-      <meta name="og:title" content="${meta.title}" />
-      <meta name="og:description" content="${meta.description}" />
-      <meta name="og:image" content="${meta.image}" />
-      <meta name="og:url" content="https://aws-lite.org${req.path}" />
-      <meta name="og:site_name" content="AWS Lite" />
+      <meta name="og:title" content="${title}" />
+      <meta name="og:description" content="${description}" />
+      <meta name="og:image" content="${ogImage}" />
+      <meta name="og:url" content="https://aws-lite.org${path}" />
+      <meta name="og:site_name" content="aws-lite" />
       <meta name="og:type" content="website" />
 
-      <meta property="og:title" content="${meta.title}" />
-      <meta property="og:description" content="${meta.description}" />
-      <meta property="og:image" content="${meta.image}" />
-      <meta property="og:url" content="https://aws-lite.org${req.path}" />
-      <meta property="og:site_name" content="AWS Lite" />
+      <meta property="og:title" content="${title}" />
+      <meta property="og:description" content="${description}" />
+      <meta property="og:image" content="${ogImage}" />
+      <meta property="og:url" content="https://aws-lite.org${path}" />
+      <meta property="og:site_name" content="aws-lite" />
       <meta property="og:type" content="website" />
 
       <!-- Twitter -->
-      <meta name="twitter:title" content="${meta.title}" />
-      <meta name="twitter:description" content="${meta.description}" />
+      <meta name="twitter:title" content="${title}" />
+      <meta name="twitter:description" content="${description}" />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:image:src" content="${meta.image}" />
+      <meta name="twitter:image:src" content="${ogImage}" />
 
       <meta name="description" content="${description}">
       <style>
