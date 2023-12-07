@@ -23,8 +23,9 @@ The following options may be passed when instantiating the `aws-lite` client:
   - Manually specify a credentials file location with the `AWS_SHARED_CREDENTIALS_FILE` env var
 - **`region` (string)**
   - AWS service region (e.g. `us-west-1`); if not provided, defaults to `AWS_REGION`, `AWS_DEFAULT_REGION`, or `AMAZON_REGION` env vars
-  - By default, a `~/.aws/config` (or custom) file will only be loaded by making the `AWS_SDK_LOAD_CONFIG` env var true
-  - Manually specify a config file location with the `AWS_CONFIG_FILE` (and `AWS_SDK_LOAD_CONFIG`) env var
+  - By default, a `~/.aws/config` (or custom) file will only be loaded by using the `awsConfigFile` config property, or by making the `AWS_SDK_LOAD_CONFIG` env var true
+  - Manually specify a config file location with the `awsConfigfile` config property, or with the `AWS_CONFIG_FILE` (and `AWS_SDK_LOAD_CONFIG`) env var
+  - If `host` is specified, `region` can be an arbitrary, non-AWS value; this is helpful when using AWS-compatible APIs
   - If no region is found, `aws-lite` will throw
   - Region setting can be overridden per-request
 - **`profile` (string)**
@@ -35,12 +36,18 @@ The following options may be passed when instantiating the `aws-lite` client:
 
 - **`autoloadPlugins` (boolean) [default = true]**
   - Automatically load installed `@aws-lite/*` + `aws-lite-plugin-*` plugins
+- **`awsConfigFile` (boolean or string) [default = false]**
+  - Load configuration from an AWS configuration file
+  - If `true`, it will load from the default (`~/.aws/config`) location
+  - If a `string`, it will load from that custom path
 - **`debug` (boolean) [default = false]**
   - Enable debug logging to console
 - **`endpointPrefix` (string)**
   - Add prefix to endpoint requests, helpful for local testing
 - **`host` (string)**
   - Set a custom host name to use, helpful for local testing
+  - If a config file is being used (via `awsConfigFile` or `AWS_SDK_LOAD_CONFIG` + `AWS_CONFIG_FILE` env vars), `host` will be assigned the `endpoint_url` setting of the specified profile, if present
+  - Alternately, `host` will use the value of the `AWS_ENDPOINT_URL` env var, if present
 - **`keepAlive` (boolean) [default = true]**
   - Disable Node.js's connection keep-alive, helpful for local testing
 - **`plugins` (array)**
