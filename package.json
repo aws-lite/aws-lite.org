@@ -9,7 +9,7 @@
     "test": "npm run lint"
   },
   "dependencies": {
-    "@begin/masthead": "github:beginner-corp/masthead#v1.1.0",
+    "@begin/imprint": "github:beginner-corp/imprint#v1.1.0",
     "@enhance/arc-plugin-enhance": "^9.1.4",
     "@enhance/styles-cribsheet": "^0.0.9",
     "arcdown": "^2.2.1",
