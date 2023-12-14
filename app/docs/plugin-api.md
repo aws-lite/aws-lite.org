@@ -253,7 +253,7 @@ The `error()` lifecycle hook is an optional async function that enables mutation
 The `error()` method may return:
 - A new or mutated version of the error payload
 - A string, object, or a JS error
-- Nothing  (which will pass through the `error` object as-is)
+- Nothing (which will pass through the `error` object as-is)
 
 
 #### Example
