@@ -60,7 +60,7 @@ import awsLite from '@aws-lite/client'
 const aws = await awsLite()
 
 // Make a plain JSON request
-await awsLite({
+await aws({
   service: 'lambda',
   endpoint: '/2015-03-31/functions/$function-name/invocations',
   query: { Qualifier: '1' }, // Lambda invoke API's version / alias '1'
@@ -68,7 +68,7 @@ await awsLite({
 })
 
 // Make an AWS-flavored JSON request
-await awsLite({
+await aws({
   service: 'dynamodb',
   headers: { 'X-Amz-Target': `DynamoDB_20120810.GetItem` },
   awsjson: [ 'Key' ], // Ensures only payload.Key will become AWS-flavored JSON
@@ -79,7 +79,7 @@ await awsLite({
 })
 
 // Paginate results
-await awsLite({
+await aws({
   service: 'dynamodb',
   headers: { 'X-Amz-Target': `DynamoDB_20120810.Scan` },
   paginator: {
