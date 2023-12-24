@@ -34,12 +34,13 @@ export default function generateMethods (_plugin) {
     header += `<cite>[Canonical AWS API doc](${awsDoc})</cite>\n`
     if (validate) {
       header += `\n #### Properties\n` + '<dl>' + Object.entries(validate).map(([ param, values ]) => {
-        const { type, required, comment } = values
+        const { type, required, comment, ref } = values
         const _typ = Array.isArray(type) ? type.join(', ') : type
         const _req = required ? reqDoc : ''
         // Newlines required in `dd` to preserve any markdown formatting contained in the comment
         const _com = comment ? `<dd>\n\n${comment}\n\n</dd>` : ''
-        return `<dt><code>${param}</code> (${_typ})${_req}</dt>${_com}`
+        const _ref = ref ? `<dd><a href="${ref} target=_blank>More details (AWS)</a></dd>` : ''
+        return `<dt><code>${param}</code> (${_typ})${_req}</dt>${_com}${_ref}`
       })
         .sort((a, b) => {
           if (a.includes(reqDoc) && b.includes(reqDoc)) return a > b ? 1 : -1
