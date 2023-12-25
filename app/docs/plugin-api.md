@@ -109,6 +109,8 @@ The `validate` lifecycle hook is an optional object containing (case-sensitive) 
   - Specify the property as being required
 - **`comment`** (string)
   - Brief description or summary of the property that may be used in errors, documentation, etc.; highly recommended!
+- **`ref`** (string)
+  - Reference link to related AWS documentation; helpful for complex or nested values that can't be easily enumerated in `comment`
 
 
 #### Example
@@ -121,18 +123,18 @@ export default {
   methods: {
     CreateTable: {
       validate: {
-        TableName:                  { type: 'string', required: true, comment: '...' },
-        AttributeDefinitions:       { type: 'array', required: true, comment: '...' },
-        KeySchema:                  { type: 'array', required: true, comment: '...' },
-        BillingMode:                { type: 'string', comment: '...' },
-        DeletionProtectionEnabled:  { type: 'boolean', comment: '...' },
-        GlobalSecondaryIndexes:     { type: 'array', comment: '...' },
-        LocalSecondaryIndexes:      { type: 'array', comment: '...' },
-        ProvisionedThroughput:      { type: 'object', comment: '...' },
-        SSESpecification:           { type: 'object', comment: '...' },
-        StreamSpecification:        { type: 'object', comment: '...' },
-        TableClass:                 { type: 'string', comment: '...' },
-        Tags:                       { type: 'array', comment: '...' },
+        TableName:                  { type: 'string', required: true, comment: '...', ref: '...' },
+        AttributeDefinitions:       { type: 'array', required: true, comment: '...', ref: '...' },
+        KeySchema:                  { type: 'array', required: true, comment: '...', ref: '...' },
+        BillingMode:                { type: 'string', comment: '...', ref: '...' },
+        DeletionProtectionEnabled:  { type: 'boolean', comment: '...', ref: '...' },
+        GlobalSecondaryIndexes:     { type: 'array', comment: '...', ref: '...' },
+        LocalSecondaryIndexes:      { type: 'array', comment: '...', ref: '...' },
+        ProvisionedThroughput:      { type: 'object', comment: '...', ref: '...' },
+        SSESpecification:           { type: 'object', comment: '...', ref: '...' },
+        StreamSpecification:        { type: 'object', comment: '...', ref: '...' },
+        TableClass:                 { type: 'string', comment: '...', ref: '...' },
+        Tags:                       { type: 'array', comment: '...', ref: '...' },
       }
     }
   }

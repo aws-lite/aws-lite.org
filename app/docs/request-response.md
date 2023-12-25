@@ -20,6 +20,7 @@ Requests from the bare `aws-lite` client and plugins accept the following parame
   - If your request includes a `payload` that cannot be automatically JSON-encoded and you do not specify a `content-type` header, the default `application/octet-stream` will be used
 - **`payload` (object, buffer, readable stream, string)**
   - Payload to be used as the HTTP request body; as a convenience, any passed objects are automatically JSON-encoded (with the appropriate `content-type` header set, if not already present); buffers, streams, and strings simply pass through as-is
+  - If the `content-type` is `application/xml` or `text/xml`, the payload will be automatically XML-encoded as well
   - Readable streams are currently experimental
     - Passing a Node.js readable stream initiates an HTTP data stream to the API endpoint instead of writing a normal HTTP body
     - Streams are not automatically signed like normal HTTP bodies, and may [require their own signing procedures, as in S3](https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-streaming.html)
@@ -41,7 +42,8 @@ Requests from the bare `aws-lite` client and plugins accept the following parame
       - Example: in S3, `cursor` would be the `continuation-token` request query string parameter
     - **`accumulator` (string) [required]**
       - Name of the array in the response payload that will be aggregated into final result set
-      - Example: in S3, this would be `Contents`
+      - The accumulator can also be nested within and object; if so, use dot notation (see example below)
+      - Example: in S3 `ListObjectsV2` this would be `Contents`; in CloudFormation `DescribeStacks` this would be `DescribeStacksResult.Stacks.member`
     - **`default` (string)**
       - Set value to `enabled` to enable pagination for all applicable requests by default
       - If set to `enabled`, individual requests can still opt out of pagination by setting `paginate` to `false`
@@ -74,8 +76,16 @@ await aws({
   awsjson: [ 'Key' ], // Ensures only payload.Key will become AWS-flavored JSON
   payload: {
     TableName: '$table-name',
-    Key: { myHashKey: 'Gaal', mySortKey: 'Dornick' }
+    Key: { myHashKey: 'Gaal', mySortKey: 'Dornick' },
   },
+})
+
+// Make an XML request
+await aws({
+  service: 'cloudfront',
+  headers: {'content-type': 'application/xml'}
+  endpoint: '/2020-05-31/distribution',
+  payload: { ... }, // Object will be automatically XML-encoded
 })
 
 // Paginate results
@@ -86,7 +96,7 @@ await aws({
     cursor: 'ExclusiveStartKey',
     token: 'LastEvaluatedKey',
     accumulator: 'Items',
-    enabled: 'default',
+    default: 'enabled',
   },
   payload: {
     TableName: '$table-name',
