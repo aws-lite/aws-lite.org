@@ -115,8 +115,8 @@ The following properties are returned with each non-error client response:
   - Response header names + values
 - **`payload` (object, string, null)**
   - Response payload; as a convenience, JSON and XML-encoded responses are automatically parsed
+    - Due to how XML is interpreted and parsed, `aws-lite` will always convert `true` and `false` strings to boolean values, and interpret ISO 8601-like strings into date values
   - Responses without an HTTP body return a `null` payload
-
 
 AWS errors can take many shapes depending on the service API in question. When a request fails, `aws-lite` will throw a normal error (with a `message`, stack trace + line numbers, etc.), and where possible will include the following additional properties:
 
