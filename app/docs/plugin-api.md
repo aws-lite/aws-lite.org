@@ -103,7 +103,7 @@ In addition to the method lifecycle hooks, each method can specify the following
 The `validate` lifecycle hook is an optional object containing (case-sensitive) input property names, with a corresponding object that denotes:
 
 - **`type`** (string) [required]
-  - Expected top-level type of the property, supports: `array` `boolean` `number` `object` `string`
+  - Expected top-level type of the property, supports: `array`, `boolean`, `buffer`, `number`, `object`, `string`
   - If multiple types are accepted, an array of types can be used (e.g. `type: [ 'string', 'number' ]`)
 - **`required`** (boolean) [default = false]
   - Specify the property as being required
