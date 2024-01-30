@@ -42,23 +42,34 @@ The following options may be passed when instantiating the `aws-lite` client:
   - If a `string`, it will load from that custom path
 - **`debug` (boolean) [default = false]**
   - Enable debug logging to console
-- **`endpointPrefix` (string)**
-  - Add prefix to endpoint requests, helpful for local testing
-- **`host` (string)**
-  - Set a custom host name to use, helpful for local testing
-  - If a config file is being used (via `awsConfigFile` or `AWS_SDK_LOAD_CONFIG` + `AWS_CONFIG_FILE` env vars), `host` will be assigned the `endpoint_url` setting of the specified profile, if present
-  - Alternately, `host` will use the value of the `AWS_ENDPOINT_URL` env var, if present
 - **`keepAlive` (boolean) [default = true]**
   - Disable Node.js's connection keep-alive, helpful for local testing
 - **`plugins` (array)**
   - Define `aws-lite` plugins to load; can be module names (e.g. `@aws-lite/dynamodb`) or file paths on the local machine (e.g. `/path/to/my/plugin.mjs`)
   - By default, all installed [official plugins (prefixed with `@aws-lite/`)](#list-of-official-aws-lite-plugins) and unofficial plugins (prefixed with `aws-lite-plugin-`) will be loaded
+- **`responseContentType` (string)**
+  - Set an overriding Content-Type header for all responses, helpful for local testing
+
+
+## Endpoint config
+
+Configure custom endpoints for local testing or AWS-compatible APIs. `endpoint` is usually the preferred parameter, or use individual properties: `pathPrefix`, `host`, `port`, `protocol`.
+
+- **`endpoint` (string)** (aliased to `url`)
+  - Full URL of the API being requested
+  - This value should specify the protocol, and if applicable, port and path; example: `http://my-custom-s3-endpoint.net/s3`
+  - `endpoint` supersedes `pathPrefix`, `host`, `port`, and `protocol`; if `endpoint` is specified, the others will be ignored
+  - If a config file is being used (via `awsConfigFile` or `AWS_SDK_LOAD_CONFIG` + `AWS_CONFIG_FILE` env vars), `endpoint` will be assigned the `endpoint_url` setting of the specified profile, if present
+  - Alternately, `endpoint` will use the value of the `AWS_ENDPOINT_URL` env var, if present
+- **`pathPrefix` (string)**
+  - Add prefix to any specified paths in all requests, helpful for local testing
+- **`host` (string)**
+  - Set a custom host name to use, helpful for local testing
+  - This value should NOT specify a protocol, port, or path; example: `my-custom-s3-endpoint.net`
 - **`port` (number)**
   - Set a custom port number to use, helpful for local testing
 - **`protocol` (string) [default = `https`]**
   - Set the connection protocol to `http`, helpful for local testing
-- **`responseContentType` (string)**
-  - Set an overriding Content-Type header for all responses, helpful for local testing
 
 
 ## Example
@@ -71,19 +82,25 @@ let aws = await awsLite()
 
 // Or specify options
 aws = await awsLite({
+  // Credentials + region
   accessKeyId: '$accessKey',
   secretAccessKey: '$secretKey',
   sessionToken: '$sessionToken',
   region: 'us-west-1',
   profile: 'work',
+  // General config
   autoloadPlugins: false,
+  awsConfigFile: '/a/path/to/config',
   debug: true,
-  endpointPrefix: '/test/path/',
-  host: 'localhost',
   keepAlive: false,
   plugins: [ '@aws-lite/dynamodb', '/a/custom/local/plugin/path' ],
+  responseContentType: 'application/json',
+  // Endpoint config
+  endpoint: 'http://my-custom-s3-endpoint.net/s3', // Aliased to `url`
+  // The following options are ignored if `endpoint` is present:
+  pathPrefix: '/test/path/',
+  host: 'localhost',
   port: 12345,
   protocol: 'http',
-  responseContentType: 'application/json',
 })
 ```

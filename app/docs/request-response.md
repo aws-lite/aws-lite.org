@@ -12,8 +12,8 @@ Requests from the bare `aws-lite` client and plugins accept the following parame
 - **`awsjson` (boolean or array)**
   - Enables AWS-flavored JSON encoding; if boolean, your entire body will be encoded; if an array, the key names specified in the array will be encoded, leaving other keys as normal JSON
   - Do not use this option if you intend to pass your own pre-serialized AWS-flavored JSON in the `payload`
-- **`endpoint` (string) [default = `/`]**
-  - API endpoint your request will be made to
+- **`path` (string) [default = `/`]**
+  - API path your request will be made to
 - **`headers` (object)**
   - Header names + values to be added to your request
   - By default, all headers are included in [authentication via AWS signature v4](https://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html)
@@ -52,7 +52,7 @@ Requests from the bare `aws-lite` client and plugins accept the following parame
 - **`service` (string) [required]**
   - AWS service code, usually just the lowercase form of the service name (e.g. `DynamoDB` = `dynamodb`); [full list can be found here](src/services.js)
 
-> Additionally, the following [client configuration options](/configuration) can be specified in each request, overriding those specified by the instantiated client: [`region`](/configuration), [`protocol`](/configuration), [`host`](/configuration), and [`port`](/configuration)
+> Additionally, the following [client configuration options](/configuration) can be specified in each request, overriding those specified by the instantiated client: [`region`](/configuration#credentials-%2B-region), [`endpoint`](/configuration#endpoint-config), [`pathPrefix`](/configuration#endpoint-config), [`protocol`](/configuration#endpoint-config), [`host`](/configuration#endpoint-config), and [`port`](/configuration#endpoint-config)
 
 
 ### Example
@@ -64,7 +64,7 @@ const aws = await awsLite()
 // Make a plain JSON request
 await aws({
   service: 'lambda',
-  endpoint: '/2015-03-31/functions/$function-name/invocations',
+  path: '/2015-03-31/functions/$function-name/invocations',
   query: { Qualifier: '1' }, // Lambda invoke API's version / alias '1'
   payload: { ok: true }, // Object will be automatically JSON-encoded
 })
@@ -83,8 +83,8 @@ await aws({
 // Make an XML request
 await aws({
   service: 'cloudfront',
-  headers: {'content-type': 'application/xml'}
-  endpoint: '/2020-05-31/distribution',
+  headers: { 'content-type': 'application/xml' },
+  path: '/2020-05-31/distribution',
   payload: { ... }, // Object will be automatically XML-encoded
 })
 
@@ -134,7 +134,7 @@ const aws = await awsLite()
 
 await awsLite({
   service: 'lambda',
-  endpoint: '/2015-03-31/functions/$function-name/configuration',
+  path: '/2015-03-31/functions/$function-name/configuration',
 })
 // {
 //   statusCode: 200,
