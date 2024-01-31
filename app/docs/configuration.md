@@ -77,10 +77,12 @@ Configure custom endpoints for local testing or AWS-compatible APIs. `endpoint` 
 ```javascript
 import awsLite from '@aws-lite/client'
 
-// Load everything from env vars + defaults
+// Load everything from env vars and/or config files
 let aws = await awsLite()
 
 // Or specify options
+
+// Local testing
 aws = await awsLite({
   // Credentials + region
   accessKeyId: '$accessKey',
@@ -102,5 +104,15 @@ aws = await awsLite({
   host: 'localhost',
   port: 12345,
   protocol: 'http',
+})
+
+// Access an S3-compatible cloud object store such as Backblaze B2
+// (Can alternatively configure credentials, region and host via env vars 
+// and/or config files, passing no arguments to the constructor, as above) 
+aws = await awsLite({
+  accessKeyId: '$applicationKeyId',
+  secretAccessKey: '$applicationKey',
+  region: 'us-west-004',
+  endpoint: 'https://s3.us-west-004.backblazeb2.com/',
 })
 ```
