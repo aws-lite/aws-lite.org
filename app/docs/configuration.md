@@ -81,8 +81,6 @@ import awsLite from '@aws-lite/client'
 let aws = await awsLite()
 
 // Or specify options
-
-// Local testing
 aws = await awsLite({
   // Credentials + region
   accessKeyId: '$accessKey',
@@ -106,12 +104,11 @@ aws = await awsLite({
   protocol: 'http',
 })
 
-// Access an S3-compatible cloud object store such as Backblaze B2
-// (Can alternatively configure credentials, region and host via env vars 
-// and/or config files, passing no arguments to the constructor, as above) 
+// aws-lite can also be used with AWS-compatible services that use AWS signature v4 (e.g. Backblaze B2)
+// Such services can accept alternate credentials passed during instantiation, via env vars, etc.
 aws = await awsLite({
-  accessKeyId: '$applicationKeyId',
-  secretAccessKey: '$applicationKey',
+  accessKeyId: '$alternateAccessKey',
+  secretAccessKey: '$alternateAccessSecretKey',
   region: 'us-west-004',
   endpoint: 'https://s3.us-west-004.backblazeb2.com/',
 })
