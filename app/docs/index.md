@@ -162,5 +162,5 @@ await aws({
 ## Join the movement
 
 - [Learn how to author AWS service plugins](/plugin-api)
-- [Expand and improve the aws-lite ecosystem](/contribute)
+- [Expand and improve the aws-lite ecosystem](/contributing)
 - [Join the Discord](https://discord.com/invite/y5A2eTsCRX)
