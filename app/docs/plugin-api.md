@@ -38,12 +38,12 @@ The `aws-lite` plugin API is lightweight and simple to learn. At the top level, 
 
 - **`service`** (string) [required]
   - Service name the plugin will use for all requests; for more information about services, please see [client requests](/request-response#requests).
+- **[`methods`](/plugin-api#method-hooks)** (object) [required]
+  - Object containing [method names (and their corresponding hooks)](/plugin-api#method-hooks)
 - **`property`** (string)
   - Customize the plugin's namespace or casing if you'd like it to be different than the plain `service`, e.g. `dynamodb` can be accessed as `DynamoDB`
   - Can be used to specify a colloquial or shortened version of the formal service name, e.g. `dynamodb` can be accessed as `dynamo`
   - Note: when `property` is used, your methods will also still be accessible via the lowcased service name; this is non-enumerable
-- **[`methods`](/plugin-api#method-hooks)** (object) [required]
-  - Object containing [method names (and their corresponding hooks)](/plugin-api#method-hooks)
 
 Here's an example of a simple validation plugin:
 
