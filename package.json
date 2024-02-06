@@ -10,18 +10,18 @@
   },
   "dependencies": {
     "@begin/imprint": "github:beginner-corp/imprint#v3.1.3",
-    "@enhance/arc-plugin-enhance": "^9.4.0",
+    "@enhance/arc-plugin-enhance": "^9.4.8",
     "@enhance/styles-cribsheet": "^0.0.9",
     "arcdown": "^2.2.1",
     "markdown-it-anchor": "^8.6.7"
   },
   "devDependencies": {
     "@architect/eslint-config": "^2.1.2",
-    "@aws-lite/client": "^0.14.0",
-    "@aws-lite/s3": "^0.1.9",
-    "@aws-lite/s3-types": "^0.1.9",
+    "@aws-lite/client": "^0.16.1",
+    "@aws-lite/s3": "^0.1.17",
+    "@aws-lite/s3-types": "^0.1.19",
     "@enhance/cli": "latest",
-    "@enhance/types": "^0.6.1",
+    "@enhance/types": "^0.7.0",
     "eslint": "^8.56.0"
   },
   "eslintConfig": {
