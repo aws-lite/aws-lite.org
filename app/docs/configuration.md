@@ -49,6 +49,8 @@ The following options may be passed when instantiating the `aws-lite` client:
   - By default, all installed [official plugins (prefixed with `@aws-lite/`)](#list-of-official-aws-lite-plugins) and unofficial plugins (prefixed with `aws-lite-plugin-`) will be loaded
 - **`responseContentType` (string)**
   - Set an overriding Content-Type header for all responses, helpful for local testing
+- **`verifyService` (boolean) [default = `true`]**
+  - Verify client request `service` names against a list of known AWS services. If `false`, any `service` name will be accepted.
 
 
 ## Endpoint config
