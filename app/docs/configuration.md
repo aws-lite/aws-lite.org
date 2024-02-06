@@ -34,8 +34,8 @@ The following options may be passed when instantiating the `aws-lite` client:
 
 ## General config
 
-- **`autoloadPlugins`** (boolean) [default = true]
-  - Automatically load installed `@aws-lite/*` + `aws-lite-plugin-*` plugins
+- **`autoloadPlugins`** (boolean) [default = false]
+  - Automatically load installed `@aws-lite/*` + `aws-lite-plugin-*` plugins; this is not suggested for production use, and should generally only be used for quick local iteration
 - **`awsConfigFile`** (boolean or string) [default = false]
   - Load configuration from an AWS configuration file
   - If `true`, it will load from the default (`~/.aws/config`) location
@@ -45,8 +45,12 @@ The following options may be passed when instantiating the `aws-lite` client:
 - **`keepAlive`** (boolean) [default = true]
   - Disable Node.js's connection keep-alive, helpful for local testing
 - **`plugins`** (array)
-  - Define `aws-lite` plugins to load; can be module names (e.g. `@aws-lite/dynamodb`) or file paths on the local machine (e.g. `/path/to/my/plugin.mjs`)
-  - By default, all installed [official plugins (prefixed with `@aws-lite/`)](#list-of-official-aws-lite-plugins) and unofficial plugins (prefixed with `aws-lite-plugin-`) will be loaded
+  - Define `aws-lite` plugins for the client instance to use; each plugin must an object or import / require statement. Examples:
+    - `import dynamodb from '@aws-lite/dynamodb'; await awsLite({ plugins: [ dynamodb ] })`
+    - `const dynamodb = require('@aws-lite/dynamodb'); await awsLite({ plugins: [ dynamodb ] })`
+    - `await awsLite({ plugins: [ import('@aws-lite/dynamodb') ] })`
+    - `await awsLite({ plugins: [ await import('@aws-lite/dynamodb') ] })`
+    - `await awsLite({ plugins: [ require('@aws-lite/dynamodb') ] })`
 - **`responseContentType`** (string)
   - Set an overriding Content-Type header for all responses, helpful for local testing
 - **`verifyService`** (boolean) [default = `true`]

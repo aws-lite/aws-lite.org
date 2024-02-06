@@ -16,8 +16,6 @@ A bit more about how plugins work:
 - Plugins can be authored in ESM or CJS
 - Plugins can be dependencies downloaded from npm, or also live locally in your codebase
 - In conjunction with the open source community, `aws-lite` publishes service plugins under the `@aws-lite/$service` namespace that [conform to `aws-lite` standards](/contributing)
-- `@aws-lite/*` plugins, and packages published to npm with the `aws-lite-plugin-*` prefix, are automatically loaded by the `@aws-lite/client` upon instantiation
-  - This behavior can be overridden with the [`autoloadPlugins` parameter](/configuration)
 
 Thus, to make use of the `@aws-lite/dynamodb` plugin, this is what your code would look like:
 
@@ -27,7 +25,7 @@ npm i @aws-lite/client @aws-lite/dynamodb
 
 ```javascript
 import awsLite from '@aws-lite/client'
-const aws = await awsLite() // @aws-lite/dynamodb is now automatically loaded
+const aws = await awsLite({ plugins: [ import('@aws-lite/dynamodb')] })
 aws.DynamoDB.PutItem({ TableName: 'my-table', Key: { id: 'hello' } })
 ```
 
@@ -313,7 +311,7 @@ async function request (params, utils) {
   // { ok: true, hi: 'there' }
 
   console.log(utils.config)
-  // { profile: 'my-profile', autoloadPlugins: true, ... }
+  // { profile: 'my-profile', autoloadPlugins: false, ... }
 
   console.log(utils.credentials)
   // { accessKeyId: 'abc123...' } secrets are non-enumerable

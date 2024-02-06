@@ -108,9 +108,9 @@ Learn more about [`aws-lite` types here](/using-typescript).
 ## Example
 
 ```javascript
-// Instantiate a client; once installed, `@aws-lite/dynamodb` is automatically loaded
+// Instantiate a client with the DynamoDB plugin
 import awsLite from '@aws-lite/client'
-const aws = await awsLite({ region: 'us-west-1' })
+const aws = await awsLite({ region: 'us-west-1', plugins: [ import('@aws-lite/dynamodb') ] })
 
 // Easily interact with the AWS services your application relies on
 await aws.DynamoDB.PutItem({
