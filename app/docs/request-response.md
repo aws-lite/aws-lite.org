@@ -11,6 +11,8 @@ Requests from the bare `aws-lite` client and plugins accept the following parame
 
 - **`service`** (string) [required]
   - AWS service code, usually just the lowercase form of the service name (e.g. `DynamoDB` = `dynamodb`); [full list can be found here](src/services.js)
+- **`verifyService`** (boolean) [default = `true`]
+  - Verify `service` name against a list of known AWS services. If `false`, any `service` name will be accepted.
 - **`awsjson`** (boolean or array)
   - Enables AWS-flavored JSON encoding; if boolean, your entire body will be encoded; if an array, the key names specified in the array will be encoded, leaving other keys as normal JSON
   - Do not use this option if you intend to pass your own pre-serialized AWS-flavored JSON in the `payload`
@@ -103,6 +105,13 @@ await aws({
   payload: {
     TableName: '$table-name',
   },
+})
+
+// Make a request without verifying the service name
+await aws({
+  service: 'newservice',
+  verifyService: false,
+  path: '/2025-12-31/newapi',
 })
 ```
 
