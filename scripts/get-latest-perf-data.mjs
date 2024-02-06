@@ -9,7 +9,7 @@ const jsons = [ 'checksum.json', 'latest-results-parsed.json' ]
 async function main () {
   const start = Date.now()
 
-  const aws = await awsLite({ region: 'us-west-2' })
+  const aws = await awsLite({ region: 'us-west-2', plugins: [ import('@aws-lite/s3') ] })
   const apiDir = join(__dirname, '..', 'app', 'api')
   const Bucket = 'performanceproduction-assetsbucket-1xqwku8953q8m'
 
