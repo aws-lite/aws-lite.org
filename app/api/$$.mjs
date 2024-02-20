@@ -55,6 +55,12 @@ export async function get (req) {
     const doc = await arcdown.render(pageContents)
     cache[page] = { json: { doc, page } }
 
+    if (process.env.ARC_ENV === 'production') {
+      cache[page].headers = {
+        'cache-control': 'max-age=3600',
+      }
+    }
+
     return cache[page]
   }
   catch {
