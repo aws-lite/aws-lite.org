@@ -29,7 +29,14 @@ export async function get (req) {
       const service = page.split('/')[1]
       const serviceData = await getService(service)
       const doc = await arcdown.render(serviceData.md)
+
       cache[service] = { json: { ...serviceData, doc, page, isService: true } }
+      if (process.env.ARC_ENV === 'production') {
+        cache[service].headers = {
+          'cache-control': 'max-age=3600',
+        }
+      }
+
       return cache[service]
     }
 
