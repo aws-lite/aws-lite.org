@@ -86,9 +86,9 @@ In addition to the method lifecycle hooks, each method can specify the following
 
 - **`awsDoc`** (string) [optional]
   - Link to the AWS API doc pertaining to this method; should usually start with `https://docs.aws.amazon.com/...`
-- **`deprecated`** (boolean) [optional, default = false]
+- **`deprecated`** (boolean) [optional, default = `false`]
   - Allows you to denote a method as deprecated; helpful for denoting a plugin methods that may not be implemented
-- **`disabled`** (boolean) [optional, default = false]
+- **`disabled`** (boolean) [optional, default = `false`]
   - Allows you to denote a method as disabled; helpful for fleshing out all the plugin methods
 - **`readme`** (string) [optional]
   - Link to a relevant section in your plugin's readme or docs
@@ -103,7 +103,7 @@ The `validate` lifecycle hook is an optional object containing (case-sensitive) 
 - **`type`** (string) [required]
   - Expected top-level type of the property, supports: `array`, `boolean`, `buffer`, `number`, `object`, `string`
   - If multiple types are accepted, an array of types can be used (e.g. `type: [ 'string', 'number' ]`)
-- **`required`** (boolean) [default = false]
+- **`required`** (boolean) [default = `false`]
   - Specify the property as being required
 - **`comment`** (string)
   - Brief description or summary of the property that may be used in errors, documentation, etc.; highly recommended!

@@ -34,15 +34,15 @@ The following options may be passed when instantiating the `aws-lite` client:
 
 ## General config
 
-- **`autoloadPlugins`** (boolean) [default = false]
+- **`autoloadPlugins`** (boolean) [default = `false`]
   - Automatically load installed `@aws-lite/*` + `aws-lite-plugin-*` plugins; this is not suggested for production use, and should generally only be used for quick local iteration
-- **`awsConfigFile`** (boolean or string) [default = false]
+- **`awsConfigFile`** (boolean or string) [default = `false`]
   - Load configuration from an AWS configuration file
   - If `true`, it will load from the default (`~/.aws/config`) location
   - If a `string`, it will load from that custom path
-- **`debug`** (boolean) [default = false]
+- **`debug`** (boolean) [default = `false`]
   - Enable debug logging to console
-- **`keepAlive`** (boolean) [default = true]
+- **`keepAlive`** (boolean) [default = `true`]
   - Disable Node.js's connection keep-alive, helpful for local testing
 - **`plugins`** (array)
   - Define `aws-lite` plugins for the client instance to use; each plugin must an object or import / require statement. Examples:

@@ -51,7 +51,7 @@ Requests from the bare `aws-lite` client and plugins accept the following parame
     - **`default`** (string)
       - Set value to `enabled` to enable pagination for all applicable requests by default
       - If set to `enabled`, individual requests can still opt out of pagination by setting `paginate` to `false`
-- **`rawResponsePayload`** (boolean) [default=false]
+- **`rawResponsePayload`** (boolean) [default = `false`]
   - Return all payload as a buffer, disabling the automatic parsing of JSON + XML
 - **`query`** (object)
   - Serialize the passed object as a query string and append it to your request's `endpoint`
