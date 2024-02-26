@@ -30,7 +30,7 @@ export default function SiteNav ({ html, state }) {
     return /* html */`<li><a href="/${slug}" ${active ? "class='active'" : ''}>${i}</a></li>`
   })
   const MainNav = `
-    <h2 class="font-semibold">Get Started</h2>
+    <h2 class="font-semibold">Reference</h2>
     <ul class="list-none mb0">
       ${Nav.join('\n  ')}
     </ul>

@@ -56,14 +56,15 @@ We rely on and believe in AWS, so we built `aws-lite` to provide a simpler, fast
 - [2-5x faster than AWS SDK v3](/performance)
 - Simple semantics & straightforward promise-based interface
 - Human-readable documentation
-- Customizable
+- Highly [customizable](/configuration)
 - Errors with stack traces and line numbers
+- Built-in [testing API](/testing-api) with support for mocking and response queues
 - Built-in pagination
 - Secured with AWS Signature v4
 - Interacts with any AWS service without needing any plugins
 - Automatically parses / serializes JSON, AWS-flavored JSON, and XML request / response payloads
 - Easily integrates with local testing suites and AWS service mocks
-- Use existing service plugins, or [develop your own](/api)
+- Use existing service plugins, or [develop your own](/plugin-api)
 - Debug mode for inspecting raw requests and responses
 - Just two dependencies
 
@@ -162,5 +163,5 @@ await aws({
 ## Join the movement
 
 - [Learn how to author AWS service plugins](/plugin-api)
-- [Expand and improve the aws-lite ecosystem](/contributing)
+- [Expand and improve the `aws-lite` ecosystem](/contributing)
 - [Join the Discord](https://discord.com/invite/y5A2eTsCRX)
