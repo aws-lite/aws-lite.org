@@ -19,6 +19,7 @@ export default function SiteNav ({ html, state }) {
     'Request/response',
     'Using TypeScript',
     'Plugin API',
+    'Testing API',
     'Performance',
     'Contributing',
   ]

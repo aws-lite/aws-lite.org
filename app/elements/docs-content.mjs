@@ -6,6 +6,7 @@ export default function docsContent ({ html, state }) {
     'configuration': 'Configuration',
     'request-response': 'Request/response',
     'plugin-api': 'Plugin API',
+    'testing-api': 'Testing API',
     'performance': 'Performance',
     'contributing': 'Contributing',
     'using-typescript': 'Using TypeScript',
