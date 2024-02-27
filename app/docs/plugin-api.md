@@ -1,6 +1,7 @@
 ---
 title: Plugin API
 description: Documentation and examples for the aws-lite plugin API
+introduced: 0.1.0
 next: testing-api
 ---
 # Plugin API

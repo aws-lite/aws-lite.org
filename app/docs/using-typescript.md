@@ -1,6 +1,7 @@
 ---
 title: Using TypeScript
 description: Guide and examples for using TypeScript with aws-lite
+introduced: 0.8.0
 next: plugin-api
 ---
 # Using TypeScript

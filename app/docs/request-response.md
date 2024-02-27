@@ -1,6 +1,7 @@
 ---
 title: Request / response
 description: Documentation and examples of making and receiving aws-lite requests and responses
+introduced: 0.1.0
 next: using-typescript
 ---
 # Request/response

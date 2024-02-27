@@ -1,6 +1,7 @@
 ---
 title: Configuration
 description: Credential and general configuration options for aws-lite
+introduced: 0.1.0
 next: request-response
 ---
 # Configuration
