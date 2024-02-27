@@ -6,7 +6,7 @@ next: performance
 ---
 # Testing API
 
-> This feature is [currently actively accepting feedback](https://github.com/architect/aws-lite/issues/102), and will be finalized by v1.0.
+> This feature is [under active development, and is accepting feedback](https://github.com/architect/aws-lite/issues/102). It is expected to be finalized by v1.0.
 
 ## Introduction
 
