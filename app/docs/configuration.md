@@ -54,6 +54,8 @@ The following options may be passed when instantiating the `aws-lite` client:
     - `await awsLite({ plugins: [ require('@aws-lite/dynamodb') ] })`
 - **`responseContentType`** (string)
   - Set an overriding Content-Type header for all responses, helpful for local testing
+- **`retries`** (number, aliased to `maxAttempts`) [default = `5`]
+  - Set the maximum number of graceful retries when API service failures occur; set to 0 to disable retrying
 - **`verifyService`** (boolean) [default = `true`]
   - Verify client request `service` names against a list of known AWS services. If `false`, any `service` name will be accepted.
 
@@ -62,7 +64,7 @@ The following options may be passed when instantiating the `aws-lite` client:
 
 Configure custom endpoints for local testing or AWS-compatible APIs. `endpoint` is usually the preferred parameter, or use individual properties: `pathPrefix`, `host`, `port`, `protocol`.
 
-- **`endpoint`** (string)** (aliased to `url
+- **`endpoint`** (string, aliased to `url`)
   - Full URL of the API being requested
   - This value should specify the protocol, and if applicable, port and path; example: `http://my-custom-s3-endpoint.net/s3`
   - `endpoint` supersedes `pathPrefix`, `host`, `port`, and `protocol`; if `endpoint` is specified, the others will be ignored
@@ -102,6 +104,7 @@ aws = await awsLite({
   keepAlive: false,
   plugins: [ '@aws-lite/dynamodb', '/a/custom/local/plugin/path' ],
   responseContentType: 'application/json',
+  retries: 4,
   // Endpoint config
   endpoint: 'http://my-custom-s3-endpoint.net/s3', // Aliased to `url`
   // The following options are ignored if `endpoint` is present:
