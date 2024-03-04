@@ -1,6 +1,6 @@
 {
   "name": "aws-lite.org",
-  "version": "0.2.26",
+  "version": "0.2.27",
   "scripts": {
     "start": "npx enhance dev",
     "lint": "eslint ./app/**/*.mjs --fix",
