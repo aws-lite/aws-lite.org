@@ -20,7 +20,7 @@ const names = {
   'aws-sdk-v3-bundled': '`@aws-sdk` (v3, bundled)',
 }
 
-export default function (data, /* checksum */) {
+export default function (data /* checksum */) {
   let md = {}
   Object.entries(data).forEach(([ name, data ]) => {
     md[name] = '<figure class="table-wrapper">\n\n'

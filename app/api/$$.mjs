@@ -12,9 +12,9 @@ const arcdown = new Arcdown({
       level: [ 2, 3 ],
     },
     markdownItAnchor: {
-      permalink: markdownItAnchor.permalink.headerLink({ safariReaderFix: true })
-    }
-  }
+      permalink: markdownItAnchor.permalink.headerLink({ safariReaderFix: true }),
+    },
+  },
 })
 
 const cache = {}
