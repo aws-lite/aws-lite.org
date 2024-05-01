@@ -16,7 +16,7 @@ Requests from the bare `aws-lite` client and plugins accept the following parame
   - Verify `service` name against a list of known AWS services. If `false`, any `service` name will be accepted.
 - **`awsjson`** (boolean or array)
   - Enables AWS-flavored JSON encoding; by default, request payloads will be encoded with AWS-flavored JSON if the request includes a `content-type` header similar to `/application/x-amz-json...`
-  - If `true`, encode the entire payload as AWS-flavored JSON
+  - If `true`, encode the entire request payload as AWS-flavored JSON
   - If an array, the property names specified in the array will be AWS-flavored JSON encoded, leaving other properties as normal JSON
   - If `false`, disable encoding of AWS-flavored JSON (even if a relevant `content-type` header is present)
   - If you intend to pass your own pre-serialized AWS-flavored JSON, use `false`
@@ -27,8 +27,9 @@ Requests from the bare `aws-lite` client and plugins accept the following parame
   - By default, all headers are included in [authentication via AWS signature v4](https://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html)
   - If your request includes a `payload` that cannot be automatically JSON-encoded and you do not specify a `content-type` header, the default `application/octet-stream` will be used
 - **`payload`** (object, buffer, readable stream, string)
-  - Payload to be used as the HTTP request body; as a convenience, any passed objects are automatically JSON-encoded (with the appropriate `content-type` header set, if not already present); buffers, streams, and strings simply pass through as-is
-  - If the `content-type` is `application/xml` or `text/xml`, the payload will be automatically XML-encoded as well
+  - Payload to be used as the HTTP request body
+  - As a convenience, any passed objects are automatically JSON-encoded (with the appropriate `content-type` header set, if not already present); buffers, streams, and strings simply pass through as-is
+  - If an object is passed and the `content-type` is `application/xml` or `text/xml`, the request payload will be automatically XML-encoded
   - Readable streams are currently experimental
     - Passing a Node.js readable stream initiates an HTTP data stream to the API endpoint instead of writing a normal HTTP body
     - Streams are not automatically signed like normal HTTP bodies, and may [require their own signing procedures, as in S3](https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-streaming.html)
@@ -58,7 +59,7 @@ Requests from the bare `aws-lite` client and plugins accept the following parame
       - Set value to `enabled` to enable pagination for all applicable requests by default
       - If set to `enabled`, individual requests can still opt out of pagination by setting `paginate` to `false`
 - **`rawResponsePayload`** (boolean) [default = `false`]
-  - Return all payload as a buffer, disabling the automatic parsing of JSON + XML
+  - Return response payload as a buffer, disabling the automatic parsing of JSON + XML
 - **`query`** (object)
   - Serialize the passed object as a query string and append it to your request's `endpoint`
 - **`xmlns`** (string)
@@ -147,7 +148,7 @@ The following properties are returned with each non-error client response:
 - **`payload` (object, string, null)**
   - Response payload; as a convenience, JSON and XML-encoded responses are automatically parsed
     - Due to how XML is interpreted and parsed, `aws-lite` will always convert `true` and `false` strings to boolean values, and interpret ISO 8601-like strings into date values
-  - Responses without an HTTP body return a `null` payload
+  - Responses without an HTTP body return a `null` response payload
 
 AWS errors can take many shapes depending on the service API in question. When a request fails, `aws-lite` will throw a normal error (with a `message`, stack trace + line numbers, etc.), and where possible will include the following additional properties:
 
