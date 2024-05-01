@@ -37,16 +37,18 @@ Requests from the bare `aws-lite` client and plugins accept the following parame
   - If pagination is enabled by default (see `paginator.default`), pass `false` to disable automatic pagination
   - Otherwise, pass `true` to enable automatic pagination
 - **`paginator`** (object) [experimental]
-  - Enable automatic pagination for service API via the following properties:
+  - Enable automatic pagination for service API via the following properties ([examples below](#example)):
     - **`type` (string)** [default = `payload`]
       - Defines how the pagination `cursor` will be passed to the service API
       - `payload` (default) passes `cursor` via request body, `query` passes `cursor` via query string parameter
-    - **`token` (string)** [required]
-      - Name of the pagination token returned in response payloads (if any)
+    - **`token` (string or array)** [required]
+      - Name of the pagination token returned in response payloads (if any); nested tokens may used with dot delineation (e.g. `TopLevelProperty.NextToken`)
+      - If multiple tokens are used, use an array and order them with their corresponding `cursor` array values
       - If the `token` property is found in the response payload, its value will be passed with the next request as `cursor`
       - Example: in S3, `token` would be the `NextContinuationToken` response body property
-    - **`cursor` (string)** [required]
+    - **`cursor` (string or array)** [required]
       - Name of the pagination token to be passed in the next request via `type` (body or query string parameter)
+      - If multiple cursors are used, use an array and order them with their corresponding `token` array values
       - Example: in S3, `cursor` would be the `continuation-token` request query string parameter
     - **`accumulator` (string)** [required]
       - Name of the array in the response payload that will be aggregated into final result set
@@ -108,6 +110,18 @@ await aws({
   },
   payload: {
     TableName: '$table-name',
+  },
+})
+
+// Paginate results in APIs that use multiple corresponding cursors + tokens
+await aws({
+  service: 'route53',
+  path: '/2013-04-01/hostedzone/$HostedZoneId/rrset',
+  paginator: {
+    cursor: [ 'name', 'type' ],
+    token: [ 'NextRecordName', 'NextRecordType' ],
+    accumulator: 'ResourceRecordSets.ResourceRecordSet',
+    type: 'query',
   },
 })
 
