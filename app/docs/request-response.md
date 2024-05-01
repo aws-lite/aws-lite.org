@@ -61,6 +61,8 @@ Requests from the bare `aws-lite` client and plugins accept the following parame
   - Return all payload as a buffer, disabling the automatic parsing of JSON + XML
 - **`query`** (object)
   - Serialize the passed object as a query string and append it to your request's `endpoint`
+- **`xmlns`** (string)
+  - Adds an `xmlns` attribute to the first property found in XML-encoded request payloads
 
 > Additionally, the following [client configuration options](/configuration) can be specified in each request, overriding those specified by the instantiated client: [`region`](/configuration#credentials-%2B-region), [`endpoint`](/configuration#endpoint-config), [`pathPrefix`](/configuration#endpoint-config), [`protocol`](/configuration#endpoint-config), [`host`](/configuration#endpoint-config), and [`port`](/configuration#endpoint-config)
 
