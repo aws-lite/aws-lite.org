@@ -55,7 +55,7 @@ The following options may be passed when instantiating the `aws-lite` client:
 - **`responseContentType`** (string)
   - Set an overriding Content-Type header for all responses, helpful for local testing
 - **`retries`** (number, aliased to `maxAttempts`) [default = `5`]
-  - Set the maximum number of graceful retries when API service failures occur; set to 0 to disable retrying
+  - Set the maximum number of graceful retries when API service failures occur; set to `0` to disable retrying
 - **`verifyService`** (boolean) [default = `true`]
   - Verify client request `service` names against a list of known AWS services. If `false`, any `service` name will be accepted.
 
