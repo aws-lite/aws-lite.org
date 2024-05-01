@@ -60,6 +60,10 @@ Requests from the bare `aws-lite` client and plugins accept the following parame
       - If set to `enabled`, individual requests can still opt out of pagination by setting `paginate` to `false`
 - **`rawResponsePayload`** (boolean) [default = `false`]
   - Return response payload as a buffer, disabling the automatic parsing of JSON + XML
+  - Cannot be used in conjunction with `streamResponsePayload`
+- **`streamResponsePayload`** (boolean) [default = `false`]
+  - Return response payload as a Node.js stream, disabling the automatic parsing of JSON + XML
+  - Cannot be used in conjunction with `rawResponsePayload`
 - **`query`** (object)
   - Serialize the passed object as a query string and append it to your request's `endpoint`
 - **`xmlns`** (string)
