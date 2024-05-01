@@ -15,8 +15,11 @@ Requests from the bare `aws-lite` client and plugins accept the following parame
 - **`verifyService`** (boolean) [default = `true`]
   - Verify `service` name against a list of known AWS services. If `false`, any `service` name will be accepted.
 - **`awsjson`** (boolean or array)
-  - Enables AWS-flavored JSON encoding; if boolean, your entire body will be encoded; if an array, the key names specified in the array will be encoded, leaving other keys as normal JSON
-  - Do not use this option if you intend to pass your own pre-serialized AWS-flavored JSON in the `payload`
+  - Enables AWS-flavored JSON encoding; by default, request payloads will be encoded with AWS-flavored JSON if the request includes a `content-type` header similar to `/application/x-amz-json...`
+  - If `true`, encode the entire payload as AWS-flavored JSON
+  - If an array, the property names specified in the array will be AWS-flavored JSON encoded, leaving other properties as normal JSON
+  - If `false`, disable encoding of AWS-flavored JSON (even if a relevant `content-type` header is present)
+  - If you intend to pass your own pre-serialized AWS-flavored JSON, use `false`
 - **`path`** (string) [default = `/`]
   - API path your request will be made to
 - **`headers`** (object)
