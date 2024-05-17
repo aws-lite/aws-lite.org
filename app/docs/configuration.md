@@ -43,6 +43,7 @@ The following options may be passed when instantiating the `aws-lite` client:
   - If a `string`, it will load from that custom path
 - **`debug`** (boolean) [default = `false`]
   - Enable debug logging to console
+  - Can also be enabled by setting the `AWS_LITE_DEBUG` environment variable
 - **`keepAlive`** (boolean) [default = `true`]
   - Disable Node.js's connection keep-alive, helpful for local testing
 - **`plugins`** (array)
