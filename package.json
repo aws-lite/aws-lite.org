@@ -9,7 +9,7 @@
     "test": "npm run lint"
   },
   "dependencies": {
-    "@begin/imprint": "github:beginner-corp/imprint#v4.0.0",
+    "@begin/imprint": "github:beginner-corp/imprint#v4.1.0",
     "@enhance/arc-plugin-enhance": "^11.0.1",
     "@enhance/arc-plugin-styles": "^5.0.6",
     "@enhance/styles-cribsheet": "^0.0.11",
