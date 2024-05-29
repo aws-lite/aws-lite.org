@@ -1,6 +1,6 @@
 import awsLite from '@aws-lite/client'
-import { join } from 'node:path'
-import { mkdirSync } from 'node:fs'
+import { join, parse } from 'node:path'
+import { existsSync, mkdirSync } from 'node:fs'
 import { writeFile } from 'node:fs/promises'
 import url from 'url'
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
@@ -23,9 +23,12 @@ async function main () {
     return new Promise((res, rej) => {
       aws.s3.GetObject({ Bucket, Key })
         .then(({ Body: data }) => {
-          const dir = isJson ? apiDir : publicDir
+          const root = isJson ? apiDir : publicDir
           const out = isJson ? JSON.stringify(data) : data
-          writeFile(join(dir, Key), out).then(res).catch(rej)
+          const filepath = join(root, Key)
+          const { dir } = parse(filepath)
+          if (!existsSync(dir)) mkdirSync(dir, { recursive: true })
+          writeFile(filepath, out).then(res).catch(rej)
         })
         .catch(rej)
     })

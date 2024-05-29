@@ -28,8 +28,8 @@ Coldstart latency measures the impact of each SDK on AWS Lambda coldstarts – t
 In these stats we expect to see lower values for either very small code payloads (such as `aws-lite`), or scenarios where we are using the AWS SDK included in the Lambda image (e.g. `@aws-sdk` v3 raw in `nodejs20.x`). Coldstart latency increases as code payload sizes increase; this is most clearly observed with bundled SDKs.
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Coldstart latency" srcset="/_public/coldstart-dark.png">
-  <img alt="Benchmark statistics - Coldstart latency" src="/_public/coldstart.png">
+  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Coldstart latency" srcset="/_public/startup/coldstart-dark.png">
+  <img alt="Benchmark statistics - Coldstart latency" src="/_public/startup/coldstart.png">
 </picture>
 
 <!-- stats_coldstart -->
@@ -42,8 +42,8 @@ Initialization latency measures the impact of each SDK on the [initialization ph
 Here we expect to see relatively similar values, as the performance benchmark has almost no static code or init-time execution.
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Initialization latency" srcset="/_public/init-dark.png">
-  <img alt="Benchmark statistics - Initialization latency" src="/_public/init.png">
+  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Initialization latency" srcset="/_public/startup/init-dark.png">
+  <img alt="Benchmark statistics - Initialization latency" src="/_public/startup/init.png">
 </picture>
 
 <!-- stats_init -->
@@ -57,11 +57,11 @@ Here we measure the impact of importing / requiring each SDK. Ideally, all impor
 It is important to note that import / require times are tied to individual services. In this benchmark, only the DynamoDB service client is imported. In real world use your business logic may rely on multiple AWS services – each of which necessitating additional imports, thereby compounding overall response latency.
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Import / require" srcset="/_public/import-dep-dark.png">
-  <img alt="Benchmark statistics - Import / require" src="/_public/import-dep.png">
+  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Import / require DynamoDB" srcset="/_public/dynamodb/import-dark.png">
+  <img alt="Benchmark statistics - Import / require DynamoDB" src="/_public/dynamodb/import.png">
 </picture>
 
-<!-- stats_importDep -->
+<!-- stats_importDynamoDB -->
 
 
 
@@ -70,11 +70,11 @@ It is important to note that import / require times are tied to individual servi
 Here we measure the impact of instantiating a new SDK client – a necessary step before making any service API calls. Ideally all operations should be sub-50ms to ensure fast responses in customer hot-paths.
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Instantiate a client" srcset="/_public/instantiate-dark.png">
-  <img alt="Benchmark statistics - Instantiate a client" src="/_public/instantiate.png">
+  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Instantiate a DynamoDB client" srcset="/_public/dynamodb/instantiate-dark.png">
+  <img alt="Benchmark statistics - Instantiate a DynamoDB client" src="/_public/dynamodb/instantiate.png">
 </picture>
 
-<!-- stats_instantiate -->
+<!-- stats_instantiateDynamoDB -->
 
 
 
@@ -83,11 +83,11 @@ Here we measure the impact of instantiating a new SDK client – a necessary ste
 Here we measure the latency associated with reading a single 100KB row from DynamoDB, and parsing and returning results. All reads are identical across SDKs.
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - DynamoDB - read one 100KB row" srcset="/_public/read-dark.png">
-  <img alt="Benchmark statistics - DynamoDB - read one 100KB row" src="/_public/read.png">
+  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - DynamoDB - read one 100KB row" srcset="/_public/dynamodb/read-dark.png">
+  <img alt="Benchmark statistics - DynamoDB - read one 100KB row" src="/_public/dynamodb/read.png">
 </picture>
 
-<!-- stats_read -->
+<!-- stats_readDynamoDB -->
 
 
 
@@ -96,11 +96,11 @@ Here we measure the latency associated with reading a single 100KB row from Dyna
 Here we measure the latency associated with writing a single 100KB row into DynamoDB. All writes are identical across SDKs.
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - DynamoDB - write one 100KB row" srcset="/_public/write-dark.png">
-  <img alt="Benchmark statistics - DynamoDB - write one 100KB row" src="/_public/write.png">
+  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - DynamoDB - write one 100KB row" srcset="/_public/dynamodb/write-dark.png">
+  <img alt="Benchmark statistics - DynamoDB - write one 100KB row" src="/_public/dynamodb/write.png">
 </picture>
 
-<!-- stats_write -->
+<!-- stats_writeDynamoDB -->
 
 
 
@@ -111,8 +111,8 @@ Peak memory consumption measures each SDK's peak memory usage throughout the abo
 To make it easier to assess the memory impact of each SDK, the graph is presented as a value over (thus, not including) the Lambda Node.js baseline. Baseline memory consumption would be expected to include Node.js itself, Lambda bootstrap processes, etc. The memory baseline used always corresponds to the equivalent peak memory of the control test (e.g. `aws-lite` peak memory p95 - control peak memory p95 = peak memory over baseline p95).
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Peak memory consumption over Lambda baseline" srcset="/_public/memory-dark.png">
-  <img alt="Benchmark statistics - Peak memory consumption over Lambda baseline" src="/_public/memory.png">
+  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Peak memory consumption over Lambda baseline" srcset="/_public/aggregate/memory-dark.png">
+  <img alt="Benchmark statistics - Peak memory consumption over Lambda baseline" src="/_public/aggregate/memory.png">
 </picture>
 
 <!-- stats_memory -->
@@ -124,11 +124,11 @@ To make it easier to assess the memory impact of each SDK, the graph is presente
 Time to respond measures the total execution time of each SDK, not including [coldstart](#coldstart-latency) or [initialization](#initialization-latency). In real-world usage, Lambda coldstarts are usually less common than warm invocations, so this metric illustrates the most common case for most applications. Ideally all times should be sub-1000ms to ensure fast responses in customer hot-paths.
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Time to respond, not including coldstart" srcset="/_public/execution-time-dark.png">
-  <img alt="Benchmark statistics - Time to respond, not including coldstart" src="/_public/execution-time.png">
+  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Time to respond, not including coldstart" srcset="/_public/aggregate/execution-time-all-dark.png">
+  <img alt="Benchmark statistics - Time to respond, not including coldstart" src="/_public/aggregate/execution-time-all.png">
 </picture>
 
-<!-- stats_executionTime -->
+<!-- stats_executionTimeAll -->
 
 
 
@@ -137,11 +137,11 @@ Time to respond measures the total execution time of each SDK, not including [co
 Total time to respond measures the total execution time of each SDK, including [coldstart](#coldstart-latency) or [initialization](#initialization-latency). In real-world usage, this metric represents a normalized "worst case" response time. Ideally all times should be sub-1000ms to ensure fast responses in customer hot-paths.
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Total time to respond, including coldstart" srcset="/_public/total-time-dark.png">
-  <img alt="Benchmark statistics - Total time to respond, including coldstart" src="/_public/total-time.png">
+  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Total time to respond, including coldstart" srcset="/_public/aggregate/total-time-all-dark.png">
+  <img alt="Benchmark statistics - Total time to respond, including coldstart" src="/_public/aggregate/total-time-all.png">
 </picture>
 
-<!-- stats_totalTime -->
+<!-- stats_totalTimeAll -->
 
 ---
 
