@@ -17,7 +17,7 @@ Make your first [`aws-lite` call in 60 seconds](#install-aws-lite)
 
 <call-out title="Performance">
 
-Learn more about how [`aws-lite` is 2-5x faster](/performance)
+Learn more about how [`aws-lite` is 2x faster](/performance)
 
 </call-out>
 
@@ -53,7 +53,7 @@ We rely on and believe in AWS, so we built `aws-lite` to provide a simpler, fast
 
 ## Features
 
-- [2-5x faster than AWS SDK v3](/performance)
+- [2x faster than AWS SDK v3](/performance)
 - Simple semantics & straightforward promise-based interface
 - Human-readable documentation
 - Highly [customizable](/configuration)
@@ -73,7 +73,7 @@ We rely on and believe in AWS, so we built `aws-lite` to provide a simpler, fast
 
 `@aws-lite/client` provides a basic client interface for quickly interacting with any AWS service. However, most folks will probably want to extend the client with service plugins, which provide ergonomic representations of AWS service API methods.
 
-Because `aws-lite` and its plugins are authored from the ground up for performance and simplicity, `aws-lite` is 2-5x faster than AWS SDK, helping ensure that customer hot paths always receive sub-second responses:
+Because `aws-lite` and its plugins are authored from the ground up for performance and simplicity, `aws-lite` is 2x faster than AWS SDK, helping ensure that customer hot paths always receive sub-second responses:
 
 <picture>
   <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Time to respond, not including coldstart" srcset="/_public/execution-time-dark.png">
