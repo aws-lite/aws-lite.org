@@ -76,8 +76,8 @@ We rely on and believe in AWS, so we built `aws-lite` to provide a simpler, fast
 Because `aws-lite` and its plugins are authored from the ground up for performance and simplicity, `aws-lite` is 2x faster than AWS SDK, helping ensure that customer hot paths always receive sub-second responses:
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Time to respond, not including coldstart (DynamoDB)" srcset="/_public/dynamoDb/execution-time-dark.png">
-  <img alt="Benchmark statistics - Time to respond, not including coldstart (DynamoDB)" src="/_public/dynamoDb/execution-time.png">
+  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Time to respond, not including coldstart (DynamoDB)" srcset="/_public/dynamodb/execution-time-dark.png">
+  <img alt="Benchmark statistics - Time to respond, not including coldstart (DynamoDB)" src="/_public/dynamodb/execution-time.png">
 </picture>
 
 <picture>
