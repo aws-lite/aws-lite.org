@@ -1,4 +1,4 @@
-export default function docsContent ({ html, state }) {
+export default function docsContent({ html, state }) {
   const { store } = state
   const { display, doc, isService = false, service } = store
 
@@ -45,13 +45,13 @@ export default function docsContent ({ html, state }) {
       }
 
       ${isService ?
-    `article h1 {
+      `article h1 {
           color: var(--accent);
           font-family: var(--font-mono);
           font-size: var(--text-1);
           font-weight: 500;
         }`
-    : ''}
+      : ''}
 
       :host > h1,
       article h1,
@@ -69,7 +69,11 @@ export default function docsContent ({ html, state }) {
       h5,
       h6 {
         font-weight: 600;
-        margin-block: var(--space-0);
+        margin-block: var(--space-4) var(--space-0);
+      }
+
+      figure h4 {
+        margin-block-start: var(--space-2);
       }
 
       :not(aside) > h2 {

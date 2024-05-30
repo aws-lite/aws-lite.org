@@ -1,9 +1,9 @@
-export default function TableOfContents ({ html, state }) {
+export default function TableOfContents({ html, state }) {
   const { store = {} } = state
   const { doc = {} } = store
   const { tocHtml = '' } = doc
 
-  return html `
+  return html`
     <style>
       :host {
         display: block;
@@ -20,7 +20,6 @@ export default function TableOfContents ({ html, state }) {
 
       li {
         padding-inline-start: 0;
-        padding-block-end: var(--space--5);
       }
 
       li li {
@@ -33,7 +32,7 @@ export default function TableOfContents ({ html, state }) {
       }
     </style>
     <aside>
-      <h6 class="font-semibold mbe0">On this page</h6>
+      <h2 class="font-semibold mbe0">On this page</h2>
       ${tocHtml}
     </aside>
   `
