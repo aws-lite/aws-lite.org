@@ -41,6 +41,10 @@ The following options may be passed when instantiating the `aws-lite` client:
   - Load configuration from an AWS configuration file
   - If `true`, it will load from the default (`~/.aws/config`) location
   - If a `string`, it will load from that custom path
+- **`awsjsonMarshall`** (object)
+  - Lower-level configuration options for marshalling AWS-flavored JSON; [reference here](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-aws-sdk-lib-dynamodb/#configuration)
+- **`awsjsonUnmarshall`** (object)
+  - Lower-level configuration options for unmarshalling AWS-flavored JSON; [reference here](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-aws-sdk-lib-dynamodb/#configuration)
 - **`debug`** (boolean) [default = `false`]
   - Enable debug logging to console
   - Can also be enabled by setting the `AWS_LITE_DEBUG` environment variable
