@@ -285,9 +285,11 @@ export default {
 
 - **`awsjsonMarshall`** (function)
   - Utility for marshalling data to the format underlying AWS-flavored JSON serialization
+  - Accepts a second (optional) options argument – options may contain [`awsjson` property](/request-response#requests), or [`config` object containing `awsjsonMarshall` options](/configuration#general-config)
   - This method accepts a plain object, and returns a marshalled object
 - **`awsjsonUnmarshall`** (function)
   - Utility for unmarshalling data from the format underlying AWS-flavored JSON serialization
+  - Accepts a second (optional) options argument – options may contain [`awsjson` property](/request-response#requests), or [`config` object containing `awsjsonUnmarshall` options](/configuration#general-config)
   - This method accepts a marshalled object, and returns a plain object
 - **`buildXML`** (function)
   - Utility for manually building XML requests, if necessary
