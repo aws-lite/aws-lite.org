@@ -5,8 +5,10 @@ const reqComment = ' // required'
 const types = {
   array: 'Array',
   boolean: 'Boolean',
+  buffer: 'Buffer',
   number: 'Number',
   object: 'Object',
+  stream: 'Stream',
   string: 'String',
 }
 
