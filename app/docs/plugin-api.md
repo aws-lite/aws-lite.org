@@ -289,6 +289,9 @@ export default {
 - **`awsjsonUnmarshall`** (function)
   - Utility for unmarshalling data from the format underlying AWS-flavored JSON serialization
   - This method accepts a marshalled object, and returns a plain object
+- **`client`** (function)
+  - An instance of the client, including all plugin methods
+  - Helpful for calling other methods within methods
 - **`config`** (object)
   - The current [client configuration](/configuration)
   - Any configured credentials are found in the `credentials` object

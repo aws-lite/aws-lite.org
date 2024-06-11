@@ -1,4 +1,4 @@
-export default function TableOfContents({ html, state }) {
+export default function TableOfContents ({ html, state }) {
   const { store = {} } = state
   const { doc = {} } = store
   const { tocHtml = '' } = doc

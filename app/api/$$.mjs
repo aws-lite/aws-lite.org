@@ -9,7 +9,7 @@ const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
 const arcdown = new Arcdown({
   pluginOverrides: {
     markdownItToc: {
-      level: [2, 3],
+      level: [ 2, 3 ],
       linkClass: 'inline-block mbe-4',
     },
     markdownItAnchor: {
@@ -20,7 +20,7 @@ const arcdown = new Arcdown({
 
 const cache = {}
 
-export async function get(req) {
+export async function get (req) {
   let { proxy: page } = req.params
   page = page || 'index'
   if (cache[page]) return cache[page]
@@ -51,7 +51,7 @@ export async function get(req) {
       const statsFile = join(__dirname, 'latest-results-parsed.json')
       const statsData = JSON.parse(await readFile(statsFile))
       const statsMd = getPerfStats(statsData)
-      Object.entries(statsMd).forEach(([stat, md]) => {
+      Object.entries(statsMd).forEach(([ stat, md ]) => {
         let re = new RegExp(`<!-- stats_${stat} -->`, 'g')
         pageContents = pageContents.replace(re, md)
       })
