@@ -32,8 +32,12 @@ export default function generateMethods (_plugin) {
       return
     }
     const { awsDoc, validate } = _plugin.methods[method]
-    if (!awsDoc) throw ReferenceError(`All methods must refer to an AWS service API doc: ${display} ${method}`)
-    header += `<cite>[Canonical AWS API doc](${awsDoc})</cite>\n`
+    if (!awsDoc && awsDoc !== false) {
+      throw ReferenceError(`All methods must refer to an AWS service API doc: ${display} ${method}`)
+    }
+    if (awsDoc) {
+      header += `<cite>[Canonical AWS API doc](${awsDoc})</cite>\n`
+    }
     if (validate) {
       header += `\n #### Properties\n` + '<dl>' + Object.entries(validate).map(([ param, values ]) => {
         const { type, required, comment, ref } = values
@@ -61,7 +65,7 @@ export default function generateMethods (_plugin) {
     methodDocs += `\n\n## Deprecated methods\n\n` +
                   deprecatedMethods.map(({ method, awsDoc }) => awsDoc
                     ? `- [\`${method}\`](${awsDoc})`
-                    : `- \`${method}\``
+                    : `- \`${method}\``,
                   ).join('\n') + '\n'
   }
   if (incompleteMethods.length) {
@@ -69,7 +73,7 @@ export default function generateMethods (_plugin) {
                   `Please help out by [opening a PR](/contributing)!\n\n` +
                   incompleteMethods.map(({ method, awsDoc }) => awsDoc
                     ? `- [\`${method}\`](${awsDoc})`
-                    : `- \`${method}\``
+                    : `- \`${method}\``,
                   ).join('\n') + '\n'
   }
   return methodDocs
