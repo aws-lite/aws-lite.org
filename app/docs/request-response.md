@@ -33,10 +33,19 @@ Requests from the bare `aws-lite` client and plugins accept the following parame
   - Readable streams are currently experimental
     - Passing a Node.js readable stream initiates an HTTP data stream to the API endpoint instead of writing a normal HTTP body
     - Streams are not automatically signed like normal HTTP bodies, and may [require their own signing procedures, as in S3](https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-streaming.html)
-- **`paginate`** (boolean) [experimental]
+- **`paginate`** (boolean or string) [experimental]
   - Enables (or disables) automatic result pagination
   - If pagination is enabled by default (see `paginator.default`), pass `false` to disable automatic pagination
-  - Otherwise, pass `true` to enable automatic pagination
+  - Otherwise, pass one of:
+  - **`true`** ([examples below](#Automatic))
+    - Enable automatic pagination
+    - All pages will be requested before returning to the user
+    - The `accumulator` field will be used to determine what data to collect, other data in the response will be ignored
+  - **`iterator`** ([examples below](#Iterator))
+    - Enable async iterable pagination
+    - Each page is requested by the user through an async iterator
+    - Page requests can be halted at any time to prevent using extra bandwidth
+    - All information is returned for each page, this is useful when multiple `accumulator` fields may be present
 - **`paginator`** (object) [experimental]
   - Enable automatic pagination for service API via the following properties ([examples below](#example)):
     - **`type` (string)** [default = `payload`]
@@ -54,6 +63,7 @@ Requests from the bare `aws-lite` client and plugins accept the following parame
     - **`accumulator` (string)** [required]
       - Name of the array in the response payload that will be aggregated into final result set
       - The accumulator can also be nested within and object; if so, use dot notation (see example below)
+      - Accumulator is ignored when paginate is set to `iterator`
       - Example: in S3 `ListObjectsV2` this would be `Contents`; in CloudFormation `DescribeStacks` this would be `DescribeStacksResult.Stacks.member`
     - **`default`** (string)
       - Set value to `enabled` to enable pagination for all applicable requests by default
@@ -187,4 +197,22 @@ await awsLite({
 //     ...
 //   }
 // }
+
+// 
+```
+
+## Paginator Examples
+### Automatic
+```javascript
+  const aws = await awsLite({ region: 'us-west-2', plugins: [import('@aws-lite/lambda')] })
+  const result = await aws.lambda.ListFunctions({MaxItems: 1, paginate: true})
+  console.log(result.Functions)
+```
+### Iterator
+```javascript
+  const aws = await awsLite({ region: 'us-west-2', plugins: [import('@aws-lite/lambda')] })
+  const iterator = await aws.lambda.ListFunctions({MaxItems: 1, paginate: 'iterator'})
+  for await (const page of iterator) {
+    console.log(page)
+  }
 ```
