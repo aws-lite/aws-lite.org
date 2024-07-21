@@ -37,15 +37,15 @@ Requests from the bare `aws-lite` client and plugins accept the following parame
   - Enables (or disables) automatic result pagination
   - If pagination is enabled by default (see `paginator.default`), pass `false` to disable automatic pagination
   - Otherwise, pass one of:
-  - **`true`** ([examples below](#Automatic))
-    - Enable automatic pagination
-    - All pages will be requested before returning to the user
-    - The `accumulator` field will be used to determine what data to collect, other data in the response will be ignored
-  - **`iterator`** ([examples below](#Iterator))
-    - Enable async iterable pagination
-    - Each page is requested by the user through an async iterator
-    - Page requests can be halted at any time to prevent using extra bandwidth
-    - All information is returned for each page, this is useful when multiple `accumulator` fields may be present
+    - **`true`** ([examples below](#Automatic))
+      - Enable automatic pagination
+      - All pages will be requested before returning to the user
+      - The `accumulator` field will be used to determine what data to collect, other data in the response will be ignored
+    - **`iterator`** ([examples below](#Iterator))
+      - Enable async iterable pagination
+      - Each page is requested by the user through an async iterator
+      - Page requests can be halted at any time to prevent using extra bandwidth
+      - All information is returned for each page, this is useful when multiple `accumulator` fields may be present
 - **`paginator`** (object) [experimental]
   - Enable automatic pagination for service API via the following properties ([examples below](#example)):
     - **`type` (string)** [default = `payload`]
@@ -205,14 +205,19 @@ await awsLite({
 ### Automatic
 ```javascript
   const aws = await awsLite({ region: 'us-west-2', plugins: [import('@aws-lite/lambda')] })
-  const result = await aws.lambda.ListFunctions({MaxItems: 1, paginate: true})
-  console.log(result.Functions)
+  const result = await aws.lambda.ListFunctions({MaxItems: 1, paginate: true}) // All pages are requested
+  doSomething(result.Functions) // `Functions` is the `accumulator` 
 ```
 ### Iterator
 ```javascript
   const aws = await awsLite({ region: 'us-west-2', plugins: [import('@aws-lite/lambda')] })
-  const iterator = await aws.lambda.ListFunctions({MaxItems: 1, paginate: 'iterator'})
+  const iterator = await aws.lambda.ListFunctions({MaxItems: 1, paginate: 'iterator'}) // Async iterator is created
+  // Each loop iteration requests a new page
   for await (const page of iterator) {
-    console.log(page)
+    // `foo` was found, exit the loop to stop requesting pages 
+    if (page.Functions[0].FunctionName === 'foo') {
+      doSomething(page)
+      break
+    }
   }
 ```
