@@ -9,7 +9,7 @@ next: request-response
 The following options may be passed when instantiating the `aws-lite` client:
 
 
-## Region config
+## Region / profile config
 
 - **`region`** (string)
   - AWS service region (e.g. `us-west-1`); if not provided, defaults to `AWS_REGION`, `AWS_DEFAULT_REGION`, or `AMAZON_REGION` env vars
@@ -18,9 +18,16 @@ The following options may be passed when instantiating the `aws-lite` client:
   - If `host` is specified, `region` can be an arbitrary, non-AWS value; this is helpful when using AWS-compatible APIs
   - If no region is found, `aws-lite` will throw
   - Region setting can be overridden per-request
+- **`profile`** (string)
+  - Selected AWS profile; if not provided, defaults to `AWS_PROFILE` env var, and then to the `default` profile, if present
 
 
-## Credentials config
+## Credential config
+
+The following settings document basic credential configuration; [learn additional details about how `aws-lite` implements the credential provider chain](#credential-provider-chain-details).
+
+
+### Credential parameters
 
 - **`accessKeyId`** (string)
   - AWS access key; if not provided, defaults to `AWS_ACCESS_KEY_ID` or `AWS_ACCESS_KEY` env vars, and then to a `~/.aws/credentials|config` file, if present
@@ -33,11 +40,9 @@ The following options may be passed when instantiating the `aws-lite` client:
 - **`sessionToken`** (string)
   - AWS session token; if not provided, defaults to `AWS_SESSION_TOKEN` env var, and then to a `~/.aws/credentials|config` file, if present
   - Manually specify a credentials file location with the `AWS_SHARED_CREDENTIALS_FILE` env var
-- **`profile`** (string)
-  - AWS config + credentials profile; if not provided, defaults to `AWS_PROFILE` env var, and then to the `default` profile, if present
 
 
-## Credential provider chain config
+### Credential provider chain
 
 - **`imds`** (object)
   - IMDSv2 configuration; accepts two properties:
@@ -153,3 +158,40 @@ aws = await awsLite({
   endpoint: 'https://s3.us-west-004.backblazeb2.com/',
 })
 ```
+
+---
+
+## Credential provider chain details
+
+To acquire credentials for working with AWS services, `aws-lite` supports the [standard credential provider chain](https://docs.aws.amazon.com/sdkref/latest/guide/standardized-credentials.html), and should be generally interoperable with AWS SDK v2 and v3 (with [caveats noted below](#credential-loading-caveats)). When an `aws-lite` client is initialized, the following credential loading strategy is employed, in order:
+
+- [Passed credential parameters](#credential-parameters)
+- Environment variables (e.g. `AWS_ACCESS_KEY_ID`, etc.)
+  - [Learn more about AWS credential env vars here](https://docs.aws.amazon.com/sdkref/latest/guide/environment-variables.html)
+- SSO
+  - Requires IAM Identity Center setup, and running AWS CLI: `aws sso login [options]`
+  - Supports standard profiles, and `sso-session` sections in `config`
+  - [Learn more about AWS SSO here](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sso.html)
+- Shared `credentials` + `config` files (`~/.aws/[credentials|config]`)
+  - Supports standard `credentials` profiles, and `profile` sections in `config`
+  - Supports `AWS_CONFIG_FILE` + `AWS_SHARED_CREDENTIALS_FILE` env vars specifying file location, default file location via `AWS_SDK_LOAD_CONFIG` env var, and `awsConfigFile` config property; see [general configuration options](#general-config)
+  - [Learn more about shared `credentials` + `config` files here](https://docs.aws.amazon.com/sdkref/latest/guide/file-format.html)
+- External processes
+  - [Learn more about external processes here](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sourcing-external.html)
+- IMDSv2
+  - First, container (ECS) endpoints are checked via `AWS_CONTAINER_CREDENTIALS_RELATIVE_URI`, then `AWS_CONTAINER_CREDENTIALS_FULL_URI` environment variables
+  - If ECS is not found, instance (EC2) endpoints are checked via [passed `imds` config](#credential-provider-chain-config), then via `AWS_EC2_METADATA_SERVICE_ENDPOINT` + `AWS_EC2_METADATA_SERVICE_ENDPOINT_MODE` environment variables, then via `ec2_metadata_service_endpoint` + `ec2_metadata_service_endpoint_mode` properties in shared `credentials` + `config` files
+
+
+### Credential loading caveats
+
+- IMDSv1 is not currently supported, as it is considered insecure and no longer [AWS's standard version of IMDS](https://aws.amazon.com/blogs/aws/amazon-ec2-instance-metadata-service-imdsv2-by-default/)
+- To improve performance when acquiring IMDSv2 credentials in long-lived processes, IMDSv2 host availability is cached for the duration of the Node.js process; this availability status caching behavior may be changed in the future
+- Currently, soon-to-be expired SSO tokens are not automatically refreshed by `aws-lite`; PRs are welcome should the community deem this a necessary feature
+- [Assuming IAM roles via OAuth 2.0 access token or OIDC token files](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-role.html#cli-configure-role-oidc) is not currently supported; PRs are welcome should the community deem this a necessary feature
+- The following credential providers cannot be used in Lambda environments: SSO, shared `credentials` + `config` files, external processes, and IMDSv2
+
+Additional credential resource provider chain resources:
+- [AWS CLI credential provider chain docs](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-authentication.html)
+- [AWS SDK credential provider chain docs](https://docs.aws.amazon.com/sdkref/latest/guide/standardized-credentials.html)
+- [Additional SDK authentication + access docs](https://docs.aws.amazon.com/sdkref/latest/guide/access.html)
