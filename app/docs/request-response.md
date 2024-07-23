@@ -34,18 +34,16 @@ Requests from the bare `aws-lite` client and plugins accept the following parame
     - Passing a Node.js readable stream initiates an HTTP data stream to the API endpoint instead of writing a normal HTTP body
     - Streams are not automatically signed like normal HTTP bodies, and may [require their own signing procedures, as in S3](https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-streaming.html)
 - **`paginate`** (boolean or string) [experimental]
-  - Enables (or disables) automatic result pagination
+  - Enables (or disables) automatic result pagination, or specify type of pagination; [examples below](#paginator-examples)
   - If pagination is enabled by default (see `paginator.default`), pass `false` to disable automatic pagination
-  - Otherwise, pass one of:
-    - **`true`** ([examples below](#Automatic))
-      - Enable automatic pagination
-      - All pages will be requested before returning to the user
-      - The `accumulator` field will be used to determine what data to collect, other data in the response will be ignored
-    - **`iterator`** ([examples below](#Iterator))
-      - Enable async iterable pagination
-      - Each page is requested by the user through an async iterator
-      - Page requests can be halted at any time to prevent using extra bandwidth
-      - All information is returned for each page, this is useful when multiple `accumulator` fields may be present
+  - Options:
+    - **`true` (boolean)**
+      - Enable full, automatic pagination; all pages will be requested and returned to the user
+      - The `accumulator` field will be used to determine what data to collect from each response; other response data will be omitted from the return
+    - **`iterator` (string)**
+      - Async iterable pagination; pages are requested sequentially via an async iterator
+      - Page requests can be halted at any time to prevent unnecessary requests / latency
+      - All response data is returned with each page; this is useful when additional response data is desired outside just the `accumulator` field
 - **`paginator`** (object) [experimental]
   - Enable automatic pagination for service API via the following properties ([examples below](#example)):
     - **`type` (string)** [default = `payload`]
@@ -198,26 +196,38 @@ await awsLite({
 //   }
 // }
 
-// 
+//
 ```
 
-## Paginator Examples
+
+## Paginator examples
+
 ### Automatic
+
 ```javascript
-  const aws = await awsLite({ region: 'us-west-2', plugins: [import('@aws-lite/lambda')] })
-  const result = await aws.lambda.ListFunctions({MaxItems: 1, paginate: true}) // All pages are requested
-  doSomething(result.Functions) // `Functions` is the `accumulator` 
+import awsLite from '@aws-lite/client'
+const aws = await awsLite({ plugins: [ import('@aws-lite/lambda') ] })
+
+await aws.Lambda.ListFunctions({ paginate: true }) // All pages are requested
+// {
+//   Functions: [ ... ]
+// }
 ```
+
+
 ### Iterator
+
 ```javascript
-  const aws = await awsLite({ region: 'us-west-2', plugins: [import('@aws-lite/lambda')] })
-  const iterator = await aws.lambda.ListFunctions({MaxItems: 1, paginate: 'iterator'}) // Async iterator is created
-  // Each loop iteration requests a new page
-  for await (const page of iterator) {
-    // `foo` was found, exit the loop to stop requesting pages 
-    if (page.Functions[0].FunctionName === 'foo') {
-      doSomething(page)
-      break
-    }
+import awsLite from '@aws-lite/client'
+const aws = await awsLite({ plugins: [ import('@aws-lite/lambda') ] })
+
+const iterator = await aws.Lambda.ListFunctions({ paginate: 'iterator' }) // Async iterator is created
+
+// Each iteration requests the next page
+for await (const page of iterator) {
+  // Exit the loop to stop requesting additional pages
+  if (page.Functions[0]?.FunctionName === 'foo') {
+    break
   }
+}
 ```
