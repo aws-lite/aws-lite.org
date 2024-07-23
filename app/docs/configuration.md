@@ -9,19 +9,8 @@ next: request-response
 The following options may be passed when instantiating the `aws-lite` client:
 
 
-## Credentials + region
+## Region config
 
-- **`accessKeyId`** (string)
-  - AWS access key; if not provided, defaults to `AWS_ACCESS_KEY_ID` or `AWS_ACCESS_KEY` env vars, and then to a `~/.aws/credentials` file, if present
-  - Manually specify a credentials file location with the `AWS_SHARED_CREDENTIALS_FILE` env var
-  - If no access key is found, `aws-lite` will throw
-- **`secretAccessKey`** (string)
-  - AWS secret key; if not provided, defaults to `AWS_SECRET_ACCESS_KEY` or `AWS_SECRET_KEY` env vars, and then to a `~/.aws/credentials` file, if present
-  - Manually specify a credentials file location with the `AWS_SHARED_CREDENTIALS_FILE` env var
-  - If no secret key is found, `aws-lite` will throw
-- **`sessionToken`** (string)
-  - AWS session token; if not provided, defaults to `AWS_SESSION_TOKEN` env var, and then to a `~/.aws/credentials` file, if present
-  - Manually specify a credentials file location with the `AWS_SHARED_CREDENTIALS_FILE` env var
 - **`region`** (string)
   - AWS service region (e.g. `us-west-1`); if not provided, defaults to `AWS_REGION`, `AWS_DEFAULT_REGION`, or `AMAZON_REGION` env vars
   - By default, a `~/.aws/config` (or custom) file will only be loaded by using the `awsConfigFile` config property, or by making the `AWS_SDK_LOAD_CONFIG` env var true
@@ -29,8 +18,34 @@ The following options may be passed when instantiating the `aws-lite` client:
   - If `host` is specified, `region` can be an arbitrary, non-AWS value; this is helpful when using AWS-compatible APIs
   - If no region is found, `aws-lite` will throw
   - Region setting can be overridden per-request
+
+
+## Credentials config
+
+- **`accessKeyId`** (string)
+  - AWS access key; if not provided, defaults to `AWS_ACCESS_KEY_ID` or `AWS_ACCESS_KEY` env vars, and then to a `~/.aws/credentials|config` file, if present
+  - Manually specify a credentials file location with the `AWS_SHARED_CREDENTIALS_FILE` env var
+  - If no access key is found, `aws-lite` will throw
+- **`secretAccessKey`** (string)
+  - AWS secret key; if not provided, defaults to `AWS_SECRET_ACCESS_KEY` or `AWS_SECRET_KEY` env vars, and then to a `~/.aws/credentials|config` file, if present
+  - Manually specify a credentials file location with the `AWS_SHARED_CREDENTIALS_FILE` env var
+  - If no secret key is found, `aws-lite` will throw
+- **`sessionToken`** (string)
+  - AWS session token; if not provided, defaults to `AWS_SESSION_TOKEN` env var, and then to a `~/.aws/credentials|config` file, if present
+  - Manually specify a credentials file location with the `AWS_SHARED_CREDENTIALS_FILE` env var
 - **`profile`** (string)
   - AWS config + credentials profile; if not provided, defaults to `AWS_PROFILE` env var, and then to the `default` profile, if present
+
+
+## Credential provider chain config
+
+- **`imds`** (object)
+  - IMDSv2 configuration; accepts two properties:
+    - `endpoint` (string) set a custom the IMDSv2 endpoint
+      - If not provided, defaults to `AWS_EC2_METADATA_SERVICE_ENDPOINT` env var, and then to a `~/.aws/credentials|config` file's `ec2_metadata_service_endpoint` property, if present
+    - `endpointMode` - (string) set the IMDSv2 host via IP version; either `IPv4` (which sets `endpoint` to `http://169.254.169.254`, the default), or `IPv6` (which sets the `endpoint` to `http://[fd00:ec2::254]`)
+      - If not provided, defaults to `AWS_EC2_METADATA_SERVICE_ENDPOINT_MODE` env var, and then to a `~/.aws/credentials|config` file's `ec2_metadata_service_endpoint_mode` property, if present
+  - IMDSv2 is enabled by default, but can also be entirely disabled by setting the `AWS_EC2_METADATA_DISABLED` env var
 
 
 ## General config
@@ -96,12 +111,21 @@ let aws = await awsLite()
 
 // Or specify options
 aws = await awsLite({
-  // Credentials + region
+  // Region / profile
+  region: 'us-west-1',
+  profile: 'work',
+
+  // Credentials
   accessKeyId: '$accessKey',
   secretAccessKey: '$secretKey',
   sessionToken: '$sessionToken',
-  region: 'us-west-1',
-  profile: 'work',
+
+  // Credential provider chain (if above credentials are not passed)
+  imds: {
+    endpoint: 'http://[::1]'
+    endpointMode: 'IPv6', // Overrides `imds.endpoint` if specified
+  },
+
   // General config
   autoloadPlugins: false,
   awsConfigFile: '/a/path/to/config',
@@ -110,6 +134,7 @@ aws = await awsLite({
   plugins: [ '@aws-lite/dynamodb', '/a/custom/local/plugin/path' ],
   responseContentType: 'application/json',
   retries: 4,
+
   // Endpoint config
   endpoint: 'http://my-custom-s3-endpoint.net/s3', // Aliased to `url`
   // The following options are ignored if `endpoint` is present:
