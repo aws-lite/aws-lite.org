@@ -104,7 +104,7 @@ Results below show aggregate data for sequentially executing all six tested clie
 
 <picture>
   <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Time to respond, not including coldstart (CloudFormation)" srcset="/_public/cloudFormation/execution-time-dark.png">
-  <img alt="Benchmark statistics - Time to respond, not including coldstart (CloudFormation)" src="/_public/cloudFormation/execution-time.png">
+  <img alt="Benchmark statistics - Time to respond, not including coldstart (CloudFormation)" src="/_public/cloudformation/execution-time.png">
 </picture>
 
 <picture>
