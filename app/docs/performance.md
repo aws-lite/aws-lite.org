@@ -88,8 +88,8 @@ Results below show aggregate data for sequentially executing all six tested clie
 ### Individual client response times
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Time to respond, not including coldstart (DynamoDB)" srcset="/_public/dynamoDb/execution-time-dark.png">
-  <img alt="Benchmark statistics - Time to respond, not including coldstart (DynamoDB)" src="/_public/dynamoDb/execution-time.png">
+  <source media="(prefers-color-scheme: dark)" alt="Benchmark statistics - Time to respond, not including coldstart (DynamoDB)" srcset="/_public/dynamodb/execution-time-dark.png">
+  <img alt="Benchmark statistics - Time to respond, not including coldstart (DynamoDB)" src="/_public/dynamodb/execution-time.png">
 </picture>
 
 <picture>
