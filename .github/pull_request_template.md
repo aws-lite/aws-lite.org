@@ -17,6 +17,6 @@ To maintain a high standard of quality in our releases, before merging every pul
 
 Please also be sure to completed the CLA (if you haven't already).
 
-Learn more about [contributing to Architect here](https://arc.codes/intro/community).
+Learn more about [contributing to Architect projects (which includes `aws-lite`) here](https://arc.codes/intro/community).
 
 Thanks again!

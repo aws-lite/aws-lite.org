@@ -37,10 +37,10 @@ Plugins released within the `@aws-lite/*` namespace are expected to conform to t
 
 ## Contributor setup
 
-- Pull down the [`aws-lite` repo](https://github.com/architect/aws-lite)
+- Pull down the [`aws-lite` repo](https://github.com/aws-lite/aws-lite)
 - Install dependencies and run the normal test suite: `npm it`
 - To create an `@aws-lite/*` plugin:
-  - Add your plugin to the [`plugins` file](https://github.com/architect/aws-lite/blob/main/plugins.mjs)
+  - Add your plugin to the [`plugins` file](https://github.com/aws-lite/aws-lite/blob/main/plugins.mjs)
   - Run `npm run gen`
 - Create a PR that adheres to our plugin development guidelines and / or [testing methodology](#testing)
 

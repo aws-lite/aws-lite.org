@@ -7,7 +7,7 @@ next: contributing
 
 Performance is one of the tent poles of `aws-lite`. We take it seriously because we want your applications to be as fast possible.
 
-As such, we regularly test and publish open, reproducible, real-world metrics for every key aspect of performance, comparing `aws-lite` to AWS's own `aws-sdk` (v2) and `@aws-sdk` (v3). Learn more and view source at the [`aws-lite` performance project on GitHub](https://github.com/architect/aws-lite-performance/).
+As such, we regularly test and publish open, reproducible, real-world metrics for every key aspect of performance, comparing `aws-lite` to AWS's own `aws-sdk` (v2) and `@aws-sdk` (v3). Learn more and view source at the [`aws-lite` performance project on GitHub](https://github.com/aws-lite/performance/).
 
 We currently track individual and aggregated performance benchmarking the following AWS service clients: [DynamoDB](#dynamodb), [S3](#s3), [IAM](#iam), [CloudFormation](#cloudformation), [Lambda](#lambda), and [STS](#sts).
 
@@ -16,7 +16,7 @@ All metrics are published below (or [skip straight to the wrap-up](#time-to-resp
 
 ## Methodology
 
-In addition to publishing our source, [raw data](#latest-data), and final results, we believe it's important to share the details of our performance testing methodology, too. [Learn more here](https://github.com/architect/aws-lite-performance/#methodology).
+In addition to publishing our source, [raw data](#latest-data), and final results, we believe it's important to share the details of our performance testing methodology, too. [Learn more here](https://github.com/aws-lite/performance/#methodology).
 
 ---
 

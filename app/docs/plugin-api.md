@@ -78,7 +78,7 @@ The `methods` object specifies an arbitrary number of API methods, each of which
 - **[`error()`](#error())** (async function) [optional]
   - An async function that enables mutation of service API errors before they are returned
 
-Example plugins can be found below, and in [`aws-lite` project's `plugins/` dir (which contains all `@aws-lite/*` plugins)](https://github.com/architect/aws-lite/tree/main/plugins).
+Example plugins can be found below, and in [`aws-lite` project's `plugins/` dir (which contains all `@aws-lite/*` plugins)](https://github.com/aws-lite/aws-lite/tree/main/plugins).
 
 
 ### Metadata

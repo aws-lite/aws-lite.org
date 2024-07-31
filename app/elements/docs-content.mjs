@@ -14,10 +14,10 @@ export default function docsContent ({ html, state }) {
 
   let edit = '', next = ''
   if (isService) {
-    edit = `<div><a href="https://github.com/architect/aws-lite/blob/main/plugins/${service}/src/index.mjs">Contribute to this plugin</a></div>`
+    edit = `<div><a href="https://github.com/aws-lite/aws-lite/blob/main/plugins/${service}/src/index.mjs">Contribute to this plugin</a></div>`
   }
   else {
-    edit = `<div><a href="https://github.com/architect/aws-lite.org/blob/main/app/docs/${store.page}.md">Edit this page</a></div>`
+    edit = `<div><a href="https://github.com/aws-lite/aws-lite.org/blob/main/app/docs/${store.page}.md">Edit this page</a></div>`
     const nextDoc = doc?.frontmatter?.next
     if (nextDoc) next = `<div><a href="/${nextDoc}">Next: ${titlesByService[nextDoc]}</a></div>`
   }
