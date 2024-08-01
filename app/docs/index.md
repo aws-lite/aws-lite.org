@@ -117,7 +117,10 @@ Learn more about [`aws-lite` types here](/using-typescript).
 ```javascript
 // Instantiate a client with the DynamoDB plugin
 import awsLite from '@aws-lite/client'
-const aws = await awsLite({ region: 'us-west-1', plugins: [ import('@aws-lite/dynamodb') ] })
+const aws = await awsLite({
+  region: 'us-west-1',
+  plugins: [ import('@aws-lite/dynamodb') ]
+})
 
 // Easily interact with the AWS services your application relies on
 await aws.DynamoDB.PutItem({
@@ -146,7 +149,7 @@ await aws.DynamoDB.GetItem({
 //   }
 // }
 
-// Use the lower-level client to fire a GET request by specifying a `service` and `endpoint`
+// Use the lower-level client to fire a custom GET request by specifying a `service` and `endpoint`
 await aws({
   service: 'lambda',
   endpoint: '/2015-03-31/functions/$function-name/configuration',
