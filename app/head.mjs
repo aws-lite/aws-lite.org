@@ -1,10 +1,10 @@
-import { getStyles }  from '@enhance/arc-plugin-styles'
+import { getStyles } from '@enhance/arc-plugin-styles'
 import SyntaxTheme from './lib/syntax-theme.mjs'
 
 const { linkTag } = getStyles
 const ogImage = '/_public/img/aws-lite-open-graph.png'
 
-export default function Head (state) {
+export default function Head(state) {
   let title = state.store.doc?.frontmatter?.title
   title = `${title ? title + ' - ' : ''}aws-lite`
   const description = state.store.doc?.frontmatter?.description || ''
@@ -71,7 +71,7 @@ export default function Head (state) {
         }
 
         html {
-          scroll-padding: calc(var(--masthead-max-height) + var(--space-1));
+          scroll-padding: calc(var(--nav-height) + var(--space-1));
         }
 
         @media (prefers-reduced-motion: no-preference) {
@@ -83,7 +83,7 @@ export default function Head (state) {
         body {
           background-color: var(--back);
           color: var(--fore);
-          margin-block-start: var(--masthead-max-height);
+          margin-block-start: var(--nav-height);
         }
 
         :root {

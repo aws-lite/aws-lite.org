@@ -9,7 +9,7 @@
     "scaleMax": "minor-third"
   },
   "spaceScale": {
-    "steps": 6,
+    "steps": 9,
     "viewportMin": 320,
     "viewportMax": 1500,
     "baseMin": 16,
