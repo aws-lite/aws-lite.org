@@ -8,6 +8,11 @@
     "gen": "./scripts/gen.sh",
     "test": "npm run lint"
   },
+  "overrides": {
+    "@enhance/arc-plugin-enhance": {
+      "path-to-regexp": "6.2.2"
+    }
+  },
   "dependencies": {
     "@begin/imprint": "github:beginner-corp/imprint#v4.1.0",
     "@enhance/arc-plugin-enhance": "^11.0.2",
