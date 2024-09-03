@@ -1,4 +1,5 @@
 @app
+# ! name cannot start with "aws" if deployed with Arc (instead of Begin)
 aws-lite_org
 
 @static
