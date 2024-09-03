@@ -54,8 +54,8 @@ export default function SiteNav ({ html, state }) {
     <style>
       :host {
         display: block;
-        color: var(--fore-dark);
-        padding: var(--space-0);
+        color: var(--fore);
+        padding: var(--space-0) var(--space--2);
       }
 
       li a {
@@ -85,7 +85,7 @@ export default function SiteNav ({ html, state }) {
 
       @media screen and (min-width: 52em) {
         :host {
-          color: var(--fore);
+          padding: var(--space-0);
         }
 
         li {
