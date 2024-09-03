@@ -4,7 +4,7 @@ import url from 'url'
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
 let services
 
-export default function SiteNav({ html, state }) {
+export default function SiteNav ({ html, state }) {
   const { store } = state
   const { page } = store
 

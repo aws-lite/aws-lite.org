@@ -1,4 +1,4 @@
-export default function AwsLiteLogo({ html }) {
+export default function AwsLiteLogo ({ html }) {
   return html`
   <style>
     svg {

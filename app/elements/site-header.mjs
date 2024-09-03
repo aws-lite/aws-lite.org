@@ -1,8 +1,4 @@
-export default function SiteHeader({ html, state }) {
-  const { store } = state
-  const { path } = store
-
-  const checkActive = route => path.split('/')[1] === route ? 'active' : ''
+export default function SiteHeader ({ html }) {
 
   return html`
     <style scope="global">
