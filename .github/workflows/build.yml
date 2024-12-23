@@ -52,42 +52,20 @@ jobs:
     concurrency:
       group: staging_${{ github.repository }}
 
+    # Go
     steps:
-      - name: Check out repo
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - name: Deploy app
+        uses: architect/action-deploy@v1
         with:
           node-version: lts/*
+          aws_access_key_id: ${{secrets.AWS_ACCESS_KEY_ID}}
+          aws_secret_access_key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
 
-      - name: Use latest tag
-        if: github.event_name == 'workflow_dispatch'
-        run: |
-          git fetch --tags
-          git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
-
-      - name: Install
-        run: npm install
-
-      - name: Generate data
-        run: npm run gen
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
-      - name: Deploy to staging
-        if: github.ref == 'refs/heads/main' && github.event_name != 'workflow_dispatch'
-        uses: beginner-corp/actions/deploy@v1
+      - name: Notify
+        uses: sarisia/actions-status-discord@v1
+        if: always()
         with:
-          begin_token: ${{ secrets.BEGIN_TOKEN }}
-          begin_env_name: staging
-          channel: 'main'
-
-      - name: Deploy to production
-        if: startsWith(github.ref, 'refs/tags/v') || github.event_name == 'workflow_dispatch'
-        uses: beginner-corp/actions/deploy@v1
-        with:
-          begin_token: ${{ secrets.BEGIN_TOKEN }}
-          begin_env_name: production
-          channel: 'main'
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          title: "deploy build"
+          color: 0x222222
+          username: GitHub Actions

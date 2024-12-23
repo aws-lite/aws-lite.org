@@ -17,6 +17,7 @@
     "markdown-it-anchor": "^9.2.0"
   },
   "devDependencies": {
+    "@architect/architect": "^11.1.0",
     "@architect/eslint-config": "^3.0.0",
     "@aws-lite/client": "^0.22.4",
     "@aws-lite/s3": "^0.2.6",
