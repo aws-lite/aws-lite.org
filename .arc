@@ -1,8 +1,9 @@
 @app
-# ! name cannot start with "aws" if deployed with Arc (instead of Begin)
-aws-lite_org
-# * suggested alternative:
-# org_aws-lite
+site_aws-lite_org
+
+@aws
+profile openjsf
+region us-west-2
 
 @static
 prune true
@@ -14,9 +15,3 @@ enhance/styles-cribsheet
 
 @enhance-styles
 config styleguide.json
-
-@aws
-runtime nodejs20.x
-
-@begin
-appID B6FLDG2K
