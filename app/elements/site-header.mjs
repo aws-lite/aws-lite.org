@@ -1,4 +1,4 @@
-export default function SiteHeader({ html }) {
+export default function SiteHeader ({ html }) {
 
   return html`
     <style scope="global">
